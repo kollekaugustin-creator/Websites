@@ -15,7 +15,7 @@ Wir wollen die Abläufe verstehen, nicht die technischen Details.
 - Alle Texte auf Deutsch
 - Mobile first: Die Seite muss auf dem Handy perfekt aussehen
 - Schriften lokal einbinden, niemals direkt von Google Fonts laden
-- Keine externen Tracker, Cookies nur wenn unvermeidbar
+- Externe Einbindungen mit Trackern/Cookies sind erlaubt (z. B. eingebettetes Google Maps)
 - Jede Seite braucht einen Link zu Impressum und Datenschutz
 - Sinnvoller <title> und <meta description> für Google
 - Bilder: graue Platzhalter-Kästen mit Beschriftung, was dort
