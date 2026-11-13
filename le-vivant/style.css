@@ -646,3 +646,12 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   .hero-video { display: none; }
 }
+/* Desktop: Textkasten rechts, damit das Gesicht im Video frei bleibt */
+@media (min-width: 900px) {
+  .hero-card {
+    margin-left: auto;
+    max-width: 480px;
+    padding: 40px 40px 34px;
+  }
+  .hero h1 { font-size: 54px; }
+}
