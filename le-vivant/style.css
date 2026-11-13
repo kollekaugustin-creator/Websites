@@ -629,3 +629,29 @@ img { max-width: 100%; display: block; }
 @media (min-width: 900px) {
   .hero-image { justify-content: flex-end; padding-right: 12%; }
 }
+
+/* ---------- Hero-Video ---------- */
+.hero-media {
+  padding: 0;
+  overflow: hidden;
+  background: var(--platzhalter) url("media/hero-poster.jpg") center / cover no-repeat;
+}
+.hero-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Wer weniger Bewegung eingestellt hat, sieht nur das Standbild */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
+}
+/* Desktop: Textkasten rechts, damit das Gesicht im Video frei bleibt */
+@media (min-width: 900px) {
+  .hero-card {
+    margin-left: auto;
+    max-width: 480px;
+    padding: 40px 40px 34px;
+  }
+  .hero h1 { font-size: 54px; }
+}
