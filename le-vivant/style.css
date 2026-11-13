@@ -1,0 +1,631 @@
+/* =========================================================
+   le vivant – Stildatei
+   Farben: Elfenbein (Hintergrund), Anthrazit (Text/Buttons),
+   Champagner (nur Linien, Icons, Hover – nie als Text auf hell)
+   ========================================================= */
+
+/* ---------- Schriften (lokal, aus dem Ordner fonts/) ---------- */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/cormorant-garamond-latin-400-italic.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("fonts/jost-latin-300-normal.woff2") format("woff2");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("fonts/jost-latin-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("fonts/jost-latin-500-normal.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+
+/* ---------- Farben & Grundwerte ---------- */
+:root {
+  --elfenbein: #F7F4EF;
+  --anthrazit: #2B2B2B;
+  --champagner: #B89A6A;
+  --grau-text: #5A5753;      /* gedämpfter Text, gut lesbar auf Elfenbein */
+  --platzhalter: #D9D6D1;    /* graue Bild-Platzhalter */
+  --platzhalter-text: #55524E;
+  --weiss: #FFFFFF;
+
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --rand: 20px;              /* Seitenabstand links/rechts (Handy) */
+  --breite: 1200px;          /* maximale Inhaltsbreite */
+  --abschnitt: 88px;         /* Abstand oben/unten pro Abschnitt (Handy) */
+  --kopf-hoehe: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--kopf-hoehe) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--elfenbein);
+  color: var(--anthrazit);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  /* Platz für den festen "Termin buchen"-Button am Handy */
+  padding-bottom: 76px;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+}
+
+p { margin: 0; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+.container {
+  width: 100%;
+  max-width: var(--breite);
+  margin: 0 auto;
+  padding: 0 var(--rand);
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+:focus-visible { outline: 2px solid var(--champagner); outline-offset: 3px; }
+
+/* ---------- Entwurfs-Balken ---------- */
+.draft-bar {
+  background: var(--anthrazit);
+  color: var(--elfenbein);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 7px var(--rand);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 28px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--anthrazit);
+  background: var(--anthrazit);
+  color: var(--weiss);
+  cursor: pointer;
+  transition: background-color .25s, border-color .25s, color .25s;
+}
+.btn:hover { background: var(--champagner); border-color: var(--champagner); color: var(--anthrazit); }
+
+.btn--outline { background: transparent; color: var(--anthrazit); }
+.btn--outline:hover { background: transparent; border-color: var(--champagner); color: var(--anthrazit); }
+
+.btn--small { min-height: 40px; padding: 0 18px; font-size: 12px; }
+
+/* Textlink mit Pfeil */
+.text-link {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--anthrazit);
+  transition: border-color .25s;
+}
+.text-link:hover { border-color: var(--champagner); }
+
+/* ---------- Kopfzeile ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--elfenbein);
+  border-bottom: 1px solid rgba(43, 43, 43, 0.08);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--kopf-hoehe);
+}
+.logo {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.main-nav { display: none; }
+.header-btn { display: none; }
+
+/* Hamburger-Button */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  margin-right: -10px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.menu-toggle span {
+  display: block;
+  height: 1.5px;
+  background: var(--anthrazit);
+  transition: transform .3s, opacity .3s;
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* Ausgeklapptes Handy-Menü */
+.main-nav.is-open {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--elfenbein);
+  border-bottom: 1px solid var(--champagner);
+  padding: 8px var(--rand) 28px;
+}
+.main-nav ul { list-style: none; margin: 0; padding: 0; }
+.main-nav a {
+  display: block;
+  padding: 14px 0;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(43, 43, 43, 0.08);
+}
+.main-nav a:hover { border-color: var(--champagner); }
+
+/* Unterseiten: einfacher Kopf ohne Menü */
+.header-inner--simple .header-btn { display: inline-flex; }
+
+/* ---------- Bild-Platzhalter ---------- */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--platzhalter);
+  color: var(--platzhalter-text);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 16px;
+}
+
+/* ---------- Abschnitte allgemein ---------- */
+.section { padding: var(--abschnitt) 0; }
+
+.section-head { margin-bottom: 44px; }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.eyebrow::before {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: var(--champagner);
+}
+.section-title { font-size: 40px; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; }
+.hero-image {
+  height: 62vh;
+  min-height: 360px;
+  max-height: 760px;
+}
+.hero-content {
+  padding-top: 44px;
+  padding-bottom: 8px;
+}
+.hero h1 {
+  font-size: 46px;
+  max-width: 12ch;
+  margin-bottom: 20px;
+}
+.hero-sub {
+  color: var(--grau-text);
+  max-width: 34em;
+  margin-bottom: 32px;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.hero-actions .btn { flex: 1 1 160px; }
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--grau-text);
+}
+.rating-star { color: var(--champagner); font-size: 16px; } /* Icon, kein Fließtext */
+
+/* ---------- Leistungen & Preise ---------- */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: rgba(43, 43, 43, 0.1);   /* feine Trennlinien zwischen den Kacheln */
+  border: 1px solid rgba(43, 43, 43, 0.1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.service {
+  position: relative;
+  background: var(--elfenbein);
+  padding: 30px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background-color .25s;
+}
+.service::before {
+  content: "";
+  position: absolute;
+  left: 26px;
+  top: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--champagner);
+  transition: width .3s;
+}
+.service:hover::before { width: calc(100% - 52px); }
+.service h3 { font-size: 26px; }
+.service-price {
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--grau-text);
+}
+.service-price strong { font-weight: 500; color: var(--anthrazit); font-size: 18px; }
+
+.services-note {
+  margin-top: 28px;
+  font-size: 14px;
+  color: var(--grau-text);
+  max-width: 46em;
+}
+.services-link { margin-top: 32px; }
+
+/* ---------- Über uns ---------- */
+.section--white { background: var(--weiss); }
+.about-grid {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+.about-image { aspect-ratio: 4 / 5; }
+.about-text { font-size: 19px; line-height: 1.75; }
+
+.team {
+  margin-top: 72px;
+}
+.team-title { font-size: 30px; margin-bottom: 28px; }
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.team-card .placeholder { aspect-ratio: 3 / 4; margin-bottom: 16px; }
+.team-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  padding-top: 12px;
+  border-top: 1px solid var(--champagner);
+}
+
+/* ---------- Galerie ---------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 0;
+}
+.gallery-grid .placeholder { aspect-ratio: 1 / 1; font-size: 12px; }
+
+/* ---------- Öffnungszeiten & Anfahrt ---------- */
+.visit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
+.info-block + .info-block { margin-top: 36px; }
+.info-block h3 {
+  font-size: 26px;
+  margin-bottom: 14px;
+}
+.hours {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  max-width: 340px;
+}
+.hours dt, .hours dd {
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(43, 43, 43, 0.1);
+}
+.hours dt { font-weight: 500; padding-right: 24px; }
+.hours dd { text-align: right; }
+.hours .closed { color: var(--grau-text); }
+
+.address { font-style: normal; }
+.address-hint { color: var(--grau-text); margin-top: 6px; }
+
+.extras {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.extras li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+}
+.extras li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--champagner);
+  transform: rotate(45deg);
+  flex: none;
+}
+
+/* Karte (wird erst nach Klick geladen) */
+.map {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--platzhalter);
+}
+.map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.map-consent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 28px;
+  text-align: center;
+  color: var(--platzhalter-text);
+  font-size: 15px;
+  border: 1px solid rgba(43, 43, 43, 0.12);
+}
+.map-consent p { max-width: 30em; }
+.map-consent svg { width: 32px; height: 32px; stroke: var(--champagner); }
+
+/* ---------- Kontakt ---------- */
+.contact { text-align: center; }
+.contact .eyebrow { justify-content: center; }
+.contact .eyebrow::after {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: var(--champagner);
+}
+.contact-list {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: grid;
+  gap: 22px;
+}
+.contact-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--grau-text);
+  margin-bottom: 4px;
+}
+.contact-value {
+  font-family: var(--serif);
+  font-size: 30px;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s;
+}
+.contact-value:hover { border-color: var(--champagner); }
+
+/* ---------- Fußzeile ---------- */
+.site-footer {
+  background: var(--anthrazit);
+  color: var(--elfenbein);
+  padding: 48px 0;
+  font-size: 14px;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 28px;
+  margin-bottom: 20px;
+  display: inline-block;
+  text-decoration: none;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+}
+.footer-links a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(247, 244, 239, 0.3);
+  padding-bottom: 2px;
+}
+.footer-links a:hover { border-color: var(--champagner); }
+.footer-meta {
+  display: grid;
+  gap: 6px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(184, 154, 106, 0.5);
+  color: rgba(247, 244, 239, 0.75);
+  font-size: 13px;
+}
+
+/* ---------- Fester Button am Handy ---------- */
+.sticky-book {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 60;
+  box-shadow: 0 8px 24px rgba(43, 43, 43, 0.25);
+}
+
+/* ---------- Unterseiten (Impressum, Datenschutz) ---------- */
+.legal { padding: var(--abschnitt) 0; min-height: 50vh; }
+.legal h1 { font-size: 44px; margin-bottom: 24px; }
+.legal p { color: var(--grau-text); }
+.legal .text-link { margin-top: 40px; }
+
+/* =========================================================
+   Größere Bildschirme
+   ========================================================= */
+@media (min-width: 600px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero-actions .btn { flex: 0 0 auto; }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --rand: 40px;
+    --abschnitt: 130px;
+    --kopf-hoehe: 84px;
+  }
+  body { padding-bottom: 0; }
+  .sticky-book { display: none; }
+
+  .menu-toggle { display: none; }
+  .main-nav { display: block; }
+  .main-nav ul { display: flex; gap: 36px; }
+  .main-nav a {
+    padding: 4px 0;
+    font-size: 15px;
+    border-bottom: 1px solid transparent;
+  }
+  .header-btn { display: inline-flex; }
+  .logo { font-size: 34px; }
+
+  .section-title { font-size: 56px; }
+
+  /* Hero: Bild volle Breite, Text darüber */
+  .hero-image { height: 86vh; max-height: 880px; }
+  .hero-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 64px;
+    padding: 0;
+  }
+  .hero-card {
+    background: var(--elfenbein);
+    max-width: 560px;
+    padding: 48px 48px 40px;
+  }
+  .hero h1 { font-size: 62px; }
+
+  .services-grid { grid-template-columns: repeat(4, 1fr); }
+  .service { padding: 40px 30px; min-height: 180px; justify-content: space-between; }
+  .service::before { left: 30px; }
+  .service:hover::before { width: calc(100% - 60px); }
+
+  .about-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 96px; }
+  .about-text { font-size: 22px; }
+  .team { margin-top: 120px; }
+  .team-grid { gap: 40px; }
+
+  .gallery-grid { gap: 16px; }
+
+  .visit-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 80px; align-items: start; }
+  .map { aspect-ratio: auto; height: 100%; min-height: 520px; }
+
+  .contact-list { grid-template-columns: repeat(2, auto); justify-content: center; gap: 80px; }
+  .contact-value { font-size: 36px; }
+
+  .footer-inner { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: start; }
+  .footer-links { justify-content: flex-end; }
+  .footer-meta { grid-column: 1 / -1; grid-template-columns: repeat(2, auto); justify-content: space-between; }
+}
+
+/* Unterseiten haben keinen festen Handy-Button */
+.page-simple { padding-bottom: 0; }
+
+/* 7 Kacheln: die letzte wird breiter, damit keine Lücke entsteht */
+@media (min-width: 600px) {
+  .service:last-child { grid-column: span 2; }
+}
+/* Desktop: Beschriftung des Hero-Platzhalters rechts, nicht hinter dem Textkasten */
+@media (min-width: 900px) {
+  .hero-image { justify-content: flex-end; padding-right: 12%; }
+}
