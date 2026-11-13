@@ -661,3 +661,10 @@ img.about-image { display: block; width: 100%; height: auto; object-fit: cover; 
 .team-card img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; margin-bottom: 16px; }
 .team-grid.team-grid--solo { grid-template-columns: minmax(0, 340px); }
 .gallery-grid img { display: block; width: 100%; height: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+
+/* ---------- Spezialitäten mit Kurzerklärung ---------- */
+.service-desc { font-size: 15px; line-height: 1.6; color: var(--grau-text); }
+.service .service-price { margin-top: auto; padding-top: 6px; }
+@media (min-width: 900px) {
+  .service { justify-content: flex-start; }
+}
