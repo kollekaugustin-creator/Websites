@@ -296,6 +296,21 @@ img { max-width: 100%; display: block; }
 }
 .rating-star { color: var(--champagner); font-size: 16px; } /* Icon, kein Fließtext */
 
+/* ---------- Bewertung als Link ---------- */
+.rating-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding: 6px 0; /* größere Klickfläche auf dem Handy */
+  transition: border-color .2s, color .2s;
+}
+.rating-link:hover { color: var(--anthrazit); border-color: var(--champagner); }
+.rating-arrow { transition: transform .2s; }
+.rating-link:hover .rating-arrow { transform: translateX(3px); }
+
 /* ---------- Leistungen & Preise ---------- */
 .services-grid {
   display: grid;
