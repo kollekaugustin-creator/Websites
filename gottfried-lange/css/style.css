@@ -531,6 +531,12 @@ mark.hinweis {
 }
 .gallery { display: grid; gap: 16px; margin-top: 1.5rem; }
 
+/* Echte Fotos an Stelle der Platzhalter */
+.photo {
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 3;
+  object-fit: cover; border-radius: var(--radius);
+}
+
 .cta-section { background: var(--tint); }
 .cta-box {
   background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow);
