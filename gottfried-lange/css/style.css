@@ -1,6 +1,7 @@
 /* =========================================================
    Gottfried Lange GmbH – gemeinsames Stylesheet
-   Stil: klar, technisch, Graustufen, ein orangener Akzent.
+   Stil: klar und eckig, warmer Grund, Dunkelblau als zweite
+   Hauptfarbe, Orange für Anfrage-Buttons.
    Mobile first: Grundregeln gelten fürs Handy,
    größere Bildschirme werden weiter unten ergänzt.
    ========================================================= */
@@ -34,18 +35,19 @@
 
 /* ---------- Farben und Maße ---------- */
 :root {
-  --bg: #F4F4F6;          /* Seitenhintergrund */
-  --bg-alt: #EBEBED;      /* jeder zweite Abschnitt */
-  --bg-footer: #D2D4D6;   /* Fußzeile */
+  --bg: #F7F6F3;          /* warmer Seitenhintergrund */
+  --bg-alt: #EFECE6;      /* jeder zweite Abschnitt */
+  --white: #FFFFFF;       /* Karten */
   --heading: #1A1818;     /* Überschriften */
   --text: #212121;        /* Fließtext */
   --muted: #53575A;       /* Labels, Nebentext */
-  --deco: #B0B4B7;        /* große Deko-Zahlen (nur ab 64 px) */
-  --accent: #F29A1F;      /* einziger Farbakzent */
-  --white: #FFFFFF;
-  --line: rgba(26, 24, 24, 0.2);
-  --placeholder: #C9CCCF; /* heller Foto-Platzhalter */
-  --placeholder-dark: #5F6366; /* dunkler Foto-Platzhalter (weiße Schrift darauf) */
+  --blue: #1F4E79;        /* zweite Hauptfarbe (aus dem alten Logo) */
+  --blue-dark: #163A5C;
+  --on-blue-muted: #C7D7E6; /* Nebentext auf Blau */
+  --accent: #F29A1F;      /* Orange für Anfrage-Buttons */
+  --line: rgba(26, 24, 24, 0.15);
+  --line-on-blue: rgba(255, 255, 255, 0.25);
+  --placeholder: #D9D6CF; /* heller Foto-Platzhalter (Unterseiten) */
   --error: #B3261E;
 
   --font: "Geist", Arial, sans-serif;
@@ -77,14 +79,14 @@ h1, h2, h3 {
   font-family: var(--font);
   font-weight: 600;
   color: var(--heading);
-  text-transform: uppercase;
   margin: 0 0 1rem;
   overflow-wrap: break-word;
   hyphens: manual;
 }
+h1, h2 { text-transform: uppercase; }
 h1 { font-size: 40px; line-height: 1.0; letter-spacing: -0.01em; }
 h2 { font-size: 26px; line-height: 1.05; letter-spacing: -0.005em; }
-h3 { font-size: 20px; line-height: 1.15; }
+h3 { font-size: 20px; line-height: 1.2; }
 
 p { margin: 0 0 1rem; }
 a { color: var(--heading); text-underline-offset: 3px; }
@@ -98,6 +100,9 @@ select:focus-visible, textarea:focus-visible {
 
 .container { width: 100%; max-width: 80rem; margin: 0 auto; padding: 0 var(--gutter); }
 .narrow { max-width: 46rem; }
+
+.icon { flex-shrink: 0; display: block; }
+.icon * { vector-effect: non-scaling-stroke; } /* Strich bleibt 1,5 px, egal wie groß */
 
 /* Kleines Label in Mono-Schrift, z. B. „LEISTUNGEN“ */
 .label {
@@ -157,7 +162,7 @@ mark.hinweis {
 }
 /* Beim Scrollen: heller, leicht durchscheinend */
 .site-header.is-scrolled {
-  background: rgba(250, 250, 251, 0.85);
+  background: rgba(252, 251, 249, 0.85);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--line);
@@ -171,7 +176,7 @@ mark.hinweis {
 .logo { color: var(--heading); text-decoration: none; display: flex; flex-direction: column; margin-right: auto; }
 .logo-name {
   font-weight: 600; font-size: 22px; line-height: 1;
-  text-transform: uppercase; letter-spacing: 0.32em;
+  text-transform: uppercase; letter-spacing: 0.32em; color: var(--blue);
 }
 .logo-sub {
   font-family: var(--mono); font-size: 10px; font-weight: 500;
@@ -201,7 +206,7 @@ mark.hinweis {
   font-size: 22px; font-weight: 500; text-transform: uppercase;
   border-top: 1px solid var(--line);
 }
-.main-nav a:hover { color: var(--muted); }
+.main-nav a:hover { color: var(--blue); }
 /* Aktiver Menüpunkt: orangener Balken links */
 .main-nav a[aria-current="page"] {
   padding-left: .75rem;
@@ -225,7 +230,7 @@ mark.hinweis {
 .btn::after { content: "→"; content: "→" / ""; transition: transform .2s ease; }
 .btn:hover::after { transform: translateX(3px); }
 
-/* Orange – nur für Anfrage und Notdienst */
+/* Orange – für Anfrage-Buttons */
 .btn--primary { background: var(--accent); color: var(--heading); }
 .btn--primary:hover { background: #E08A12; }
 /* Dunkler Rahmen auf hellem Grund */
@@ -240,19 +245,71 @@ mark.hinweis {
 
 .btn-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1rem; }
 
+/* =========================================================
+   Bildplätze: echtes Foto (img/…jpg) oder, solange es fehlt,
+   ein weicher Farbverlauf in den Markenfarben mit Icon.
+   ========================================================= */
+.media { position: relative; overflow: hidden; background: var(--blue); }
+.media img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.media img[hidden] { display: none; }
+.media-fallback {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255, 255, 255, .55);
+}
+.media-icon { width: 96px; height: 96px; }
+.media-label {
+  position: absolute; left: 1.25rem; bottom: 1rem;
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .85);
+}
+
+/* Farbverläufe je Bildplatz */
+.media--hero {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(242, 154, 31, .45), transparent 45%),
+    linear-gradient(135deg, #2B6496 0%, #1F4E79 45%, #12304D 100%);
+}
+.media--heizung {   /* warmes Orange-Braun */
+  background:
+    radial-gradient(circle at 80% 85%, rgba(242, 154, 31, .5), transparent 55%),
+    linear-gradient(160deg, #9A5524 0%, #7E4419 55%, #5E3110 100%);
+}
+.media--bad {       /* Blau */
+  background:
+    radial-gradient(circle at 80% 85%, rgba(140, 200, 235, .35), transparent 55%),
+    linear-gradient(160deg, #2B76A8 0%, #1D5F8E 55%, #164A70 100%);
+}
+.media--kundendienst { /* Dunkelblau */
+  background:
+    radial-gradient(circle at 80% 85%, rgba(242, 154, 31, .25), transparent 55%),
+    linear-gradient(160deg, #1F4E79 0%, #163A5C 55%, #0E2740 100%);
+}
+.media--team {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(242, 154, 31, .55), transparent 55%),
+    linear-gradient(140deg, #B9773A 0%, #6F5A4A 45%, #1F4E79 100%);
+}
+
 /* ---------- Hero mit großem Foto (Startseite) ---------- */
 .hero-photo {
   position: relative;
   margin: 16px;
   min-height: 560px;
+  padding-top: 7rem; /* Platz für Foto-Beschriftung und Icon oben */
   display: flex; align-items: flex-end;
   overflow: hidden;
 }
-.hero-photo .hero-photo-media { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
+.hero-photo .hero-photo-media { position: absolute; inset: 0; }
+.hero-photo .media-fallback { align-items: flex-start; justify-content: flex-end; padding: 1.5rem; }
+.hero-photo .media-label { top: 1.25rem; bottom: auto; }
 /* Dunkler Verlauf unten, damit die weiße Schrift lesbar ist */
 .hero-photo::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to top, rgba(26, 24, 24, .9) 0%, rgba(26, 24, 24, .55) 45%, rgba(26, 24, 24, 0) 75%);
+  background: linear-gradient(to top, rgba(14, 30, 48, .85) 0%, rgba(14, 30, 48, .45) 45%, rgba(14, 30, 48, 0) 75%);
 }
 .hero-photo-content {
   position: relative; z-index: 1;
@@ -261,23 +318,39 @@ mark.hinweis {
 .hero-photo h1 { color: var(--white); }
 .hero-sub {
   color: var(--white);
-  font-family: var(--mono); font-size: 13px; font-weight: 500;
-  letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.5;
-  max-width: 40rem; margin-bottom: 1.5rem;
+  font-size: 19px; line-height: 1.45;
+  max-width: 36rem; margin-bottom: 1.5rem;
 }
+
+/* ---------- Vertrauensleiste ---------- */
+.trust-strip { background: var(--white); border-bottom: 1px solid var(--line); }
+.trust-items {
+  list-style: none; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 1rem;
+  padding-top: 1.5rem; padding-bottom: 1.5rem;
+}
+.trust-items li {
+  display: flex; align-items: center; gap: .75rem;
+  font-size: 15px; font-weight: 500; line-height: 1.25; color: var(--heading);
+}
+.trust-items .icon { color: var(--blue); }
 
 /* ---------- Einfacher Seitenkopf (Unterseiten) ---------- */
 .hero { padding: var(--section-space) 0; border-bottom: 1px solid var(--line); }
 .hero-inner { display: grid; gap: 2rem; }
 .lead { font-size: 20px; color: var(--muted); }
 .big-phone { font-size: 40px; font-weight: 600; line-height: 1; letter-spacing: -0.01em; }
-.big-phone a { color: var(--heading); text-decoration: none; }
+.big-phone a { color: var(--blue); text-decoration: none; }
 
 /* ---------- Abschnitte ---------- */
 .section { padding: var(--section-space) 0; }
 .section--alt, .section--white { background: var(--bg-alt); }
+.section--blue { background: var(--blue); color: var(--white); }
+.section--blue h2 { color: var(--white); }
+.section--blue .label { color: var(--on-blue-muted); }
+.section--blue a:focus-visible { outline-color: var(--white); }
 
-/* Kopf eines Abschnitts: Label links, große H2 rechts */
+/* Kopf eines Abschnitts: Label links, große Überschrift rechts */
 .section-head {
   display: grid; gap: .25rem;
   padding-top: 1rem; border-top: 1px solid var(--line);
@@ -287,52 +360,75 @@ mark.hinweis {
 
 .split { display: grid; gap: 2rem; }
 
-/* ---------- Zahlen & Fakten ---------- */
-.facts { display: grid; gap: 1.5rem; }
-.deco-number {
-  font-size: 96px; font-weight: 600; line-height: .9; letter-spacing: -0.03em;
-  color: var(--deco); margin: 0;
-}
-.facts-list, .line-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.facts-list li, .line-list li {
-  display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap;
-  padding: 1rem 0; border-bottom: 1px solid var(--line);
-}
-.facts-list li { font-size: 20px; font-weight: 500; color: var(--heading); }
-.facts-count { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted); min-width: 2ch; }
-.line-list li { display: block; }
-
-/* ---------- Leistungskarten mit Foto ---------- */
+/* ---------- Leistungskarten ---------- */
 .service-cards { display: grid; gap: 16px; }
 .service-card {
-  position: relative; min-height: 440px; overflow: hidden;
+  position: relative; min-height: 420px; overflow: hidden;
   display: flex; flex-direction: column;
 }
-.service-card .service-card-media { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
+.service-card .service-card-media { position: absolute; inset: 0; }
+.service-card .media-fallback { align-items: flex-end; justify-content: flex-end; padding: 1.25rem; }
+.service-card .media-icon { width: 120px; height: 120px; }
 .service-card::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to bottom, rgba(26, 24, 24, .65) 0%, rgba(26, 24, 24, 0) 55%);
+  background: linear-gradient(to bottom, rgba(14, 20, 28, .55) 0%, rgba(14, 20, 28, 0) 60%);
 }
 .service-card-content { position: relative; z-index: 1; padding: 1.5rem; max-width: 26rem; }
-.service-card h3 { color: var(--white); font-size: 24px; margin-bottom: .5rem; }
+.service-card h3 { color: var(--white); font-size: 24px; text-transform: uppercase; margin-bottom: .5rem; }
 .service-card p { color: var(--white); font-size: 16px; }
-.service-card .img-placeholder span { position: absolute; left: 1.5rem; bottom: 1.25rem; }
 
-/* ---------- Karten (Unterseiten) ---------- */
-.cards { display: grid; gap: 0; margin-bottom: 1.5rem; border-top: 1px solid var(--line); }
-.card {
-  background: transparent; border: 0; border-bottom: 1px solid var(--line);
-  padding: 1.5rem 0; margin: 0;
+/* ---------- Warum Lange: Überschrift links, Kacheln rechts ---------- */
+.side-layout { display: grid; gap: 2rem; }
+.side-head p:last-child { color: var(--muted); margin: 0; }
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.tile { background: var(--white); padding: 1.5rem; }
+.tile .icon { color: var(--blue); margin-bottom: 1.25rem; }
+.tile h3 { font-size: 19px; margin-bottom: .4rem; }
+.tile p { font-size: 16px; color: var(--muted); margin: 0; }
+
+/* ---------- Familienbetrieb: Bild + Text ---------- */
+.feature { display: grid; gap: 2rem; align-items: center; }
+.feature-media { aspect-ratio: 4 / 3; }
+.icon-list { list-style: none; margin: 0 0 1.75rem; padding: 0; border-top: 1px solid var(--line); }
+.icon-list li {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .85rem 0; border-bottom: 1px solid var(--line);
+  font-weight: 500; color: var(--heading);
 }
-.card p:last-child { margin-bottom: 0; }
+.icon-list .icon { color: var(--blue); }
 
 /* ---------- Kundenstimmen ---------- */
-.quotes { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.quotes { display: grid; gap: 16px; }
 .quote {
-  margin: 0; padding: 1.5rem 0; border-bottom: 1px solid var(--line);
-  font-size: 24px; font-weight: 500; line-height: 1.25; color: var(--heading);
+  position: relative; margin: 0;
+  background: var(--white); padding: 4.25rem 1.5rem 1.75rem;
+  font-size: 22px; font-weight: 500; line-height: 1.3; color: var(--heading);
+}
+.quote::before {
+  content: "“"; position: absolute; left: 1.25rem; top: .5rem;
+  font-size: 96px; font-weight: 600; line-height: 1; color: var(--accent);
 }
 .quote p { margin: 0; }
+
+/* ---------- Notdienst (vollflächig blau) ---------- */
+.emergency { display: grid; gap: 2rem; align-items: end; }
+.emergency p { color: var(--white); max-width: 34rem; margin: 0; }
+.emergency-number {
+  display: inline-flex; align-items: center; gap: 1rem;
+  color: var(--white); text-decoration: none;
+  font-size: 32px; font-weight: 600; line-height: 1; letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.emergency-number .icon { width: 40px; height: 40px; }
+.emergency-number:hover span { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; }
+
+/* ---------- Abschluss ---------- */
+.cta-final h2 { max-width: 20ch; }
+
+/* ---------- Karten (Unterseiten) ---------- */
+.cards { display: grid; gap: 16px; margin-bottom: 1.5rem; }
+.card { background: var(--white); padding: 1.5rem; margin: 0; }
+.card p:last-child { margin-bottom: 0; }
 
 /* ---------- Listen und Kästen (Unterseiten) ---------- */
 .feature-list { list-style: none; padding: 0; margin: 0 0 1rem; border-top: 1px solid var(--line); }
@@ -340,13 +436,13 @@ mark.hinweis {
 .contact-list { list-style: none; padding: 0; }
 .tag-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
 .tag-list li {
-  border: 1px solid var(--line); border-radius: var(--radius); padding: .4rem .8rem;
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: .4rem .8rem;
   font-family: var(--mono); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
 }
 .brand-list { font-size: 22px; font-weight: 500; color: var(--heading); }
 
 .emergency-box, .note-box {
-  border-top: 1px solid var(--heading); padding-top: 1.25rem;
+  background: var(--white); border-top: 3px solid var(--blue); padding: 1.25rem;
 }
 
 /* ---------- Ablauf-Schritte „01 / 04“ (Heizung, Bad) ---------- */
@@ -363,20 +459,17 @@ mark.hinweis {
 .steps h3 { margin: 0; }
 .steps p { margin: 0; }
 
-/* ---------- Foto-Platzhalter ---------- */
+/* ---------- Foto-Platzhalter (Unterseiten) ---------- */
 .img-placeholder {
   position: relative;
   background: var(--placeholder); color: var(--heading);
-  aspect-ratio: 4 / 3; border-radius: 0;
+  aspect-ratio: 4 / 3;
   display: flex; align-items: flex-end; padding: 1rem;
 }
 .img-placeholder span {
   font-family: var(--mono); font-size: 12px; font-weight: 700;
   letter-spacing: .06em; text-transform: uppercase;
 }
-.img-placeholder--dark { background: var(--placeholder-dark); color: var(--white); }
-/* Im Hero steht die Beschriftung oben links (unten liegt der Text) */
-.hero-photo .img-placeholder { align-items: flex-start; padding: 1.25rem; }
 .gallery { display: grid; gap: 16px; margin-top: 1.5rem; }
 
 /* ---------- Formular ---------- */
@@ -393,7 +486,7 @@ mark.hinweis {
   background: var(--white); border: 1px solid rgba(26, 24, 24, .45);
   border-radius: 0; padding: .8rem .9rem;
 }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--heading); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--blue); }
 .field.has-error input, .field.has-error select, .field.has-error textarea { border: 2px solid var(--error); }
 .field-error { color: var(--error); font-size: 15px; font-weight: 500; margin: .4rem 0 0; }
 .form-privacy { font-size: 15px; color: var(--muted); margin-top: 1rem; }
@@ -404,39 +497,41 @@ mark.hinweis {
 
 address { font-style: normal; margin-bottom: 1rem; }
 
-/* ---------- Fußzeile ---------- */
-.site-footer { background: var(--bg-footer); color: var(--text); padding: var(--section-space) 0 1.5rem; }
-.site-footer a { color: var(--heading); }
+/* ---------- Fußzeile (dunkelblau) ---------- */
+.site-footer { background: var(--blue); color: var(--white); padding: var(--section-space) 0 1.5rem; }
+.site-footer a { color: var(--white); }
+.site-footer a:focus-visible { outline-color: var(--white); }
+.site-footer .label { color: var(--on-blue-muted); }
 .footer-claim {
   font-size: 44px; font-weight: 600; line-height: 1; letter-spacing: -0.01em;
-  text-transform: uppercase; color: var(--muted); margin: 0 0 3rem;
+  text-transform: uppercase; color: var(--on-blue-muted); margin: 0 0 3rem;
 }
 .footer-facts { display: grid; gap: 1.5rem; margin: 0 0 3rem; }
 .footer-facts dt { margin-bottom: .35rem; }
-.footer-facts dd { margin: 0; font-size: 22px; font-weight: 500; color: var(--heading); line-height: 1.25; }
+.footer-facts dd { margin: 0; font-size: 22px; font-weight: 500; color: var(--white); line-height: 1.25; }
 .footer-facts dd a { text-decoration: none; }
 .footer-facts dd a:hover { text-decoration: underline; }
 .footer-facts address { margin: 0; }
 .footer-bottom {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 2rem;
-  padding-top: 1.25rem; border-top: 1px solid var(--line);
+  padding-top: 1.25rem; border-top: 1px solid var(--line-on-blue);
   font-size: 14px;
 }
-.footer-note { margin: 0; color: var(--muted); }
+.footer-note { margin: 0; color: var(--on-blue-muted); }
 .footer-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1.25rem; }
 
 /* ---------- Feste Leiste unten (Handy) ---------- */
 .mobile-cta {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
   display: flex; gap: 8px; padding: 10px var(--gutter);
-  background: rgba(250, 250, 251, 0.9);
+  background: rgba(252, 251, 249, 0.9);
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   border-top: 1px solid var(--line);
 }
 .mobile-cta-btn { flex: 1; justify-content: center; }
 .mobile-cta-phone {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 52px; border-radius: var(--radius); background: var(--heading); color: var(--white);
+  width: 52px; border-radius: var(--radius); background: var(--blue); color: var(--white);
 }
 
 /* ---------- Einblenden beim Scrollen ---------- */
@@ -448,18 +543,32 @@ address { font-style: normal; margin-bottom: 1rem; }
 }
 
 /* =========================================================
+   Größere Handys / kleine Tablets
+   ========================================================= */
+@media (min-width: 36rem) {
+  .tiles { grid-template-columns: 1fr 1fr; }
+}
+
+/* =========================================================
    Tablet
    ========================================================= */
 @media (min-width: 48rem) {
   :root { --gutter: 2rem; }
-  .service-cards { grid-template-columns: repeat(2, 1fr); }
+  .trust-items { grid-template-columns: repeat(4, 1fr); }
   .gallery { grid-template-columns: repeat(3, 1fr); }
   .split, .hero-inner { grid-template-columns: 1fr 1fr; align-items: start; }
-  .cards { grid-template-columns: repeat(2, 1fr); column-gap: 2rem; }
-  .quotes { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .quotes { grid-template-columns: 1fr 1fr; }
   .footer-facts { grid-template-columns: repeat(2, 1fr); }
   .hero-photo-content { padding: 2.5rem; }
   .steps li { grid-template-columns: 8rem 1fr 2fr; align-items: baseline; }
+  .feature { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .emergency { grid-template-columns: 1fr auto; }
+}
+
+/* Leistungskarten: erst nebeneinander, wenn alle drei Platz haben */
+@media (min-width: 56rem) {
+  .service-cards { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* =========================================================
@@ -492,19 +601,22 @@ address { font-style: normal; margin-bottom: 1rem; }
   .section-head { grid-template-columns: 1fr 3fr; gap: 2rem; margin-bottom: 4rem; }
   .section-head .label { margin-top: .6rem; }
 
-  .facts { grid-template-columns: 1fr 3fr; gap: 2rem; align-items: start; }
-  .deco-number { font-size: 160px; }
-
-  .service-cards { grid-template-columns: repeat(3, 1fr); }
-  .service-card { min-height: 560px; }
-
-  .cards { grid-template-columns: repeat(3, 1fr); }
-  .line-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 2rem; }
-  .quote { font-size: 30px; }
-
   .hero-photo { height: calc(100svh - 140px); min-height: 640px; max-height: 900px; }
   .hero-photo-content { padding: 3.5rem; }
-  .hero-sub { font-size: 14px; }
+  .hero-sub { font-size: 21px; }
+
+  .service-card { min-height: 540px; }
+
+  .side-layout { grid-template-columns: 1fr 2fr; gap: 4rem; }
+  .feature { grid-template-columns: 6fr 5fr; gap: 5rem; }
+  .feature-media { aspect-ratio: 4 / 5; }
+
+  .cards { grid-template-columns: repeat(3, 1fr); }
+  .quote { font-size: 28px; padding: 5rem 2.5rem 2.5rem; }
+  .quote::before { left: 2.25rem; font-size: 120px; }
+
+  .emergency-number { font-size: 72px; }
+  .emergency-number .icon { width: 64px; height: 64px; }
   .big-phone { font-size: 72px; }
 
   .footer-claim { font-size: 96px; }
