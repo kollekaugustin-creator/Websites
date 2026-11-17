@@ -491,7 +491,7 @@ mark.hinweis {
 .brand-logos .is-wide img { height: 24px; }
 .brand-logos .is-compact img { height: 46px; }
 @media (min-width: 768px) {
-  .brand-logos { justify-content: flex-start; gap: 32px 56px; }
+  .brand-logos { justify-content: flex-start; gap: 32px 40px; }
   .brand-logos img { height: 36px; }
   .brand-logos .is-wide img { height: 28px; }
   .brand-logos .is-compact img { height: 54px; }
