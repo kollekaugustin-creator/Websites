@@ -7,10 +7,11 @@
   <meta name="description" content="Meisterbetrieb seit 1974 in Neuss-Furth: Heizungsmodernisierung, Badsanierung, Wartung und Notdienst. Jetzt unverbindlich anfragen.">
   <!-- Entwurf: Suchmaschinen sollen die Seite nicht aufnehmen -->
   <meta name="robots" content="noindex, nofollow">
-  <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/barlow-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Geist-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/menu.js" defer></script>
+  <script src="js/einblenden.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -44,13 +45,6 @@
         <span class="logo-sub">Sanitär und Heizung</span>
       </a>
 
-      <a class="header-phone" href="tel:+49213155661"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span>02131 55661</span></a>
-
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden>
-        <span class="menu-toggle-bars" aria-hidden="true"></span>
-        <span class="menu-toggle-label">Menü</span>
-      </button>
-
       <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
         <ul>
           <li><a href="index.html" aria-current="page">Start</a></li>
@@ -61,65 +55,94 @@
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </nav>
+
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+49213155661">02131 55661</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden>Menü</button>
+      </div>
     </div>
   </header>
 
   <main id="inhalt">
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1>Heizung und Bad aus Meisterhand – seit 1974 in Neuss</h1>
-          <p class="lead">Wir sind ein Familienbetrieb in 2. Generation. Wir planen, bauen ein und warten – für Ihre Heizung und Ihr Bad.</p>
-          <div class="btn-row">
-            <a class="btn btn--primary" href="kontakt.html">Anfrage stellen</a>
-            <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
-          </div>
+    <!-- Hero: großes Foto mit Text unten links -->
+    <section class="hero-photo">
+      <div class="img-placeholder img-placeholder--dark hero-photo-media" role="img" aria-label="Handwerker prüft moderne Heizungsanlage"><span>Foto: Handwerker an moderner Heizungsanlage</span></div>
+      <div class="hero-photo-content">
+        <h1>Heizung und Bad aus Meisterhand – seit 1974 in Neuss</h1>
+        <p class="hero-sub">Wir sind ein Familienbetrieb in 2. Generation. Wir planen, bauen ein und warten – für Ihre Heizung und Ihr Bad.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="kontakt.html">Anfrage stellen</a>
+          <a class="btn btn--white" href="tel:+49213155661">02131 55661 anrufen</a>
         </div>
-        <div class="img-placeholder" role="img" aria-label="Handwerker prüft moderne Heizungsanlage"><span>Foto: Handwerker an moderner Heizungsanlage</span></div>
       </div>
     </section>
 
-    <!-- Vertrauensleiste -->
-    <section class="trust-bar" aria-label="Das zeichnet uns aus">
-      <ul class="container trust-list">
-        <li>Meisterbetrieb</li>
-        <li>Familienbetrieb in 2. Generation</li>
-        <li>Innungsbetrieb <mark class="hinweis">[PRÜFEN: Innungsname]</mark></li>
-        <li>Notdienst <mark class="hinweis">[PRÜFEN]</mark></li>
-      </ul>
+    <!-- Zahlen & Fakten (Vertrauensleiste) -->
+    <section class="section" aria-labelledby="fakten-titel">
+      <div class="container">
+        <div class="section-head">
+          <p class="label">Zahlen &amp; Fakten</p>
+          <h2 id="fakten-titel">Das zeichnet uns aus</h2>
+        </div>
+        <div class="facts">
+          <p class="deco-number" aria-hidden="true">1974</p>
+          <ol class="facts-list">
+            <li><span class="facts-count" aria-hidden="true">01</span>Gegründet 1974</li>
+            <li><span class="facts-count" aria-hidden="true">02</span>Familienbetrieb in 2. Generation</li>
+            <li><span class="facts-count" aria-hidden="true">03</span>Meisterbetrieb</li>
+            <li><span class="facts-count" aria-hidden="true">04</span>Innungsbetrieb <mark class="hinweis">[PRÜFEN: Innungsname]</mark></li>
+            <li><span class="facts-count" aria-hidden="true">05</span>Notdienst <mark class="hinweis">[PRÜFEN]</mark></li>
+            <li><span class="facts-count" aria-hidden="true">06</span>Wartung ohne Vertrag</li>
+          </ol>
+        </div>
+      </div>
     </section>
 
     <!-- Leistungen -->
-    <section class="section">
+    <section class="section section--alt">
       <div class="container">
-        <h2>Unsere Leistungen</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>Heizung</h3>
-            <p>Neue Heizung oder Modernisierung: Gas- und Öl-Brennwert, Solarthermie und mehr. Wir beraten Sie vor Ort.</p>
-            <a class="card-link" href="heizung.html">Mehr zur Heizung</a>
+        <div class="section-head">
+          <p class="label">Leistungen</p>
+          <h2>Unsere Leistungen</h2>
+        </div>
+        <div class="service-cards">
+          <article class="service-card">
+            <div class="img-placeholder img-placeholder--dark service-card-media" role="img" aria-label="Moderne Heizungsanlage"><span>Foto: Heizung</span></div>
+            <div class="service-card-content">
+              <h3>Heizung</h3>
+              <p>Neue Heizung oder Modernisierung: Gas- und Öl-Brennwert, Solarthermie und mehr. Wir beraten Sie vor Ort.</p>
+              <a class="btn btn--white btn--small" href="heizung.html">Mehr erfahren<span class="visually-hidden"> zur Heizung</span></a>
+            </div>
           </article>
-          <article class="card">
-            <h3>Bad</h3>
-            <p>Vom Komplettbad bis zur Sanitärinstallation im Neubau – geplant und umgesetzt vom Meisterbetrieb.</p>
-            <a class="card-link" href="bad.html">Mehr zum Bad</a>
+          <article class="service-card">
+            <div class="img-placeholder img-placeholder--dark service-card-media" role="img" aria-label="Modernes Badezimmer"><span>Foto: Bad</span></div>
+            <div class="service-card-content">
+              <h3>Bad</h3>
+              <p>Vom Komplettbad bis zur Sanitärinstallation im Neubau – geplant und umgesetzt vom Meisterbetrieb.</p>
+              <a class="btn btn--white btn--small" href="bad.html">Mehr erfahren<span class="visually-hidden"> zum Bad</span></a>
+            </div>
           </article>
-          <article class="card">
-            <h3>Kundendienst</h3>
-            <p>Wartung ohne Vertrag, Reparaturen, Rohrreinigung und Notdienst. Anrufen genügt.</p>
-            <a class="card-link" href="kundendienst.html">Mehr zum Kundendienst</a>
+          <article class="service-card">
+            <div class="img-placeholder img-placeholder--dark service-card-media" role="img" aria-label="Monteur bei einer Reparatur"><span>Foto: Kundendienst</span></div>
+            <div class="service-card-content">
+              <h3>Kundendienst</h3>
+              <p>Wartung ohne Vertrag, Reparaturen, Rohrreinigung und Notdienst. Anrufen genügt.</p>
+              <a class="btn btn--white btn--small" href="kundendienst.html">Mehr erfahren<span class="visually-hidden"> zum Kundendienst</span></a>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
     <!-- Warum Lange -->
-    <section class="section section--white">
+    <section class="section">
       <div class="container">
-        <h2>Warum Lange?</h2>
-        <ul class="feature-list">
+        <div class="section-head">
+          <p class="label">Warum Lange</p>
+          <h2>Warum Lange?</h2>
+        </div>
+        <ul class="line-list">
           <li><strong>Wartung ohne Vertrag:</strong> Sie rufen an, wir kommen. Ein Wartungsvertrag ist nicht nötig.</li>
           <li><strong>Berufstätigen-Service:</strong> Kleine Reparaturen auch abends oder am Wochenende – nach Absprache.</li>
           <li><strong>Alle namhaften Hersteller:</strong> Wir arbeiten mit bekannten Marken für Heizung und Bad.</li>
@@ -129,22 +152,30 @@
     </section>
 
     <!-- Kurz über uns -->
-    <section class="section">
-      <div class="container split">
-        <div>
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="label">Über uns</p>
           <h2>Familienbetrieb seit 1974</h2>
-          <p>Die Gottfried Lange GmbH wurde 1974 in Neuss gegründet. Heute führt Handwerksmeister Ralf Lange den Betrieb in 2. Generation.</p>
-          <p><a href="ueber-uns.html">Mehr über uns</a></p>
         </div>
-        <div class="img-placeholder" role="img" aria-label="Ralf Lange mit seinem Team vor dem Betrieb in Neuss-Furth"><span>Foto: Ralf Lange / Team</span></div>
+        <div class="split">
+          <div>
+            <p>Die Gottfried Lange GmbH wurde 1974 in Neuss gegründet. Heute führt Handwerksmeister Ralf Lange den Betrieb in 2. Generation.</p>
+            <p><a class="btn btn--secondary" href="ueber-uns.html">Mehr über uns</a></p>
+          </div>
+          <div class="img-placeholder" role="img" aria-label="Ralf Lange mit seinem Team vor dem Betrieb in Neuss-Furth"><span>Foto: Ralf Lange / Team</span></div>
+        </div>
       </div>
     </section>
 
     <!-- Kundenstimmen -->
-    <section class="section section--white">
+    <section class="section">
       <div class="container">
-        <h2>Das sagen unsere Kunden <mark class="hinweis">[PRÜFEN: Freigabe]</mark></h2>
-        <div class="cards">
+        <div class="section-head">
+          <p class="label">Kundenstimmen</p>
+          <h2>Das sagen unsere Kunden <mark class="hinweis">[PRÜFEN: Freigabe]</mark></h2>
+        </div>
+        <div class="quotes">
           <blockquote class="quote">
             <p>„Seit fast zehn Jahren betreut, bei Problemen sofort zur Stelle.“</p>
           </blockquote>
@@ -156,23 +187,32 @@
     </section>
 
     <!-- Notdienst -->
-    <section class="section">
+    <section class="section section--alt">
       <div class="container">
-        <div class="emergency-box">
+        <div class="section-head">
+          <p class="label">Notdienst</p>
           <h2>Notfall? Rufen Sie uns an.</h2>
+        </div>
+        <div class="split">
           <p>Rohrbruch, Heizungsausfall oder Verstopfung: Im Notfall bitte nicht schreiben, sondern anrufen. <mark class="hinweis">[PRÜFEN]</mark></p>
-          <a class="btn btn--primary btn--large" href="tel:+491722152961">Notdienst: 0172 2152961</a>
+          <p><a class="btn btn--primary btn--large" href="tel:+491722152961">Notdienst: 0172 2152961</a></p>
         </div>
       </div>
     </section>
 
+    <!-- Abschluss -->
     <section class="section cta-section">
-      <div class="container cta-box">
-        <h2>Projekt planen? Schreiben Sie uns.</h2>
-        <p>Erzählen Sie uns kurz, worum es geht. Wir melden uns bei Ihnen.</p>
-        <div class="btn-row">
-          <a class="btn btn--primary" href="kontakt.html">Anfrage stellen</a>
-          <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
+      <div class="container">
+        <div class="section-head">
+          <p class="label">Anfrage</p>
+          <h2>Projekt planen? Schreiben Sie uns.</h2>
+        </div>
+        <div class="split">
+          <p>Erzählen Sie uns kurz, worum es geht. Wir melden uns bei Ihnen.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="kontakt.html">Anfrage stellen</a>
+            <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
+          </div>
         </div>
       </div>
     </section>
@@ -180,33 +220,43 @@
 
   <!-- Fußzeile (auf allen Seiten identisch) -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-col">
-        <p class="footer-title">Gottfried Lange GmbH</p>
-        <address>
-          Further Str. 79<br>
-          41462 Neuss
-        </address>
-      </div>
+    <div class="container">
+      <p class="footer-claim">Heizung. Bad. Service.</p>
 
-      <div class="footer-col">
-        <ul class="footer-list">
-          <li>Telefon: <a href="tel:+49213155661">02131 55661</a></li>
-          <li>Fax: 02131 4063433</li>
-          <li>E-Mail: <a href="mailto:info@lange-neuss.de">info@lange-neuss.de</a> <mark class="hinweis">[PRÜFEN]</mark></li>
-          <li>Notdienst: <a href="tel:+491722152961">0172 2152961</a> <mark class="hinweis">[PRÜFEN]</mark></li>
-        </ul>
-      </div>
+      <dl class="footer-facts">
+        <div>
+          <dt class="label">Telefon</dt>
+          <dd><a href="tel:+49213155661">02131 55661</a></dd>
+        </div>
+        <div>
+          <dt class="label">Notdienst <mark class="hinweis">[PRÜFEN]</mark></dt>
+          <dd><a href="tel:+491722152961">0172 2152961</a></dd>
+        </div>
+        <div>
+          <dt class="label">E-Mail <mark class="hinweis">[PRÜFEN]</mark></dt>
+          <dd><a href="mailto:info@lange-neuss.de">info@lange-neuss.de</a></dd>
+        </div>
+        <div>
+          <dt class="label">Adresse</dt>
+          <dd>
+            <address>Gottfried Lange GmbH<br>Further Str. 79<br>41462 Neuss</address>
+          </dd>
+        </div>
+        <div>
+          <dt class="label">Fax</dt>
+          <dd>02131 4063433</dd>
+        </div>
+      </dl>
 
-      <div class="footer-col">
-        <ul class="footer-list">
+      <div class="footer-bottom">
+        <p class="footer-note">Entwurf – nicht die offizielle Website</p>
+        <ul class="footer-links">
           <li><a href="kontakt.html">Anfrage stellen</a></li>
           <li><a href="impressum.html">Impressum</a></li>
           <li><a href="datenschutz.html">Datenschutz</a></li>
         </ul>
       </div>
     </div>
-    <p class="footer-note">Entwurf – nicht die offizielle Website</p>
   </footer>
 
   <!-- Feste Leiste unten (nur auf dem Handy sichtbar) -->

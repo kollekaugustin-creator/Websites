@@ -1,19 +1,28 @@
-// Ausklappbares Menü fürs Handy.
+// Kopfzeile: ausklappbares Menü fürs Handy und heller Hintergrund beim Scrollen.
 // Ohne JavaScript bleibt das Menü einfach immer sichtbar.
 document.documentElement.classList.add("js");
 
 document.addEventListener("DOMContentLoaded", function () {
+  var header = document.querySelector(".site-header");
   var button = document.querySelector(".menu-toggle");
   var nav = document.getElementById("hauptmenue");
-  if (!button || !nav) return;
 
-  var label = button.querySelector(".menu-toggle-label");
+  // Beim Scrollen bekommt die Kopfzeile einen durchscheinenden Hintergrund
+  if (header) {
+    var onScroll = function () {
+      header.classList.toggle("is-scrolled", window.scrollY > 40);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  if (!button || !nav) return;
   button.hidden = false;
 
   function setOpen(open) {
     nav.classList.toggle("is-open", open);
     button.setAttribute("aria-expanded", open ? "true" : "false");
-    if (label) label.textContent = open ? "Schließen" : "Menü";
+    button.textContent = open ? "Schließen" : "Menü";
   }
 
   button.addEventListener("click", function () {
