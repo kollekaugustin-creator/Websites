@@ -18,11 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!button || !nav) return;
   button.hidden = false;
+  var label = button.querySelector(".menu-toggle-label");
 
   function setOpen(open) {
     nav.classList.toggle("is-open", open);
     button.setAttribute("aria-expanded", open ? "true" : "false");
-    button.textContent = open ? "Schließen" : "Menü";
+    if (label) label.textContent = open ? "Schließen" : "Menü";
   }
 
   button.addEventListener("click", function () {
