@@ -67,7 +67,13 @@
 
     <!-- Hero: großes Foto mit Text unten links -->
     <section class="hero-photo">
-      <div class="img-placeholder img-placeholder--dark hero-photo-media" role="img" aria-label="Handwerker prüft moderne Heizungsanlage"><span>Foto: Handwerker an moderner Heizungsanlage</span></div>
+      <div class="media media--hero hero-photo-media">
+          <div class="media-fallback" aria-hidden="true">
+            <svg class="icon media-icon" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21c-3.9 0-7-2.9-7-6.6 0-2.9 1.8-5 3.4-6.6.3 1.6 1.2 2.7 2.4 3.2C10.6 7.8 11.6 5 14 3c.4 3.3 5 5.6 5 11.4 0 3.7-3.1 6.6-7 6.6z"/><path d="M12 21c-1.7 0-3-1.3-3-3 0-1.6 1.2-2.6 2-3.5.3 1 .9 1.5 1.6 1.7.2-1.1.7-2 1.4-2.7.7 1.3 1 2.4 1 3.5 0 2.2-1.3 4-3 4z"/></svg>
+            <span class="media-label">Foto: Handwerker an moderner Heizungsanlage (img/hero.jpg)</span>
+          </div>
+          <img src="img/hero.jpg" alt="Handwerker prüft moderne Heizungsanlage" fetchpriority="high" decoding="async" onerror="this.hidden=true">
+        </div>
       <div class="hero-photo-content">
         <h1>Heizung und Bad aus Meisterhand – seit 1974 in Neuss</h1>
         <p class="hero-sub">Wir sind ein Familienbetrieb in 2. Generation. Wir planen, bauen ein und warten – für Ihre Heizung und Ihr Bad.</p>
@@ -78,29 +84,18 @@
       </div>
     </section>
 
-    <!-- Zahlen & Fakten (Vertrauensleiste) -->
-    <section class="section" aria-labelledby="fakten-titel">
-      <div class="container">
-        <div class="section-head">
-          <p class="label">Zahlen &amp; Fakten</p>
-          <h2 id="fakten-titel">Das zeichnet uns aus</h2>
-        </div>
-        <div class="facts">
-          <p class="deco-number" aria-hidden="true">1974</p>
-          <ol class="facts-list">
-            <li><span class="facts-count" aria-hidden="true">01</span>Gegründet 1974</li>
-            <li><span class="facts-count" aria-hidden="true">02</span>Familienbetrieb in 2. Generation</li>
-            <li><span class="facts-count" aria-hidden="true">03</span>Meisterbetrieb</li>
-            <li><span class="facts-count" aria-hidden="true">04</span>Innungsbetrieb <mark class="hinweis">[PRÜFEN: Innungsname]</mark></li>
-            <li><span class="facts-count" aria-hidden="true">05</span>Notdienst <mark class="hinweis">[PRÜFEN]</mark></li>
-            <li><span class="facts-count" aria-hidden="true">06</span>Wartung ohne Vertrag</li>
-          </ol>
-        </div>
-      </div>
+    <!-- Vertrauensleiste -->
+    <section class="trust-strip" aria-label="Das zeichnet uns aus">
+      <ul class="container trust-items">
+        <li><svg class="icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="9" r="6"/><path d="M8.6 13.9 7 21l5-3 5 3-1.6-7.1"/></svg><span>Meisterbetrieb</span></li>
+        <li><svg class="icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 11 12 4l9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg><span>Familienbetrieb seit 1974</span></li>
+        <li><svg class="icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>Notdienst <mark class="hinweis">[PRÜFEN]</mark></span></li>
+        <li><svg class="icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.1l-5.8 5.8a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.1-5.4l-2.6 2.6-2.2-.4-.4-2.2z"/></svg><span>Wartung ohne Vertrag</span></li>
+      </ul>
     </section>
 
     <!-- Leistungen -->
-    <section class="section section--alt">
+    <section class="section">
       <div class="container">
         <div class="section-head">
           <p class="label">Leistungen</p>
@@ -108,7 +103,13 @@
         </div>
         <div class="service-cards">
           <article class="service-card">
-            <div class="img-placeholder img-placeholder--dark service-card-media" role="img" aria-label="Moderne Heizungsanlage"><span>Foto: Heizung</span></div>
+            <div class="media media--heizung service-card-media">
+          <div class="media-fallback" aria-hidden="true">
+            <svg class="icon media-icon" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21c-3.9 0-7-2.9-7-6.6 0-2.9 1.8-5 3.4-6.6.3 1.6 1.2 2.7 2.4 3.2C10.6 7.8 11.6 5 14 3c.4 3.3 5 5.6 5 11.4 0 3.7-3.1 6.6-7 6.6z"/><path d="M12 21c-1.7 0-3-1.3-3-3 0-1.6 1.2-2.6 2-3.5.3 1 .9 1.5 1.6 1.7.2-1.1.7-2 1.4-2.7.7 1.3 1 2.4 1 3.5 0 2.2-1.3 4-3 4z"/></svg>
+            <span class="media-label">Foto: Heizung (img/heizung.jpg)</span>
+          </div>
+          <img src="img/heizung.jpg" alt="Moderne Heizungsanlage" loading="lazy" decoding="async" onerror="this.hidden=true">
+        </div>
             <div class="service-card-content">
               <h3>Heizung</h3>
               <p>Neue Heizung oder Modernisierung: Gas- und Öl-Brennwert, Solarthermie und mehr. Wir beraten Sie vor Ort.</p>
@@ -116,7 +117,13 @@
             </div>
           </article>
           <article class="service-card">
-            <div class="img-placeholder img-placeholder--dark service-card-media" role="img" aria-label="Modernes Badezimmer"><span>Foto: Bad</span></div>
+            <div class="media media--bad service-card-media">
+          <div class="media-fallback" aria-hidden="true">
+            <svg class="icon media-icon" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"/><path d="M6 12V6a2 2 0 0 1 4 0"/><path d="M7 19l-1 2"/><path d="M17 19l1 2"/></svg>
+            <span class="media-label">Foto: Bad (img/bad.jpg)</span>
+          </div>
+          <img src="img/bad.jpg" alt="Modernes Badezimmer" loading="lazy" decoding="async" onerror="this.hidden=true">
+        </div>
             <div class="service-card-content">
               <h3>Bad</h3>
               <p>Vom Komplettbad bis zur Sanitärinstallation im Neubau – geplant und umgesetzt vom Meisterbetrieb.</p>
@@ -124,7 +131,13 @@
             </div>
           </article>
           <article class="service-card">
-            <div class="img-placeholder img-placeholder--dark service-card-media" role="img" aria-label="Monteur bei einer Reparatur"><span>Foto: Kundendienst</span></div>
+            <div class="media media--kundendienst service-card-media">
+          <div class="media-fallback" aria-hidden="true">
+            <svg class="icon media-icon" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.1l-5.8 5.8a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.1-5.4l-2.6 2.6-2.2-.4-.4-2.2z"/></svg>
+            <span class="media-label">Foto: Kundendienst (img/kundendienst.jpg)</span>
+          </div>
+          <img src="img/kundendienst.jpg" alt="Monteur bei einer Reparatur" loading="lazy" decoding="async" onerror="this.hidden=true">
+        </div>
             <div class="service-card-content">
               <h3>Kundendienst</h3>
               <p>Wartung ohne Vertrag, Reparaturen, Rohrreinigung und Notdienst. Anrufen genügt.</p>
@@ -135,41 +148,49 @@
       </div>
     </section>
 
-    <!-- Warum Lange -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
+    <!-- Warum Lange: Überschrift links, 4 Kacheln rechts -->
+    <section class="section section--alt">
+      <div class="container side-layout">
+        <div class="side-head">
           <p class="label">Warum Lange</p>
           <h2>Warum Lange?</h2>
+          <p>Gute Arbeit, die zu Ihrem Alltag passt.</p>
         </div>
-        <ul class="line-list">
-          <li><strong>Wartung ohne Vertrag:</strong> Sie rufen an, wir kommen. Ein Wartungsvertrag ist nicht nötig.</li>
-          <li><strong>Berufstätigen-Service:</strong> Kleine Reparaturen auch abends oder am Wochenende – nach Absprache.</li>
-          <li><strong>Alle namhaften Hersteller:</strong> Wir arbeiten mit bekannten Marken für Heizung und Bad.</li>
-          <li><strong>Termintreue und Sauberkeit:</strong> Wir kommen pünktlich und hinterlassen Ihr Zuhause ordentlich.</li>
+        <ul class="tiles">
+          <li class="tile"><svg class="icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.1l-5.8 5.8a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.1-5.4l-2.6 2.6-2.2-.4-.4-2.2z"/></svg><h3>Wartung ohne Vertrag</h3><p>Sie rufen an, wir kommen – ein Wartungsvertrag ist nicht nötig.</p></li>
+          <li class="tile"><svg class="icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg><h3>Berufstätigen-Service</h3><p>Kleine Reparaturen auch abends oder am Wochenende – nach Absprache.</p></li>
+          <li class="tile"><svg class="icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><h3>Alle namhaften Hersteller</h3><p>Wir arbeiten mit bekannten Marken für Heizung und Bad.</p></li>
+          <li class="tile"><svg class="icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Termintreue und Sauberkeit</h3><p>Wir kommen pünktlich und hinterlassen Ihr Zuhause ordentlich.</p></li>
         </ul>
       </div>
     </section>
 
-    <!-- Kurz über uns -->
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-head">
+    <!-- Familienbetrieb: Bild links, Text + Fakten rechts -->
+    <section class="section">
+      <div class="container feature">
+        <div class="media media--team feature-media">
+          <div class="media-fallback" aria-hidden="true">
+            <svg class="icon media-icon" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 4.8"/></svg>
+            <span class="media-label">Foto: Ralf Lange und Team (img/team.jpg)</span>
+          </div>
+          <img src="img/team.jpg" alt="Ralf Lange mit seinem Team vor dem Betrieb in Neuss-Furth" loading="lazy" decoding="async" onerror="this.hidden=true">
+        </div>
+        <div class="feature-text">
           <p class="label">Über uns</p>
           <h2>Familienbetrieb seit 1974</h2>
-        </div>
-        <div class="split">
-          <div>
-            <p>Die Gottfried Lange GmbH wurde 1974 in Neuss gegründet. Heute führt Handwerksmeister Ralf Lange den Betrieb in 2. Generation.</p>
-            <p><a class="btn btn--secondary" href="ueber-uns.html">Mehr über uns</a></p>
-          </div>
-          <div class="img-placeholder" role="img" aria-label="Ralf Lange mit seinem Team vor dem Betrieb in Neuss-Furth"><span>Foto: Ralf Lange / Team</span></div>
+          <p>Die Gottfried Lange GmbH wurde 1974 in Neuss gegründet. Heute führt Handwerksmeister Ralf Lange den Betrieb in 2. Generation.</p>
+          <ul class="icon-list">
+            <li><svg class="icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="7" r="3"/><path d="M3 20a5 5 0 0 1 10 0"/><circle cx="17" cy="11" r="2.2"/><path d="M13.5 20a3.5 3.5 0 0 1 7 0"/></svg><span>Familienbetrieb in 2. Generation</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="9" r="6"/><path d="M8.6 13.9 7 21l5-3 5 3-1.6-7.1"/></svg><span>Innungsbetrieb <mark class="hinweis">[PRÜFEN: Innungsname]</mark></span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg><span>Ausbildungsbetrieb</span></li>
+          </ul>
+          <p><a class="btn btn--secondary" href="ueber-uns.html">Mehr über uns</a></p>
         </div>
       </div>
     </section>
 
     <!-- Kundenstimmen -->
-    <section class="section">
+    <section class="section section--alt">
       <div class="container">
         <div class="section-head">
           <p class="label">Kundenstimmen</p>
@@ -186,33 +207,27 @@
       </div>
     </section>
 
-    <!-- Notdienst -->
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-head">
-          <p class="label">Notdienst</p>
+    <!-- Notdienst: vollflächig dunkelblau -->
+    <section class="section section--blue">
+      <div class="container emergency">
+        <div>
+          <p class="label">Notdienst <mark class="hinweis">[PRÜFEN]</mark></p>
           <h2>Notfall? Rufen Sie uns an.</h2>
+          <p>Rohrbruch, Heizungsausfall oder Verstopfung: Im Notfall bitte nicht schreiben, sondern anrufen.</p>
         </div>
-        <div class="split">
-          <p>Rohrbruch, Heizungsausfall oder Verstopfung: Im Notfall bitte nicht schreiben, sondern anrufen. <mark class="hinweis">[PRÜFEN]</mark></p>
-          <p><a class="btn btn--primary btn--large" href="tel:+491722152961">Notdienst: 0172 2152961</a></p>
-        </div>
+        <a class="emergency-number" href="tel:+491722152961"><svg class="icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>0172 2152961</span></a>
       </div>
     </section>
 
     <!-- Abschluss -->
     <section class="section cta-section">
-      <div class="container">
-        <div class="section-head">
-          <p class="label">Anfrage</p>
-          <h2>Projekt planen? Schreiben Sie uns.</h2>
-        </div>
-        <div class="split">
-          <p>Erzählen Sie uns kurz, worum es geht. Wir melden uns bei Ihnen.</p>
-          <div class="btn-row">
-            <a class="btn btn--primary" href="kontakt.html">Anfrage stellen</a>
-            <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
-          </div>
+      <div class="container cta-final">
+        <p class="label">Anfrage</p>
+        <h2>Projekt planen? Schreiben Sie uns.</h2>
+        <p>Erzählen Sie uns kurz, worum es geht. Wir melden uns bei Ihnen.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="kontakt.html">Anfrage stellen</a>
+          <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
         </div>
       </div>
     </section>
