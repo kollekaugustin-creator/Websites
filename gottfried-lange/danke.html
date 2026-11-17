@@ -7,8 +7,8 @@
   <meta name="description" content="Ihre Anfrage an die Gottfried Lange GmbH ist angekommen.">
   <!-- Entwurf: Suchmaschinen sollen die Seite nicht aufnehmen -->
   <meta name="robots" content="noindex, nofollow">
-  <link rel="preload" href="fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Geist-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/nunito-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/menu.js" defer></script>
   <script src="js/einblenden.js" defer></script>
@@ -24,8 +24,8 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="index.html" aria-label="Lange – Sanitär und Heizung, zur Startseite">
+        <span class="logo-top"><span class="logo-sanitaer">Sanitär</span> <span class="logo-und">und</span> <span class="logo-heizung">Heizung</span></span>
         <span class="logo-name">Lange</span>
-        <span class="logo-sub">Sanitär und Heizung</span>
       </a>
 
       <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
@@ -40,8 +40,8 @@
       </nav>
 
       <div class="header-actions">
-        <a class="header-phone" href="tel:+49213155661">02131 55661</a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden>Menü</button>
+        <a class="header-phone" href="tel:+49213155661"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>02131 55661</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg><span class="menu-toggle-label">Menü</span></button>
       </div>
     </div>
   </header>
@@ -60,36 +60,32 @@
 
   <!-- Fußzeile (auf allen Seiten identisch) -->
   <footer class="site-footer">
-    <div class="container">
-      <p class="footer-claim">Heizung. Bad. Service.</p>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="logo logo--footer" href="index.html" aria-label="Lange – Sanitär und Heizung, zur Startseite">
+          <span class="logo-top"><span class="logo-sanitaer">Sanitär</span> <span class="logo-und">und</span> <span class="logo-heizung">Heizung</span></span>
+        <span class="logo-name">Lange</span>
+        </a>
+        <p>Gottfried Lange GmbH<br>Heizung und Sanitär in Neuss – seit 1974</p>
+      </div>
 
-      <dl class="footer-facts">
-        <div>
-          <dt class="label">Telefon</dt>
-          <dd><a href="tel:+49213155661">02131 55661</a></dd>
-        </div>
-        <div>
-          <dt class="label">Notdienst <mark class="hinweis">[PRÜFEN]</mark></dt>
-          <dd><a href="tel:+491722152961">0172 2152961</a></dd>
-        </div>
-        <div>
-          <dt class="label">E-Mail <mark class="hinweis">[PRÜFEN]</mark></dt>
-          <dd><a href="mailto:info@lange-neuss.de">info@lange-neuss.de</a></dd>
-        </div>
-        <div>
-          <dt class="label">Adresse</dt>
-          <dd>
-            <address>Gottfried Lange GmbH<br>Further Str. 79<br>41462 Neuss</address>
-          </dd>
-        </div>
-        <div>
-          <dt class="label">Fax</dt>
-          <dd>02131 4063433</dd>
-        </div>
-      </dl>
+      <div class="footer-col">
+        <p class="footer-title">Kontakt</p>
+        <ul class="footer-list">
+          <li><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>Telefon: <a href="tel:+49213155661">02131 55661</a></span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>Notdienst: <a href="tel:+491722152961">0172 2152961</a> <mark class="hinweis">[PRÜFEN]</mark></span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span>E-Mail: <a href="mailto:info@lange-neuss.de">info@lange-neuss.de</a> <mark class="hinweis">[PRÜFEN]</mark></span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span>Fax: 02131 4063433</span></li>
+        </ul>
+      </div>
 
-      <div class="footer-bottom">
-        <p class="footer-note">Entwurf – nicht die offizielle Website</p>
+      <div class="footer-col">
+        <p class="footer-title">Adresse</p>
+        <address class="footer-address"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Further Str. 79<br>41462 Neuss</span></address>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">Service</p>
         <ul class="footer-links">
           <li><a href="kontakt.html">Anfrage stellen</a></li>
           <li><a href="impressum.html">Impressum</a></li>
@@ -97,12 +93,15 @@
         </ul>
       </div>
     </div>
+    <div class="container footer-bottom">
+      <p class="footer-note">Entwurf – nicht die offizielle Website</p>
+    </div>
   </footer>
 
   <!-- Feste Leiste unten (nur auf dem Handy sichtbar) -->
   <div class="mobile-cta">
     <a class="btn btn--primary mobile-cta-btn" href="kontakt.html">Anfrage</a>
-    <a class="mobile-cta-phone" href="tel:+49213155661" aria-label="Anrufen: 02131 55661"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></a>
+    <a class="mobile-cta-phone" href="tel:+49213155661" aria-label="Anrufen: 02131 55661"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
   </div>
 
 </body>
