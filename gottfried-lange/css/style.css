@@ -481,7 +481,21 @@ mark.hinweis {
   background: var(--white); border: 1px solid var(--line); border-radius: 999px;
   padding: .45rem .9rem; font-weight: 600;
 }
-.brand-list { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--blau); }
+/* Hersteller-Logos (Graustufen, einheitliche optische Größe) */
+.brand-logos {
+  list-style: none; margin: 1.5rem 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 24px 40px;
+}
+.brand-logos img { display: block; height: 30px; width: auto; opacity: .75; }
+.brand-logos .is-wide img { height: 24px; }
+.brand-logos .is-compact img { height: 46px; }
+@media (min-width: 768px) {
+  .brand-logos { justify-content: flex-start; gap: 32px 40px; }
+  .brand-logos img { height: 36px; }
+  .brand-logos .is-wide img { height: 28px; }
+  .brand-logos .is-compact img { height: 54px; }
+}
 
 .emergency-box, .note-box {
   background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow);
