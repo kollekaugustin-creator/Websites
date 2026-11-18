@@ -35,4 +35,8 @@ Wir wollen die Abläufe verstehen, nicht die technischen Details.
 - Baue dabei 1-2 Fachwörter ein und erkläre sie kurz in Klammern,
   damit wir nach und nach dazulernen.
 - Wenn wir "nur erklären" schreiben, ändere keine Dateien.
-- Halte Änderungen klein: eine Aufgabe pro Pull Request.
+- Fasse zusammengehörige Änderungen in einem Pull Request zusammen
+  (z. B. „alle Bilder auf den Unterseiten“ oder „Logo + Farben“),
+  damit wir weniger oft veröffentlichen und Netlify-Guthaben sparen.
+  Nichts Unzusammenhängendes mischen: ein Thema pro Pull Request.
+  Liste in der Beschreibung des Pull Requests jede Änderung einzeln auf.
