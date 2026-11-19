@@ -1,0 +1,350 @@
+/* ==========================================================
+   Das Brauhaus Schlebusch – gemeinsame Gestaltung für alle Seiten
+   Farben und Schriften stehen ganz oben und lassen sich dort ändern.
+   ========================================================== */
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("../fonts/source-sans-3-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("../fonts/source-sans-3-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* Überschriften: „Alegreya“ ist geplant. Solange die Schriftdatei
+   noch nicht in /fonts liegt, wird Georgia verwendet. */
+
+:root {
+  --creme: #F8F3EA;
+  --creme-dunkel: #EFE6D6;
+  --holz: #2B2118;
+  --holz-hell: #4A3A2C;
+  --rot: #9B2C22;
+  --rot-hover: #83241C;
+  --gold: #C9A43A;
+  --linie: #DCCFB9;
+  --text-leise: #5C4E40;
+
+  --schrift-text: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --schrift-titel: "Alegreya", Georgia, "Times New Roman", serif;
+
+  --radius: 6px;
+  --max: 1120px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--holz);
+  font-family: var(--schrift-text);
+  font-size: 1.125rem; /* 18 px */
+  line-height: 1.6;
+  padding-bottom: 76px; /* Platz für den festen Button auf dem Handy */
+}
+@media (min-width: 900px) { body { padding-bottom: 0; } }
+
+img { max-width: 100%; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--schrift-titel);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 .5em;
+}
+h1 { font-size: clamp(2.1rem, 6vw, 3.6rem); }
+h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); }
+h3 { font-size: 1.35rem; }
+p { margin: 0 0 1em; max-width: 70ch; }
+
+a { color: var(--rot); text-underline-offset: 3px; }
+a:hover { color: var(--rot-hover); }
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.container { width: min(100% - 2.5rem, var(--max)); margin-inline: auto; }
+
+.skip-link {
+  position: absolute; left: 1rem; top: -100px;
+  background: var(--holz); color: #fff; padding: .6rem 1rem; z-index: 100;
+  border-radius: var(--radius);
+}
+.skip-link:focus { top: 1rem; color: #fff; }
+
+/* ---------- Leisten ganz oben ---------- */
+.draft-bar {
+  background: #000; color: #fff; text-align: center;
+  font-size: .85rem; padding: .35rem 1rem;
+}
+.hinweis-zeile {
+  background: var(--gold); color: var(--holz); text-align: center;
+  font-weight: 600; padding: .5rem 1rem; font-size: 1rem;
+}
+.hinweis-zeile[hidden] { display: none; }
+
+/* ---------- Buttons ---------- */
+.button {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  background: var(--rot); color: #fff; text-decoration: none;
+  font-weight: 600; padding: .8rem 1.5rem; border-radius: 999px;
+  border: 2px solid var(--rot); line-height: 1.2; min-height: 48px;
+}
+.button:hover { background: var(--rot-hover); border-color: var(--rot-hover); color: #fff; }
+.button--hell { background: transparent; color: var(--rot); }
+.button--hell:hover { background: var(--rot); color: #fff; }
+.button--auf-dunkel { background: transparent; color: #fff; border-color: #fff; }
+.button--auf-dunkel:hover { background: #fff; color: var(--holz); border-color: #fff; }
+.button-reihe { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+
+/* ---------- Kopfzeile ---------- */
+.site-header {
+  background: var(--holz); color: #fff;
+  position: sticky; top: 0; z-index: 50;
+  border-bottom: 3px solid var(--gold);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: .75rem 0; flex-wrap: wrap;
+}
+.logo { color: #fff; text-decoration: none; line-height: 1.05; }
+.logo:hover { color: #fff; }
+.logo-name { display: block; font-family: var(--schrift-titel); font-size: 1.6rem; font-weight: 700; }
+.logo-ort { display: block; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+
+.menu-toggle {
+  background: transparent; color: #fff; border: 2px solid #fff;
+  border-radius: 999px; padding: .45rem 1rem; font: inherit; font-weight: 600;
+  cursor: pointer; min-height: 44px;
+}
+.header-reservieren { display: none; }
+
+.main-nav { width: 100%; }
+.main-nav ul { list-style: none; margin: 0; padding: 0; }
+.main-nav a {
+  display: block; color: #fff; text-decoration: none;
+  padding: .7rem 0; border-top: 1px solid rgba(255,255,255,.15);
+  font-weight: 600;
+}
+.main-nav a:hover { color: var(--gold); }
+.main-nav a[aria-current="page"] { color: var(--gold); text-decoration: underline; text-decoration-thickness: 2px; }
+.js .main-nav { display: none; }
+.js .main-nav.is-open { display: block; }
+
+@media (min-width: 900px) {
+  .menu-toggle { display: none; }
+  .header-inner { flex-wrap: nowrap; }
+  .js .main-nav, .main-nav { display: block; width: auto; }
+  .main-nav ul { display: flex; gap: 1.75rem; }
+  .main-nav a { border: 0; padding: .4rem 0; }
+  .header-reservieren { display: inline-flex; }
+}
+
+/* ---------- Abschnitte ---------- */
+.abschnitt { padding: 3.5rem 0; }
+.abschnitt--dunkler { background: var(--creme-dunkel); }
+.abschnitt--holz { background: var(--holz); color: #fff; }
+.abschnitt--holz h2 { color: #fff; }
+.abschnitt--holz a:not(.button) { color: var(--gold); }
+.einleitung { font-size: 1.2rem; color: var(--text-leise); }
+.abschnitt--holz .einleitung { color: #E9DFCF; }
+
+/* Doppellinie wie auf alten Speisekarten */
+.trenner {
+  border: 0; height: 6px; margin: 0 auto 1.5rem; width: 80px;
+  border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+}
+.zentriert { text-align: center; }
+.zentriert p { margin-inline: auto; }
+.zentriert .button-reihe { justify-content: center; }
+
+/* ---------- Bild-Platzhalter ---------- */
+.platzhalter {
+  background: #CFC8BD; color: #3C3329;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 1rem; border-radius: var(--radius);
+  font-weight: 600; font-size: 1rem; min-height: 220px;
+  border: 2px dashed #A79E91;
+}
+.platzhalter--gross { min-height: 320px; }
+
+/* ---------- Hero ---------- */
+.hero { background: var(--holz); color: #fff; padding: 2.5rem 0 3rem; }
+.hero-inner { display: grid; gap: 2rem; align-items: center; }
+.hero h1 { color: #fff; }
+.hero-jahr {
+  font-family: var(--schrift-titel); color: var(--gold);
+  font-size: 1rem; letter-spacing: .25em; text-transform: uppercase; margin-bottom: .75rem;
+}
+.hero-text { font-size: 1.2rem; color: #E9DFCF; }
+.heute {
+  display: inline-block; background: rgba(255,255,255,.08);
+  border-left: 3px solid var(--gold); padding: .5rem .9rem; margin: 0 0 1.5rem;
+  font-size: 1rem;
+}
+.hero .platzhalter { background: #5A4A3B; color: #F1E8DA; border-color: #8A7865; }
+@media (min-width: 900px) {
+  .hero { padding: 4rem 0; }
+  .hero-inner { grid-template-columns: 1.1fr 1fr; }
+}
+
+/* ---------- Karten / Kacheln ---------- */
+.karten { display: grid; gap: 1.5rem; }
+@media (min-width: 700px) { .karten { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .karten--drei { grid-template-columns: repeat(3, 1fr); } }
+.karte {
+  background: #fff; border: 1px solid var(--linie); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column;
+}
+.karte .platzhalter { border-radius: 0; border-width: 0 0 2px; min-height: 180px; }
+.karte-inhalt { padding: 1.25rem; display: flex; flex-direction: column; gap: .25rem; flex: 1; }
+.karte-inhalt p { margin-bottom: .75rem; }
+.karte-inhalt .mehr { margin-top: auto; font-weight: 600; }
+
+/* ---------- Tagesangebot ---------- */
+.angebote { display: grid; gap: 1rem; }
+@media (min-width: 700px) { .angebote { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .angebote { grid-template-columns: repeat(3, 1fr); } }
+.angebot {
+  background: #fff; border: 1px solid var(--linie); border-top: 4px solid var(--gold);
+  border-radius: var(--radius); padding: 1.1rem 1.25rem;
+}
+.angebot h3 { margin-bottom: .25rem; font-size: 1.2rem; }
+.angebot p { margin: 0 0 .5rem; color: var(--text-leise); font-size: 1rem; }
+.angebot .preis { font-weight: 600; color: var(--holz); font-size: 1.1rem; }
+.fallback {
+  background: #fff; border: 1px solid var(--linie); border-left: 4px solid var(--rot);
+  padding: 1rem 1.25rem; border-radius: var(--radius);
+}
+
+/* ---------- Speisekarte ---------- */
+.sprungleiste {
+  position: sticky; top: var(--kopf-hoehe, 74px); z-index: 40;
+  background: var(--creme-dunkel); border-bottom: 1px solid var(--linie);
+}
+.sprungleiste ul {
+  list-style: none; margin: 0; padding: .6rem 0; display: flex; gap: .5rem;
+  overflow-x: auto; scrollbar-width: thin; -webkit-overflow-scrolling: touch;
+}
+.sprungleiste a {
+  display: inline-block; white-space: nowrap; text-decoration: none;
+  padding: .35rem .85rem; border-radius: 999px; border: 1px solid var(--linie);
+  background: #fff; color: var(--holz); font-size: .95rem; font-weight: 600;
+}
+.sprungleiste a:hover { border-color: var(--rot); color: var(--rot); }
+
+.kategorie { padding: 2rem 0 .5rem; scroll-margin-top: calc(var(--kopf-hoehe, 74px) + 64px); }
+.kategorie h2 { font-size: 1.7rem; border-bottom: 2px solid var(--holz); padding-bottom: .4rem; margin-bottom: .5rem; }
+.kategorie-hinweis { font-size: 1rem; color: var(--text-leise); font-style: italic; }
+.gerichte { list-style: none; margin: 0; padding: 0; }
+.gericht {
+  display: grid; grid-template-columns: 1fr auto; gap: .25rem 1rem;
+  padding: .9rem 0; border-bottom: 1px solid var(--linie);
+}
+.gericht-name { font-weight: 600; }
+.gericht-beschreibung { grid-column: 1 / 2; font-size: 1rem; color: var(--text-leise); }
+.gericht-preis {
+  grid-row: 1; grid-column: 2; font-weight: 600; white-space: nowrap;
+  font-variant-numeric: tabular-nums; text-align: right;
+}
+.kennzeichen { font-size: .75rem; vertical-align: super; color: var(--text-leise); margin-left: .2rem; }
+.tag {
+  display: inline-block; font-size: .75rem; font-weight: 600; margin-left: .4rem;
+  padding: .05rem .45rem; border-radius: 999px; vertical-align: middle;
+  background: #E3EBD9; color: #2F4A1F;
+}
+.legende { font-size: .95rem; color: var(--text-leise); }
+.legende h2 { font-size: 1.4rem; color: var(--holz); }
+
+/* ---------- Tabellen (Öffnungszeiten) ---------- */
+.zeiten { width: 100%; border-collapse: collapse; font-size: 1.05rem; }
+.zeiten th, .zeiten td { text-align: left; padding: .55rem .25rem; border-bottom: 1px solid var(--linie); vertical-align: top; }
+.zeiten th { font-weight: 600; padding-right: 1rem; }
+.zeiten tr.ist-heute { background: #fff; }
+.zeiten tr.ist-heute th::after { content: " (heute)"; font-weight: 400; color: var(--rot); }
+
+.zwei-spalten { display: grid; gap: 2rem; }
+@media (min-width: 900px) { .zwei-spalten { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+.kontaktkarte {
+  background: #fff; border: 1px solid var(--linie); border-radius: var(--radius); padding: 1.5rem;
+}
+.kontaktkarte p { margin-bottom: .5rem; }
+.liste-haken { padding-left: 1.2rem; }
+.liste-haken li { margin-bottom: .4rem; }
+
+/* ---------- Zeitleiste ---------- */
+.zeitleiste { list-style: none; margin: 0; padding: 0; border-left: 3px solid var(--gold); }
+.zeitleiste li { position: relative; padding: 0 0 1.5rem 1.5rem; }
+.zeitleiste li::before {
+  content: ""; position: absolute; left: -9px; top: .45rem;
+  width: 15px; height: 15px; border-radius: 50%; background: var(--holz); border: 3px solid var(--gold);
+}
+.zeitleiste strong { font-family: var(--schrift-titel); font-size: 1.25rem; display: block; }
+
+/* ---------- Gästestimmen ---------- */
+.stimmen { display: grid; gap: 1.25rem; }
+@media (min-width: 900px) { .stimmen { grid-template-columns: repeat(3, 1fr); } }
+.stimme {
+  margin: 0; background: #fff; border: 1px solid var(--linie); border-radius: var(--radius);
+  padding: 1.25rem 1.25rem 1rem; font-size: 1.05rem;
+}
+.stimme p { font-family: var(--schrift-titel); font-style: italic; }
+.stimme footer { font-size: .9rem; color: var(--text-leise); }
+
+/* ---------- Karte (Zwei-Klick) ---------- */
+.map {
+  background: var(--creme-dunkel); border: 1px solid var(--linie); border-radius: var(--radius);
+  min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 1.5rem; gap: .75rem;
+}
+.map p { font-size: .95rem; color: var(--text-leise); }
+.map iframe { width: 100%; height: 360px; border: 0; border-radius: var(--radius); }
+.map-load { font: inherit; cursor: pointer; }
+
+/* ---------- Fußzeile ---------- */
+.site-footer { background: var(--holz); color: #E9DFCF; padding: 2.5rem 0 1.5rem; font-size: 1rem; border-top: 3px solid var(--gold); }
+.site-footer a { color: #fff; }
+.site-footer a:hover { color: var(--gold); }
+.footer-raster { display: grid; gap: 1.5rem; }
+@media (min-width: 800px) { .footer-raster { grid-template-columns: 1.2fr 1fr 1fr; } }
+.site-footer h2 { font-size: 1.2rem; color: #fff; margin-bottom: .5rem; }
+.site-footer p { margin-bottom: .35rem; }
+.footer-zeiten { list-style: none; margin: 0; padding: 0; }
+.footer-zeiten li { margin-bottom: .2rem; }
+.footer-unten {
+  margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.15);
+  display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-size: .9rem;
+}
+
+/* ---------- Fester Button auf dem Handy ---------- */
+.handy-button {
+  position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 60;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+@media (min-width: 900px) { .handy-button { display: none; } }
+
+/* ---------- Pflichtseiten ---------- */
+.textseite { padding: 3rem 0; }
+.textseite h2 { margin-top: 1.5rem; font-size: 1.5rem; }
+
+/* Nur für Screenreader sichtbar */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}

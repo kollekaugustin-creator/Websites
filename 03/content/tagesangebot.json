@@ -1,0 +1,39 @@
+{
+  "angebote": [
+    {
+      "titel": "Reibekuchen mit Apfelmus",
+      "beschreibung": "4 Stück mit Schwarzbrot – nur montags und dienstags, nicht an Feiertagen",
+      "preis": 11.9,
+      "gueltig_bis": "",
+      "aktiv": true
+    },
+    {
+      "titel": "Reibekuchen mit Rübenkraut",
+      "beschreibung": "4 Stück mit Schwarzbrot – nur montags und dienstags, nicht an Feiertagen",
+      "preis": 11.9,
+      "gueltig_bis": "",
+      "aktiv": true
+    },
+    {
+      "titel": "Reibekuchen mit Räucherlachs",
+      "beschreibung": "4 Stück mit Schwarzbrot – nur montags und dienstags, nicht an Feiertagen",
+      "preis": 13.5,
+      "gueltig_bis": "",
+      "aktiv": true
+    },
+    {
+      "titel": "Miesmuscheln „Rheinische Art“",
+      "beschreibung": "in Weißwein mit Lauch, Möhren, Zwiebeln, Knoblauch und Sahne, dazu Schwarzbrot und Butter – bis Aschermittwoch",
+      "preis": 14.9,
+      "gueltig_bis": "2027-02-10",
+      "aktiv": true
+    },
+    {
+      "titel": "Miesmuscheln „Provenzalische Art“",
+      "beschreibung": "wie oben, zusätzlich mit Tomatensauce, dazu Baguettebrötchen – bis Aschermittwoch",
+      "preis": 15.9,
+      "gueltig_bis": "2027-02-10",
+      "aktiv": true
+    }
+  ]
+}

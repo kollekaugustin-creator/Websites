@@ -1,0 +1,121 @@
+# Einstellungen für den Bearbeitungsbereich (Decap CMS) – Das Brauhaus Schlebusch
+# Das Team ändert hier nur Speisekarte, Tagesangebot und Einstellungen.
+
+backend:
+  name: github
+  repo: kollekaugustin-creator/Websites
+  branch: main
+  commit_messages:
+    create: "Brauhaus Schlebusch: {{collection}} „{{slug}}“ angelegt"
+    update: "Brauhaus Schlebusch: {{collection}} „{{slug}}“ geändert"
+    delete: "Brauhaus Schlebusch: {{collection}} „{{slug}}“ gelöscht"
+
+# Jede Änderung wird zuerst ein Pull Request und geht erst nach dem Mergen online.
+publish_mode: editorial_workflow
+
+locale: de
+
+# Hochgeladene Bilder (aktuell nicht genutzt, für später vorbereitet)
+media_folder: "03/images/uploads"
+public_folder: "/03/images/uploads"
+
+collections:
+  - name: inhalte
+    label: "Brauhaus Schlebusch"
+    description: "Speisekarte, Tagesangebot und Einstellungen der Website"
+    editor:
+      preview: false
+    files:
+
+      # ---------------- Speisekarte ----------------
+      - name: speisekarte
+        label: "Speisekarte"
+        file: "03/content/speisekarte.json"
+        fields:
+          - label: "Kategorien"
+            name: kategorien
+            widget: list
+            hint: "Reihenfolge per Ziehen ändern"
+            summary: "{{fields.titel}}"
+            fields:
+              - { label: "Titel der Kategorie", name: titel, widget: string, hint: "Z. B. Schnitzel aus der Pfanne" }
+              - { label: "Hinweis zur Kategorie", name: hinweis, widget: string, required: false, hint: "Steht unter der Überschrift, z. B. „Alle mit Salatbeilage“. Leer lassen, wenn nicht nötig." }
+              - label: "Gerichte"
+                name: gerichte
+                widget: list
+                hint: "Reihenfolge per Ziehen ändern"
+                summary: "{{fields.name}} – {{fields.preis}} €"
+                fields:
+                  - { label: "Name", name: name, widget: string, hint: "Name des Gerichts, wie er auf der Karte steht" }
+                  - { label: "Beschreibung", name: beschreibung, widget: string, required: false, hint: "Was ist dabei? Ein Satz." }
+                  - { label: "Preis", name: preis, widget: number, value_type: float, step: 0.1, min: 0, hint: "Preis in Euro, z. B. 15.90 (mit Punkt statt Komma)" }
+                  - { label: "vegetarisch", name: vegetarisch, widget: boolean, default: false, required: false, hint: "Einschalten, wenn ohne Fleisch und Fisch" }
+                  - { label: "vegan", name: vegan, widget: boolean, default: false, required: false, hint: "Einschalten, wenn ganz ohne tierische Zutaten" }
+                  - label: "Kennzeichnung"
+                    name: kennzeichnung
+                    widget: select
+                    multiple: true
+                    required: false
+                    hint: "Alles ankreuzen, was im Gericht steckt"
+                    options:
+                      - { label: "1 – Farbstoff", value: "1" }
+                      - { label: "2 – Konservierungsstoff", value: "2" }
+                      - { label: "3 – Antioxidationsmittel", value: "3" }
+                      - { label: "4 – Geschmacksverstärker", value: "4" }
+                      - { label: "5 – Säuerungsmittel", value: "5" }
+                      - { label: "10 – koffeinhaltig", value: "10" }
+                      - { label: "11 – Süßungsmittel (Getränke)", value: "11" }
+                      - { label: "13 – Süßungsmittel (Speisen)", value: "13" }
+                      - { label: "A – Gluten", value: "A" }
+                      - { label: "B – Krebstiere", value: "B" }
+                      - { label: "C – Eier", value: "C" }
+                      - { label: "D – Fisch", value: "D" }
+                      - { label: "E – Erdnüsse", value: "E" }
+                      - { label: "F – Soja", value: "F" }
+                      - { label: "G – Milch", value: "G" }
+                      - { label: "H – Schalenfrüchte", value: "H" }
+                      - { label: "L – Sellerie", value: "L" }
+                      - { label: "M – Senf", value: "M" }
+                      - { label: "N – Sesam", value: "N" }
+                      - { label: "O – Schwefeldioxid/Sulfite", value: "O" }
+                      - { label: "P – Lupinen", value: "P" }
+                      - { label: "R – Weichtiere", value: "R" }
+
+      # ---------------- Tagesangebot ----------------
+      - name: tagesangebot
+        label: "Tagesangebot"
+        file: "03/content/tagesangebot.json"
+        fields:
+          - label: "Angebote"
+            name: angebote
+            widget: list
+            required: false
+            hint: "Es können mehrere Angebote gleichzeitig laufen"
+            summary: "{{fields.titel}}"
+            fields:
+              - { label: "Titel", name: titel, widget: string, hint: "Z. B. Reibekuchen mit Apfelmus" }
+              - { label: "Beschreibung", name: beschreibung, widget: string, required: false, hint: "Z. B. nur montags und dienstags" }
+              - { label: "Preis", name: preis, widget: number, value_type: float, step: 0.1, min: 0, hint: "Preis in Euro, z. B. 11.90 (mit Punkt statt Komma)" }
+              - { label: "gültig bis", name: gueltig_bis, widget: datetime, required: false, date_format: "DD.MM.YYYY", time_format: false, format: "YYYY-MM-DD", hint: "Danach verschwindet das Angebot automatisch. Leer lassen = unbegrenzt." }
+              - { label: "An/Aus", name: aktiv, widget: boolean, default: true, hint: "Aus = nicht auf der Website zeigen" }
+
+      # ---------------- Einstellungen ----------------
+      - name: einstellungen
+        label: "Einstellungen"
+        file: "03/content/einstellungen.json"
+        fields:
+          - label: "Öffnungszeiten"
+            name: oeffnungszeiten
+            widget: list
+            hint: "Ein Eintrag pro Wochentag"
+            summary: "{{fields.tag}}: {{fields.zeiten}}"
+            fields:
+              - { label: "Tag", name: tag, widget: select, options: ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"] }
+              - { label: "Zeiten", name: zeiten, widget: string, required: false, hint: "Z. B. 11:30–14:30 und 17:00–23:00" }
+              - { label: "Ruhetag", name: ruhetag, widget: boolean, default: false, required: false, hint: "Einschalten, wenn an diesem Tag geschlossen ist" }
+          - { label: "Küchenschluss", name: kuechenschluss, widget: string, hint: "Z. B. täglich bis 21:30" }
+          - { label: "Telefon", name: telefon, widget: string, hint: "So, wie es auf der Website stehen soll" }
+          - { label: "Reservierungs-Link", name: reservierungs_link, widget: string, hint: "Standard: tel:+492148505860. Später auch Link zu einem Reservierungsdienst möglich." }
+          - { label: "Button-Text", name: button_text, widget: string, hint: "Standard: Tisch reservieren" }
+          - { label: "Hinweis-Zeile", name: hinweis, widget: string, required: false, hint: "Erscheint ganz oben, z. B. Betriebsferien vom 27.12. bis 05.01." }
+          - { label: "Hinweis-Zeile an/aus", name: hinweis_aktiv, widget: boolean, default: false, required: false, hint: "Aus = Hinweis ausblenden" }

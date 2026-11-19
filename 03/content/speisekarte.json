@@ -1,0 +1,914 @@
+{
+  "kategorien": [
+    {
+      "titel": "Hausgemachte Suppen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Rheinische Kartoffelsuppe",
+          "beschreibung": "mit Rauchspeck",
+          "preis": 5.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "Kräftige Rinderbrühe",
+          "beschreibung": "mit Gemüse- und Pfannkuchenstreifen",
+          "preis": 5.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Pikante Gulaschsuppe",
+          "beschreibung": "mit Baguettebrötchen",
+          "preis": 6.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    },
+    {
+      "titel": "Vorspeisen & für den kleinen Hunger",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Kölsche Bruschetta",
+          "beschreibung": "Baguettescheiben mit Flönz und Zwiebeln, Halver Hahn Käse oder „rut wieß“ mit Tomate-Mozzarella",
+          "preis": 5.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Kölsch Kaviar",
+          "beschreibung": "Röggelchen mit Flönz und Zwiebeln",
+          "preis": 5.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2"
+          ]
+        },
+        {
+          "name": "Zwiebelringe",
+          "beschreibung": "mit Sour Cream & Chili-Dip",
+          "preis": 8.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Knobi-Champignons",
+          "beschreibung": "gebratene Champignons mit Knoblauch und Toastbrot",
+          "preis": 5.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Gebackener Camembert",
+          "beschreibung": "mit Preiselbeeren und Toastbrot",
+          "preis": 8.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Mozzarella-Sticks",
+          "beschreibung": "mit Chili-Dip, Toastbrot und Butter",
+          "preis": 8.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Halver Hahn",
+          "beschreibung": "Röggelchen mit mittelaltem Gouda und Butter, auf Wunsch mit Zwiebeln",
+          "preis": 5.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Tomate-Mozzarella",
+          "beschreibung": "mit Salatbouquet, Balsamico-Creme und Basilikum-Pesto",
+          "preis": 8.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "3"
+          ]
+        },
+        {
+          "name": "Metthappen",
+          "beschreibung": "2 Hälften mit Zwiebeln",
+          "preis": 4.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    },
+    {
+      "titel": "Salate",
+      "hinweis": "Basis aller Salate: gemischter Salat, Tomaten, Gurken, Mais, rote Zwiebeln, Paprika, Ei, hausgemachtes Joghurt-Dressing oder Essig/Öl. Feta auf Wunsch +2,00 €.",
+      "gerichte": [
+        {
+          "name": "Fitness-Salat",
+          "beschreibung": "mit paniertem Hähnchenschnitzel",
+          "preis": 13.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Sizilianischer Salat",
+          "beschreibung": "mit Curry-Hähnchen und Mandarinen",
+          "preis": 13.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Chefsalat",
+          "beschreibung": "mit gebratenen Shrimps",
+          "preis": 14.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Spezialsalat",
+          "beschreibung": "mit Thunfisch, Schinken, Käse, Oliven, Pepperoni und Artischockenherz",
+          "preis": 14.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "name": "Feldsalat",
+          "beschreibung": "mit Speck und Knoblauch-Croûtons",
+          "preis": 13.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "Unser Wintertipp",
+          "beschreibung": "Sizilianischer Salat mit Bratkartoffeln und Curry-Hähnchen",
+          "preis": 14.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Gebratene Champignons auf Feldsalat",
+          "beschreibung": "",
+          "preis": 13.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    },
+    {
+      "titel": "Schnitzel aus der Pfanne",
+      "hinweis": "Alle mit Salatbeilage, sofern nicht anders angegeben.",
+      "gerichte": [
+        {
+          "name": "Schweineschnitzel „Wiener Art“",
+          "beschreibung": "mit Pommes Frites",
+          "preis": 15.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Champignonrahmschnitzel",
+          "beschreibung": "mit Pommes Frites",
+          "preis": 16.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Paprikaschnitzel",
+          "beschreibung": "mit Pommes Frites",
+          "preis": 16.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2",
+            "13"
+          ]
+        },
+        {
+          "name": "Pfefferschnitzel",
+          "beschreibung": "mit Pommes Frites",
+          "preis": 16.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Brauhaus Schnitzel",
+          "beschreibung": "mit gebratenen Zwiebeln, Spiegelei und Bratkartoffeln",
+          "preis": 17.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Cordon Bleu vom Schwein",
+          "beschreibung": "mit Käse und Hinterschinken, Sauce Hollandaise, Pommes und Gemüse",
+          "preis": 17.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2",
+            "4"
+          ]
+        }
+      ]
+    },
+    {
+      "titel": "Frisch vom Grill",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Holzfällersteak vom Schwein",
+          "beschreibung": "mit Röstzwiebeln, Kräuterbutter und Bratkartoffeln",
+          "preis": 16.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "3"
+          ]
+        },
+        {
+          "name": "Knoblauchsteak vom Schwein",
+          "beschreibung": "mit geröstetem Knoblauch und Pommes",
+          "preis": 16.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Gegrillte Hähnchenbrust",
+          "beschreibung": "mit Champignonrahmsauce und Pommes",
+          "preis": 16.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Pfefferhähnchen",
+          "beschreibung": "mit Pfeffersauce und Pommes",
+          "preis": 16.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Rumpsteak vom Grill (ca. 250 g)",
+          "beschreibung": "mit Kräuterbutter, wahlweise Folienkartoffel mit Kräutercreme oder Kroketten",
+          "preis": 24.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Pfeffersteak",
+          "beschreibung": "mit Pfeffersauce und Kroketten",
+          "preis": 25.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Zwiebelrostbraten",
+          "beschreibung": "Rumpsteak mit gebratenen Zwiebeln, Sauce und Kroketten",
+          "preis": 25.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Hähnchen „rut-wieß“",
+          "beschreibung": "Hähnchenbrust mit Tomate und Mozzarella überbacken, Balsamico, Pommes",
+          "preis": 17.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    },
+    {
+      "titel": "Typisch Rheinland",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Himmel und Ääd",
+          "beschreibung": "Kartoffelpüree mit Apfelmus, gebratenen Zwiebeln und Blutwurst",
+          "preis": 12.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2"
+          ]
+        },
+        {
+          "name": "Portion Hämchen",
+          "beschreibung": "Hintereisbein mit Sauerkraut und Kartoffelpüree",
+          "preis": 15.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "4"
+          ]
+        },
+        {
+          "name": "Hacksteak Maiers",
+          "beschreibung": "gemischtes Hackfleisch in feiner Sauce, mit Spiegelei und Bratkartoffeln",
+          "preis": 15.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Decke Bunne met Speck",
+          "beschreibung": "Bohnen mit Speck und Salzkartoffeln",
+          "preis": 13.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    },
+    {
+      "titel": "Brauhaus-Spezialitäten",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Brauhaus-Pfännchen",
+          "beschreibung": "3 Schweinemedaillons in Pfeffer-Champignonsauce, mit Käse überbacken, Kroketten und Gemüse mit Hollandaise",
+          "preis": 17.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Brauhaus-Kotelett natur",
+          "beschreibung": "mit Kräuterbutter, Bratkartoffeln und Salat",
+          "preis": 15.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Paniertes Kotelett",
+          "beschreibung": "mit Bratkartoffeln und Salat",
+          "preis": 16.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Gegrillte Schweinshaxe",
+          "beschreibung": "mit Bratkartoffeln und feiner Sauce, dazu Salat oder Sauerkraut",
+          "preis": 18.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Kölsch-Bratwurst",
+          "beschreibung": "2 Stück, mit Schreckenskammer Kölsch verfeinert, mit Bratkartoffeln und Salat",
+          "preis": 16.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Kalbsleber „Berliner Art“",
+          "beschreibung": "mit Kartoffelpüree, Zwiebeln, Apfelscheibe und Salat",
+          "preis": 17.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    },
+    {
+      "titel": "Klassiker",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Folienkartoffel",
+          "beschreibung": "mit Kräutercreme und Salat",
+          "preis": 10.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Folienkartoffel mit Shrimps",
+          "beschreibung": "mit Kräutercreme und Salat",
+          "preis": 13.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Folienkartoffel mit Curry-Hähnchen",
+          "beschreibung": "mit Kräutercreme und Salat",
+          "preis": 13.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Grünkohl",
+          "beschreibung": "mit 2 Mettenden und Salzkartoffeln",
+          "preis": 11.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "Sülze nach Art des Hauses",
+          "beschreibung": "mit Remoulade, Zwiebeln und Bratkartoffeln",
+          "preis": 11.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "Gebratener Leberkäse",
+          "beschreibung": "mit Spiegelei und Bratkartoffeln",
+          "preis": 11.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "7 Nürnberger Rostbratwürstchen",
+          "beschreibung": "auf Sauerkraut mit Bratkartoffeln",
+          "preis": 11.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Herzhafter Käsepfannkuchen",
+          "beschreibung": "mit Preiselbeeren",
+          "preis": 11.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Speckpfannkuchen",
+          "beschreibung": "mit Salat",
+          "preis": 12.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "3"
+          ]
+        }
+      ]
+    },
+    {
+      "titel": "Nudeln, deftige Snacks & Vegan",
+      "hinweis": "Separieren von Saucen oder Beilagen +1,00 €.",
+      "gerichte": [
+        {
+          "name": "Tagliatelle „à la Mama“",
+          "beschreibung": "leicht scharfe Paprika-Sahne-Sauce mit Hähnchenbruststreifen",
+          "preis": 12.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2"
+          ]
+        },
+        {
+          "name": "Tortellini",
+          "beschreibung": "mit Spinat und Ricotta in Sahnesauce, Brokkoli und Hinterschinken",
+          "preis": 11.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "Brauhaus-Burger",
+          "beschreibung": "100 g Rind, Tomate, Gurke, Zwiebeln, Käse und Saucen, dazu Pommes",
+          "preis": 11.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "Currybockwurst",
+          "beschreibung": "mit Pommes",
+          "preis": 11.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "Riesen-Bockwurst",
+          "beschreibung": "mit Bratkartoffeln",
+          "preis": 10.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "Vegane Reispfanne",
+          "beschreibung": "Kokosmilch und grünes Curry, Zwiebeln, Champignons, Erbsen, Lauch, Paprika und Möhren",
+          "preis": 11.9,
+          "vegetarisch": true,
+          "vegan": true,
+          "kennzeichnung": [
+            "2"
+          ]
+        },
+        {
+          "name": "Reispfanne mit Hähnchenbrust",
+          "beschreibung": "Kokosmilch und grünes Curry mit Gemüse",
+          "preis": 14.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2"
+          ]
+        },
+        {
+          "name": "Reispfanne mit Shrimps",
+          "beschreibung": "Kokosmilch und grünes Curry mit Gemüse",
+          "preis": 14.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "2"
+          ]
+        }
+      ]
+    },
+    {
+      "titel": "Kinderteller",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Kinderschnitzel",
+          "beschreibung": "mit Pommes Frites",
+          "preis": 8.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Fischstäbchen",
+          "beschreibung": "mit Pommes Frites",
+          "preis": 7.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Chicken Nuggets",
+          "beschreibung": "mit Pommes Frites",
+          "preis": 7.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Pasta",
+          "beschreibung": "mit Tomatensauce",
+          "preis": 7.5,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    },
+    {
+      "titel": "Desserts",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Warmes Schokoküchlein",
+          "beschreibung": "mit Vanilleeis",
+          "preis": 5.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Heiße Kirschen",
+          "beschreibung": "auf Vanilleeis",
+          "preis": 6.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Heiße Liebe",
+          "beschreibung": "3 Kugeln Vanilleeis mit heißen Himbeeren und Schlagsahne",
+          "preis": 6.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "3 Kugeln Vanilleeis",
+          "beschreibung": "mit Sahne",
+          "preis": 4.9,
+          "vegetarisch": true,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    },
+    {
+      "titel": "Bier",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Schreckenskammer Kölsch 0,2 l",
+          "beschreibung": "frisch vom Fass",
+          "preis": 2.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Schreckenskammer Kölsch 0,25 l",
+          "beschreibung": "frisch vom Fass",
+          "preis": 2.4,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Schöfferhofer Weizen 0,5 l",
+          "beschreibung": "naturtrüb oder alkoholfrei",
+          "preis": 4.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Schreckenskammer alkoholfrei 0,33 l",
+          "beschreibung": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Früh Radler 0,33 l",
+          "beschreibung": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Malzbier 0,33 l",
+          "beschreibung": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "titel": "Wein (0,2 l)",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Pinot Grigio",
+          "beschreibung": "trocken",
+          "preis": 4.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Riesling",
+          "beschreibung": "feinherb",
+          "preis": 4.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Rosé",
+          "beschreibung": "trocken",
+          "preis": 4.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Cabernet Sauvignon",
+          "beschreibung": "trocken",
+          "preis": 4.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Chianti",
+          "beschreibung": "trocken",
+          "preis": 4.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    },
+    {
+      "titel": "Alkoholfrei & Kaffee",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Coca-Cola 0,33 l",
+          "beschreibung": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "10"
+          ]
+        },
+        {
+          "name": "Coca-Cola Zero 0,33 l",
+          "beschreibung": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "10",
+            "11"
+          ]
+        },
+        {
+          "name": "Fanta 0,33 l",
+          "beschreibung": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "3"
+          ]
+        },
+        {
+          "name": "Sprite 0,33 l",
+          "beschreibung": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "5"
+          ]
+        },
+        {
+          "name": "Mezzo Mix 0,33 l",
+          "beschreibung": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": [
+            "1",
+            "3",
+            "10"
+          ]
+        },
+        {
+          "name": "Apfelschorle 0,33 l",
+          "beschreibung": "naturtrüb",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Tafelwasser 0,375 l",
+          "beschreibung": "still oder sprudelnd",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Tafelwasser 0,75 l",
+          "beschreibung": "still oder sprudelnd",
+          "preis": 5.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Apfel- oder Orangensaft 0,2 l",
+          "beschreibung": "",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Tasse Kaffee",
+          "beschreibung": "",
+          "preis": 2.4,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        },
+        {
+          "name": "Espresso",
+          "beschreibung": "",
+          "preis": 2.4,
+          "vegetarisch": false,
+          "vegan": false,
+          "kennzeichnung": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Das Brauhaus Schlebusch – Kölsch, Biergarten &amp; rheinische Küche in Leverkusen</title>
+  <meta name="description" content="Brauhaus in einer Villa von 1889 in Leverkusen-Schlebusch: Schreckenskammer Kölsch vom Fass, rheinische Küche, Biergarten und Räume für Feiern. Jetzt Tisch reservieren.">
+  <!-- Entwurf: Suchmaschinen sollen die Seite nicht aufnehmen -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Das Brauhaus Schlebusch",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Saarstraße 1",
+      "postalCode": "51375",
+      "addressLocality": "Leverkusen",
+      "addressCountry": "DE"
+    },
+    "telephone": "+49 214 8505860",
+    "email": "info@brauhaus-schlebusch.de",
+    "servesCuisine": ["Rheinisch", "Deutsch"],
+    "hasMenu": "speisekarte.html",
+    "acceptsReservations": true,
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday"], "opens": "11:30", "closes": "14:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Thursday"], "opens": "17:00", "closes": "23:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "17:00", "closes": "23:59" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+  <!-- Entwurf-Leiste (auf allen Seiten) -->
+  <div class="draft-bar">Entwurf – nicht veröffentlicht. Inhalte sind noch nicht mit dem Brauhaus Schlebusch abgestimmt.</div>
+
+  <!-- Hinweis-Zeile aus dem CMS (z. B. Betriebsferien) -->
+  <div class="hinweis-zeile" data-hinweis role="status" hidden></div>
+
+  <!-- Kopfzeile (auf allen Seiten identisch) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Das Brauhaus Schlebusch, zur Startseite">
+        <span class="logo-name">Das Brauhaus</span>
+        <span class="logo-ort">Schlebusch</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden>Menü</button>
+
+      <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
+        <ul>
+          <li><a href="index.html" aria-current="page">Start</a></li>
+          <li><a href="speisekarte.html">Speisekarte</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="reservierung.html">Reservierung &amp; Anfahrt</a></li>
+        </ul>
+      </nav>
+
+      <a class="button header-reservieren" href="tel:+492148505860" data-reservieren><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span data-reservieren-text>Tisch reservieren</span></a>
+    </div>
+  </header>
+
+  <main id="inhalt">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <p class="hero-jahr">Seit 1889 in der Villa</p>
+          <h1>Frisch gezapft. Ehrlich gekocht. Mitten in Schlebusch.</h1>
+          <p class="hero-text">Schreckenskammer Kölsch vom Fass, rheinische Küche und ein großer Biergarten – im Brauhaus an der Saarstraße.</p>
+          <p class="heute" data-heute hidden></p>
+          <div class="button-reihe">
+            <a class="button" href="tel:+492148505860" data-reservieren><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span data-reservieren-text>Tisch reservieren</span></a>
+            <a class="button button--auf-dunkel" href="speisekarte.html">Zur Speisekarte</a>
+          </div>
+        </div>
+        <div class="platzhalter platzhalter--gross" role="img" aria-label="Platzhalter: Foto der Villa von außen oder ein frisch gezapftes Kölsch">Foto: Villa von außen oder frisch gezapftes Kölsch</div>
+      </div>
+    </section>
+
+    <!-- Tagesangebot (aus dem CMS) -->
+    <section class="abschnitt" data-tagesangebot-abschnitt aria-labelledby="tagesangebot-titel">
+      <div class="container">
+        <h2 id="tagesangebot-titel">Unser Tagesangebot</h2>
+        <p class="einleitung">Zusätzlich zur Speisekarte – solange der Vorrat reicht.</p>
+        <div class="angebote" data-tagesangebot>
+          <p>Das Tagesangebot wird geladen …</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Drei Kacheln -->
+    <section class="abschnitt abschnitt--dunkler" aria-labelledby="kacheln-titel">
+      <div class="container">
+        <h2 id="kacheln-titel">Willkommen im Brauhaus</h2>
+        <div class="karten karten--drei">
+          <article class="karte">
+            <div class="platzhalter" role="img" aria-label="Platzhalter: Foto eines Brauhaus-Gerichts">Foto: Schnitzel oder Haxe auf dem Holztisch</div>
+            <div class="karte-inhalt">
+              <h3>Unsere Küche</h3>
+              <p>Rheinisch und gutbürgerlich: Himmel und Ääd, Haxe, Schnitzel und montags und dienstags Reibekuchen.</p>
+              <a class="mehr" href="speisekarte.html">Zur Speisekarte</a>
+            </div>
+          </article>
+          <article class="karte">
+            <div class="platzhalter" role="img" aria-label="Platzhalter: Foto des Biergartens">Foto: Biergarten im Sommer</div>
+            <div class="karte-inhalt">
+              <h3>Der Biergarten</h3>
+              <p>Rund 250 Plätze unter freiem Himmel. Im Biergarten reservieren wir nicht – kommen Sie einfach vorbei.</p>
+              <a class="mehr" href="ueber-uns.html#biergarten">Mehr zum Biergarten</a>
+            </div>
+          </article>
+          <article class="karte">
+            <div class="platzhalter" role="img" aria-label="Platzhalter: Foto des großen Saals">Foto: Großer Saal, festlich gedeckt</div>
+            <div class="karte-inhalt">
+              <h3>Feiern bei uns</h3>
+              <p>Geburtstag, Hochzeit oder Weihnachtsfeier: drei Räume für bis zu ca. 100 Gäste.</p>
+              <a class="mehr" href="#feiern">Mehr zum Feiern</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feiern -->
+    <section class="abschnitt" id="feiern" aria-labelledby="feiern-titel">
+      <div class="container zwei-spalten">
+        <div>
+          <h2 id="feiern-titel">Feiern im Brauhaus</h2>
+          <p>Ob Geburtstag, Familienfeier, Jubiläum, Hochzeit oder Weihnachtsfeier – wir haben den passenden Raum:</p>
+          <ul class="liste-haken">
+            <li><strong>Großer Saal</strong> mit eigenem Buffetraum</li>
+            <li><strong>Mittlerer Raum</strong> für kleinere Runden</li>
+            <li><strong>BRAUHAUS Lounge</strong> im ersten Stock</li>
+          </ul>
+          <p>Bis etwa 30 Personen essen Sie à la carte, für größere Gruppen stellen wir ein Buffet zusammen. Die Beratung ist kostenlos und unverbindlich.</p>
+          <div class="button-reihe">
+            <a class="button" href="tel:+492148505860"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>Feier anfragen</span></a>
+            <a class="button button--hell" href="mailto:info@brauhaus-schlebusch.de?subject=Anfrage%20Feier">Per E-Mail anfragen</a>
+          </div>
+        </div>
+        <div class="platzhalter platzhalter--gross" role="img" aria-label="Platzhalter: Foto einer festlich gedeckten Tafel">Foto: Festlich gedeckte Tafel im Saal</div>
+      </div>
+    </section>
+
+    <!-- Gästestimmen -->
+    <section class="abschnitt abschnitt--dunkler" aria-labelledby="stimmen-titel">
+      <div class="container">
+        <h2 id="stimmen-titel">Das sagen unsere Gäste</h2>
+        <div class="stimmen">
+          <blockquote class="stimme">
+            <p>„Echtes Brauhaus-Essen: einfach, satt und richtig lecker – und das Kölsch passt dazu.“</p>
+            <footer>Stammgast</footer>
+          </blockquote>
+          <blockquote class="stimme">
+            <p>„Große Portionen und ein Service, der sich wirklich kümmert.“</p>
+            <footer>Gast aus Leverkusen</footer>
+          </blockquote>
+          <blockquote class="stimme">
+            <p>„Unser Lieblingsort für Familienfeiern in Schlebusch.“</p>
+            <footer>Familie aus Schlebusch</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Abschluss -->
+    <section class="abschnitt abschnitt--holz zentriert">
+      <div class="container">
+        <hr class="trenner">
+        <h2>Hunger auf Himmel und Ääd?</h2>
+        <p class="einleitung">Rufen Sie uns während der Öffnungszeiten an – dann haben Sie sofort Gewissheit.</p>
+        <div class="button-reihe"><a class="button" href="tel:+492148505860" data-reservieren><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span data-reservieren-text>Tisch reservieren</span></a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Fußzeile (auf allen Seiten identisch) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-raster">
+        <div>
+          <h2>Das Brauhaus Schlebusch</h2>
+          <p>Saarstraße 1<br>51375 Leverkusen-Schlebusch</p>
+          <p>Telefon: <a href="tel:+492148505860"><span data-telefon>0214 8505860</span></a><br>
+             E-Mail: <a href="mailto:info@brauhaus-schlebusch.de">info@brauhaus-schlebusch.de</a></p>
+        </div>
+        <div>
+          <h2>Öffnungszeiten</h2>
+          <ul class="footer-zeiten" data-oeffnungszeiten-kurz>
+            <li>Mo, Di, Do: 11:30–14:30 und 17:00–23:00</li>
+            <li>Mi: Ruhetag</li>
+            <li>Fr: 11:30–14:30 und 17:00–24:00</li>
+            <li>Sa: 17:00–24:00</li>
+            <li>So: 12:00–23:00</li>
+          </ul>
+          <p>Küche: <span data-kuechenschluss>täglich bis 21:30</span></p>
+        </div>
+        <div>
+          <h2>Seiten</h2>
+          <p><a href="speisekarte.html">Speisekarte</a><br>
+             <a href="ueber-uns.html">Über uns</a><br>
+             <a href="reservierung.html">Reservierung &amp; Anfahrt</a></p>
+        </div>
+      </div>
+      <div class="footer-unten">
+        <span>© 2026 Das Brauhaus Schlebusch</span>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Fester Button auf dem Handy -->
+  <a class="button handy-button" href="tel:+492148505860" data-reservieren><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span data-reservieren-text>Tisch reservieren</span></a>
+
+</body>
+</html>

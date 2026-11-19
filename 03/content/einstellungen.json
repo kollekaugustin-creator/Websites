@@ -1,0 +1,17 @@
+{
+  "oeffnungszeiten": [
+    { "tag": "Montag", "zeiten": "11:30–14:30 und 17:00–23:00", "ruhetag": false },
+    { "tag": "Dienstag", "zeiten": "11:30–14:30 und 17:00–23:00", "ruhetag": false },
+    { "tag": "Mittwoch", "zeiten": "", "ruhetag": true },
+    { "tag": "Donnerstag", "zeiten": "11:30–14:30 und 17:00–23:00", "ruhetag": false },
+    { "tag": "Freitag", "zeiten": "11:30–14:30 und 17:00–24:00", "ruhetag": false },
+    { "tag": "Samstag", "zeiten": "17:00–24:00", "ruhetag": false },
+    { "tag": "Sonntag", "zeiten": "12:00–23:00", "ruhetag": false }
+  ],
+  "kuechenschluss": "täglich bis 21:30",
+  "telefon": "0214 8505860",
+  "reservierungs_link": "tel:+492148505860",
+  "button_text": "Tisch reservieren",
+  "hinweis": "Betriebsferien vom 27.12. bis 05.01. – ab dem 06.01. sind wir wieder für Sie da.",
+  "hinweis_aktiv": false
+}
