@@ -1274,3 +1274,295 @@ main { position: relative; }
 .hero-haus .haus-svg .spritzer { transform: scale(1.7); transform-box: fill-box; transform-origin: 50% 100%; }
 .hero-haus .haus-svg .spritzer-strahl { stroke-width: 1.8; }
 .hero-haus .haus-svg .flut { opacity: 0; }
+
+/* =========================================================
+   Unterseiten-Features im Bauplan-Look
+   ========================================================= */
+
+/* ---------- Rohr-Leiste (alle Seiten): füllt sich beim Lesen ---------- */
+.rohr-leiste { position: fixed; left: 0; right: 0; top: 0; z-index: 80; height: 4px; pointer-events: none; background: rgba(24, 43, 74, .18); }
+.rohr-leiste span {
+  display: block; height: 100%; transform-origin: left; transform: scaleX(0);
+  background: linear-gradient(to bottom, #FFF4C2, var(--gelb) 45%, #D9B400);
+  box-shadow: 0 0 8px rgba(255, 212, 0, .85);
+}
+
+/* ---------- Sanfte Seitenwechsel ---------- */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: seite-aus .2s ease both; }
+::view-transition-new(root) { animation: seite-ein .3s ease both; }
+@keyframes seite-aus { to { opacity: 0; } }
+@keyframes seite-ein { from { opacity: 0; } }
+html.seite-geht body { opacity: 0; transition: opacity .18s ease; }
+@supports not (view-transition-name: none) { body { animation: seite-ein .3s ease both; } }
+
+/* ---------- Bauplan-Abschnitte ---------- */
+.bauplan {
+  --bp-grund: #182B4A;
+  background-color: var(--bp-grund); color: #fff;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px, 12px 12px, 12px 12px;
+}
+.bauplan h2, .bauplan h3 { color: #fff; }
+.bauplan p, .bauplan li, .bauplan dd, .bauplan label, .bauplan legend { color: rgba(255, 255, 255, .86); }
+.bauplan .kicker { color: var(--gelb); text-transform: uppercase; letter-spacing: .2em; font-size: 13px; }
+.bauplan a:not(.btn) { color: #fff; }
+.bauplan a:focus-visible, .bauplan button:focus-visible, .bauplan input:focus-visible,
+.bauplan textarea:focus-visible, .bauplan select:focus-visible, .bauplan [tabindex]:focus-visible { outline: 3px solid var(--gelb); outline-offset: 3px; }
+.bauplan .btn--secondary { color: #fff; border-color: rgba(255, 255, 255, .65); }
+.bauplan .btn--secondary:hover { background: rgba(255, 255, 255, .12); color: #fff; }
+.bauplan .umschalter { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); box-shadow: none; flex-wrap: wrap; border-radius: 26px; }
+.bauplan .umschalter button { color: #fff; }
+.bauplan .umschalter button[aria-pressed="true"] { background: var(--gelb); color: var(--text); }
+.bauplan .umschalter button:not([aria-pressed="true"]):hover { background: rgba(255,255,255,.12); }
+.glas {
+  background: rgba(12, 24, 44, .55); color: #fff;
+  border: 1px solid rgba(255, 255, 255, .16); border-top-color: rgba(255, 212, 0, .55);
+  border-radius: var(--radius);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .25);
+}
+.bauplan mark.hinweis { color: var(--text); }
+
+/* ---------- Heizung: Heizkreislauf ---------- */
+.hk-umschalter { margin-bottom: 1.25rem; }
+.hk-buehne { border: 1px solid rgba(255,255,255,.12); border-radius: 4px; padding: .5rem; }
+.hk-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.hk-linie { fill: var(--bp-grund); stroke: rgba(255,255,255,.72); stroke-width: 1.6; }
+.hk-linie.fein { fill: none; stroke: rgba(255,255,255,.4); stroke-width: 1; }
+.hk-kessel { fill: rgba(255, 122, 99, .12); }
+.hk-speicher { fill: rgba(154, 220, 255, .08); }
+.hk-hk { fill: rgba(255, 122, 99, .1); }
+.hk-linie.kollektor { fill: rgba(255, 170, 60, .14); }
+.hk-oel { fill: rgba(255, 212, 0, .16); stroke: none; }
+.hk-led { fill: #7CF29A; }
+.hk-flamme { fill: rgba(255, 122, 99, .55); stroke: #FF9A7A; stroke-width: 1.2; transform-box: fill-box; transform-origin: 50% 100%; }
+.typ-solar .hk-flamme { transform: scale(.6); }
+.hk-abgas { fill: none; stroke: rgba(255,255,255,.3); stroke-width: 1.4; stroke-linecap: round; }
+.hk-rohr { fill: none; stroke: var(--gelb); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; opacity: .9; }
+.hk-rohr.solar { stroke: #FFB04A; }
+.hk-glanz { fill: none; stroke: rgba(255, 212, 0, .55); stroke-width: 12; }
+.hk-fluss { fill: none; stroke-width: 2; stroke-linecap: round; }
+.hk-fluss.warm { stroke: #FF7A63; }
+.hk-fluss.kalt { stroke: #9ADCFF; }
+.hk-fluss.gas, .hk-fluss.oel { stroke: #FFF4C2; stroke-width: 3.2; stroke-dasharray: .1 16; }
+.hk-fluss.solar { stroke: #FF7A63; }
+.hk-fluss.solar-rueck { stroke: #9ADCFF; }
+.hk-fluss.warm, .hk-fluss.kalt, .hk-fluss.solar, .hk-fluss.solar-rueck { stroke-dasharray: 2 14; animation: hk-fliessen 1.4s linear infinite; }
+.hk-fluss.gas, .hk-fluss.oel { animation: hk-fliessen 1.4s linear infinite; }
+@keyframes hk-fliessen { to { stroke-dashoffset: -16; } }
+.hk-label { font: 600 11px var(--font); letter-spacing: .2em; fill: rgba(255,255,255,.9); }
+.hk-klein { font: 600 9px var(--font); letter-spacing: .2em; fill: rgba(255,255,255,.5); }
+.hk-trefffl { fill: transparent; stroke: none; }
+.teil { cursor: pointer; outline: none; }
+.teil:hover .hk-linie:not(.fein), .teil.is-aktiv .hk-linie:not(.fein) { stroke: var(--gelb); stroke-width: 2.2; filter: drop-shadow(0 0 6px rgba(255, 212, 0, .6)); }
+.teil.is-aktiv .hk-label, .teil:hover .hk-label { fill: var(--gelb); }
+.teil:focus-visible .hk-trefffl { stroke: var(--gelb); stroke-width: 2; stroke-dasharray: 6 5; }
+/* Heizart wechseln: Teile blenden weich ein und aus */
+.nur { transition: opacity .6s ease, transform .6s ease; }
+.typ-gas .nur:not(.nur-gas), .typ-oel .nur:not(.nur-oel), .typ-solar .nur:not(.nur-solar) { opacity: 0; transform: translateY(14px); pointer-events: none; visibility: hidden; transition: opacity .4s ease, transform .4s ease, visibility 0s .4s; }
+.nur-text { display: none; }
+.typ-gas .nur-text.nur-gas, .typ-oel .nur-text.nur-oel, .typ-solar .nur-text.nur-solar { display: inline; }
+.hk-info { margin-top: 1.25rem; padding: 1.25rem 1.5rem; max-width: 40rem; }
+.hk-info-kicker { margin: 0 0 .25rem; color: var(--gelb) !important; text-transform: uppercase; letter-spacing: .2em; font-size: 12px; font-weight: 600; }
+.hk-info h3 { margin: 0 0 .35rem; }
+.hk-info-text { margin: 0; }
+.hk-liste { margin: 1.5rem 0 0; display: grid; gap: 1rem; }
+.hk-liste dt { font-weight: 700; color: var(--gelb); }
+.hk-liste dd { margin: 0; }
+.hk--js .hk-liste { display: none; }
+@media (max-width: 47.99rem) {
+  .hk-label { font-size: 20px; letter-spacing: .04em; }
+  .hk-klein { display: none; }
+  .hk-umschalter { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; }
+  .hk-umschalter button { justify-content: center; padding: 0 .35rem; font-size: 14px; }
+  .hk-buehne { padding: 0; margin: 0 calc(var(--gutter) * -.5); border: 0; }
+}
+
+/* ---------- Bad: In 5 Schritten zum neuen Bad ---------- */
+.ablauf { --fortschritt: 1; position: relative; list-style: none; margin: 0; padding: 0; }
+.ablauf::before, .ablauf::after { content: ""; position: absolute; left: 25px; top: 10px; bottom: 10px; width: 6px; border-radius: 3px; }
+.ablauf::before { background: rgba(255, 255, 255, .1); }
+.ablauf::after {
+  background: linear-gradient(to right, #FFF4C2, var(--gelb) 50%, #D9B400);
+  box-shadow: 0 0 12px rgba(255, 212, 0, .7);
+  transform-origin: top; transform: scaleY(var(--fortschritt));
+}
+.ablauf-schritt { position: relative; padding-left: 76px; margin-bottom: 1.25rem; }
+.ablauf-schritt:last-child { margin-bottom: 0; }
+.ablauf-nr {
+  position: absolute; left: 0; top: .9rem; z-index: 1; width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font: 800 18px var(--font-head); letter-spacing: .05em; color: var(--text);
+  background: var(--gelb); border: 4px solid var(--bp-grund); box-shadow: 0 0 0 2px var(--gelb), 0 0 18px rgba(255, 212, 0, .6);
+  transition: background-color .4s ease, color .4s ease, box-shadow .4s ease;
+}
+.ablauf-karte { padding: 1.1rem 1.35rem; transition: opacity .5s ease, transform .5s ease; }
+.ablauf-karte h3 { margin: 0 0 .25rem; }
+.ablauf-karte p { margin: 0; }
+.ablauf--animiert .ablauf-schritt:not(.is-da) .ablauf-nr { background: var(--bp-grund); color: rgba(255,255,255,.6); box-shadow: 0 0 0 2px rgba(255,255,255,.3); }
+.ablauf--animiert .ablauf-schritt:not(.is-da) .ablauf-karte { opacity: .25; transform: translateX(16px); }
+
+/* ---------- Bad: Vorher-Nachher ---------- */
+.vorher-nachher { margin: 1.5rem 0 0; }
+.vn-flaeche { display: grid; gap: 12px; }
+.vn-bild {
+  position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden;
+  display: flex; align-items: center; justify-content: center; padding: 1.25rem; text-align: center;
+  font-weight: 600; color: #fff;
+}
+.vn-vorher { background: #6E737C; order: -1; }
+.vn-nachher { background: #A3A8B0; color: var(--text); }
+.vn-bild > span { max-width: 22rem; }
+.vn-schild {
+  position: absolute; top: .75rem; padding: .25rem .6rem; border-radius: 4px;
+  font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+  background: rgba(12, 24, 44, .75); color: #fff;
+}
+.vn-vorher .vn-schild { left: .75rem; }
+.vn-nachher .vn-schild { right: .75rem; }
+.vorher-nachher figcaption { font-size: 16px; color: var(--muted); margin-top: .75rem; }
+.vn-griff, .vn-regler[hidden] { display: none; }
+@media (min-width: 36rem) { .vorher-nachher:not(.vn--js) .vn-flaeche { grid-template-columns: 1fr 1fr; } }
+/* Mit JavaScript: übereinander, Regler verschiebt die Trennlinie */
+.vn--js { --pos: 50%; max-width: 52rem; }
+.vn--js .vn-flaeche { position: relative; display: block; }
+.vn--js .vn-bild { aspect-ratio: 16 / 10; }
+.vn--js .vn-vorher { position: absolute; left: 0; top: 0; width: 100%; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.vn--js .vn-bild { align-items: flex-end; }
+.vn--js .vn-vorher { justify-content: flex-start; text-align: left; }
+.vn--js .vn-nachher { justify-content: flex-end; text-align: right; }
+.vn--js .vn-bild > span { max-width: 38%; font-size: 15px; }
+.vn--js .vn-griff {
+  display: block; position: absolute; top: 0; left: var(--pos); width: 0; aspect-ratio: auto; height: 100%;
+  border-left: 3px solid var(--gelb); margin-left: -1.5px; pointer-events: none;
+  box-shadow: 0 0 12px rgba(255, 212, 0, .8);
+}
+.vn--js .vn-griff::after {
+  content: "‹ ›"; position: absolute; top: 50%; left: -24px; width: 44px; height: 44px; margin-top: -22px; border-radius: 50%;
+  background: var(--gelb); color: var(--text); font: 800 18px/44px var(--font); text-align: center; letter-spacing: .1em;
+  box-shadow: 0 4px 14px rgba(0,0,0,.3);
+}
+.vn-regler {
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%; margin: 0;
+  -webkit-appearance: none; appearance: none; background: transparent; cursor: ew-resize; touch-action: pan-y;
+}
+.vn-regler::-webkit-slider-runnable-track { height: 100%; background: transparent; }
+.vn-regler::-moz-range-track { height: 100%; background: transparent; }
+.vn-regler::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 48px; height: 100%; min-height: 44px; background: transparent; border: 0; }
+.vn-regler::-moz-range-thumb { width: 48px; height: 100%; background: transparent; border: 0; }
+.vn-regler:focus-visible { outline: 3px solid var(--sanitaer); outline-offset: 4px; }
+.vn--js:has(.vn-regler:focus-visible) .vn-griff::after { box-shadow: 0 0 0 4px var(--sanitaer); }
+
+/* ---------- Kundendienst: Was ist passiert? ---------- */
+.hilfe-kacheln { list-style: none; margin: 0 0 1.25rem; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.hilfe-kachel {
+  width: 100%; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem;
+  padding: 1rem .75rem; font: 700 17px var(--font); color: #fff; text-align: center; cursor: pointer;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .22); border-radius: var(--radius);
+  transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.hilfe-icon { color: var(--gelb); }
+.hilfe-kachel:hover { background: rgba(255, 255, 255, .1); }
+.hilfe-kachel[aria-expanded="true"] { border-color: var(--gelb); background: rgba(255, 212, 0, .12); box-shadow: 0 0 18px rgba(255, 212, 0, .35); }
+.hilfe-kachel--notfall { border-color: rgba(255, 122, 99, .7); }
+.hilfe-kachel--notfall .hilfe-icon { color: #FF7A63; }
+.hilfe-kachel--notfall[aria-expanded="true"] { border-color: #FF7A63; background: rgba(229, 72, 42, .2); box-shadow: 0 0 18px rgba(255, 122, 99, .45); }
+.hilfe-panels { display: grid; gap: 1rem; }
+.hilfe-panel { padding: 1.25rem 1.5rem; }
+.hilfe-panel h3 { margin: 0 0 .5rem; font-size: 19px; }
+.hilfe-tipps { margin: 0 0 1.25rem; padding-left: 1.25rem; }
+.hilfe-tipps li { margin-bottom: .35rem; }
+.hilfe-tipps li::marker { color: var(--gelb); }
+.hilfe-klein { font-size: 15px; margin: .75rem 0 0; }
+.hilfe-panel--notfall { border-top-color: #FF7A63; }
+.hilfe-nummer { margin: 0 0 .75rem; }
+.hilfe-nummer a { font: 800 clamp(34px, 9vw, 52px)/1.1 var(--font-head); color: var(--gelb) !important; text-decoration: none; text-shadow: 0 0 18px rgba(255, 212, 0, .5); }
+.hilfe--js .hilfe-panel:not([hidden]) { animation: hilfe-auf .35s ease both; }
+@keyframes hilfe-auf { from { opacity: 0; transform: translateY(8px); } }
+@media (min-width: 48rem) { .hilfe-kacheln { grid-template-columns: repeat(4, 1fr); } }
+
+/* ---------- Über uns: Zeitstrahl und Zahlen ---------- */
+.geschichte .timeline::before { background: rgba(255, 255, 255, .1); width: 6px; }
+.geschichte .timeline::after {
+  width: 6px; background: linear-gradient(to right, #FFF4C2, var(--gelb) 50%, #D9B400);
+  box-shadow: 0 0 14px rgba(255, 212, 0, .75);
+}
+.geschichte .timeline-item::before { background: var(--bp-grund); border: 3px solid var(--gelb); box-shadow: 0 0 0 4px var(--bp-grund), 0 0 14px rgba(255, 212, 0, .7); }
+.geschichte .timeline-card { background: rgba(12, 24, 44, .55); box-shadow: 0 18px 40px rgba(0,0,0,.25); }
+.geschichte .timeline-year { color: var(--gelb); letter-spacing: .08em; }
+.geschichte .timeline-card h3 { color: #fff; }
+.stats-section.bauplan .stats li {
+  position: relative; padding: 1.5rem 1rem; border: 1px solid rgba(255,255,255,.18); border-radius: 4px;
+  background: rgba(12, 24, 44, .35);
+}
+.stats-section.bauplan .stats li::before {
+  content: ""; position: absolute; left: 50%; top: -1px; width: 48px; margin-left: -24px; height: 3px; border-radius: 2px;
+  background: var(--gelb); box-shadow: 0 0 12px rgba(255, 212, 0, .8);
+}
+.stats-section.bauplan .stat-number { text-shadow: 0 0 22px rgba(255, 212, 0, .45); }
+.stats-section.bauplan .stat-label { text-transform: uppercase; letter-spacing: .18em; font-size: 15px; color: rgba(255,255,255,.86); }
+
+/* ---------- Kontakt: Formular in 3 Schritten ---------- */
+.anfrage .form-emergency { color: var(--text); }
+.anfrage .form-emergency a { color: var(--sanitaer); }
+.anfrage .form-hint { color: rgba(255,255,255,.7); }
+.anfrage .form-privacy { color: rgba(255,255,255,.75); }
+.anfrage .field-error { color: #FFB4A8; }
+.anfrage .field.has-error input, .anfrage .field.has-error textarea { border-color: #FF8A7A; }
+.anfrage .field label, .anfrage legend { color: #fff; }
+.anfrage .field input:focus, .anfrage .field textarea:focus, .anfrage .field select:focus { border-color: var(--gelb); box-shadow: 0 0 0 3px rgba(255, 212, 0, .35); }
+.schritt { border: 0; margin: 0 0 1.5rem; padding: 0; min-width: 0; }
+.schritt-titel { font: 800 22px var(--font-head); color: #fff; padding: 0; margin-bottom: 1rem; outline: none; }
+.schritt[hidden] { display: none; }
+.schritt-knoepfe { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between; margin-top: .5rem; }
+.schritt-knoepfe .btn--primary { margin-left: auto; }
+.field--kacheln { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.field--kacheln .field-error { grid-column: 1 / -1; }
+.kachel { position: relative; margin: 0 !important; cursor: pointer; }
+.kachel input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.kachel span {
+  display: flex; align-items: center; justify-content: center; min-height: 72px; padding: .75rem; text-align: center;
+  font: 700 17px var(--font); color: #fff; border-radius: var(--radius);
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .25);
+  transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.kachel:hover span { background: rgba(255, 255, 255, .1); }
+.kachel input:checked + span { border-color: var(--gelb); background: rgba(255, 212, 0, .14); box-shadow: 0 0 16px rgba(255, 212, 0, .4); }
+.kachel input:focus-visible + span { outline: 3px solid var(--gelb); outline-offset: 3px; }
+.form-fortschritt {
+  --stand: 0; position: relative; list-style: none; margin: 0 0 1.75rem; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); text-align: center;
+}
+.form-fortschritt::before, .form-fortschritt::after {
+  content: ""; position: absolute; top: 21px; left: 16.66%; right: 16.66%; height: 4px; border-radius: 2px;
+}
+.form-fortschritt::before { background: rgba(255,255,255,.15); }
+.form-fortschritt::after {
+  background: var(--gelb); box-shadow: 0 0 10px rgba(255, 212, 0, .8);
+  transform-origin: left; transform: scaleX(var(--stand)); transition: transform .5s ease;
+}
+.form-fortschritt li { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: .4rem; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+.form-fortschritt span {
+  width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font: 800 15px var(--font-head); letter-spacing: 0; background: var(--bp-grund); border: 2px solid rgba(255,255,255,.35); color: rgba(255,255,255,.7);
+  transition: background-color .3s ease, border-color .3s ease, color .3s ease;
+}
+.form-fortschritt .is-aktiv, .form-fortschritt .is-fertig { color: #fff; }
+.form-fortschritt .is-aktiv span { border-color: var(--gelb); color: var(--gelb); box-shadow: 0 0 14px rgba(255, 212, 0, .55); }
+.form-fortschritt .is-fertig span { background: var(--gelb); border-color: var(--gelb); color: var(--text); }
+.form--schritte .schritt:not([hidden]) { animation: hilfe-auf .35s ease both; }
+
+/* ---------- Bewegung reduzieren: alles sofort da, nichts bewegt sich ---------- */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  body { animation: none !important; }
+  html.seite-geht body { opacity: 1; }
+  .hk-fluss { animation: none !important; }
+  .nur, .ablauf-karte, .ablauf-nr, .hilfe-kachel, .kachel span, .form-fortschritt::after, .form-fortschritt span { transition: none !important; }
+  .hilfe--js .hilfe-panel:not([hidden]), .form--schritte .schritt:not([hidden]) { animation: none; }
+}
