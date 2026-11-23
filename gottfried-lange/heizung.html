@@ -11,9 +11,7 @@
   <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/menu.js" defer></script>
-  <script src="js/seite.js" defer></script>
   <script src="js/einblenden.js" defer></script>
-  <script src="js/unterseiten.js" defer></script>
 </head>
 <body class="thema-heizung">
 
@@ -55,7 +53,7 @@
           <h1>Ihre neue Heizung – vom Meisterbetrieb aus Neuss</h1>
           <p class="lead">Ob Modernisierung oder Neubau: Wir beraten Sie ehrlich und finden die Heizung, die zu Ihrem Haus passt.</p>
           <div class="btn-row">
-            <a class="btn btn--primary" href="kontakt.html?anliegen=Heizung">Beratung anfragen</a>
+            <a class="btn btn--primary" href="kontakt.html">Beratung anfragen</a>
             <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
           </div>
         </div>
@@ -104,155 +102,6 @@
       </div>
     </section>
 
-    <!-- Heizkreislauf als Bauplan: Teile antippen, Heizart umschalten -->
-    <section class="section bauplan heizkreis" aria-labelledby="heizkreis-titel">
-      <div class="container">
-        <div class="section-intro">
-          <p class="kicker">So funktioniert Ihre Heizung</p>
-          <h2 id="heizkreis-titel">Der Heizkreislauf im Bauplan</h2>
-          <p>Tippen Sie auf ein Teil, um zu sehen, was es macht. <mark class="hinweis">[PRÜFEN: Texte fachlich mit Lange abstimmen]</mark></p>
-        </div>
-
-        <div class="umschalter hk-umschalter" role="group" aria-label="Heizart wählen" hidden>
-          <button type="button" data-typ="gas" aria-pressed="true">Gas-Brennwert</button>
-          <button type="button" data-typ="oel" aria-pressed="false">Öl-Brennwert</button>
-          <button type="button" data-typ="solar" aria-pressed="false">Solarthermie</button>
-        </div>
-
-        <div class="hk-buehne">
-          <svg class="hk-svg typ-gas" viewBox="0 0 720 400" role="img" aria-labelledby="hk-svg-titel">
-            <title id="hk-svg-titel">Schema eines Heizkreislaufs: Kessel, Speicher und Heizkörper, verbunden über Vorlauf und Rücklauf</title>
-            <defs>
-              <filter id="hk-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter>
-            </defs>
-
-            <!-- Rohre: gelb mit Leuchten, darin warm (rot) und kalt (hellblau) -->
-            <g class="hk-rohre">
-              <path class="hk-glanz" d="M280 205H350M430 190H560M560 275H430M350 315H280" filter="url(#hk-glow)"/>
-              <path class="hk-rohr" d="M280 205H350M430 190H560M560 275H430M350 315H280"/>
-              <path class="hk-fluss warm" d="M280 205H350"/>
-              <path class="hk-fluss warm" d="M430 190H560"/>
-              <path class="hk-fluss kalt" d="M560 275H430"/>
-              <path class="hk-fluss kalt" d="M350 315H280"/>
-              <text class="hk-klein" x="470" y="180">VORLAUF</text>
-              <text class="hk-klein" x="466" y="296">RÜCKLAUF</text>
-            </g>
-
-            <!-- Nur Gas: Gasanschluss mit Zähler -->
-            <g class="nur nur-gas">
-              <path class="hk-rohr" d="M20 368H140V300H170"/>
-              <path class="hk-fluss gas" d="M20 368H140V300H170"/>
-              <g class="teil" data-teil="gas" tabindex="0" role="button" aria-label="Gasanschluss erklären">
-                <rect class="hk-trefffl" x="40" y="330" width="110" height="64"/>
-                <rect class="hk-linie" x="66" y="346" width="44" height="44" rx="4"/>
-                <path class="hk-linie fein" d="M74 360h28M74 368h28"/>
-                <text class="hk-label" x="40" y="336">GASANSCHLUSS</text>
-              </g>
-            </g>
-
-            <!-- Nur Öl: Öltank -->
-            <g class="nur nur-oel">
-              <path class="hk-rohr" d="M130 300H170"/>
-              <path class="hk-fluss oel" d="M130 300H170"/>
-              <g class="teil" data-teil="oel" tabindex="0" role="button" aria-label="Öltank erklären">
-                <rect class="hk-trefffl" x="20" y="210" width="120" height="140"/>
-                <rect class="hk-linie" x="30" y="230" width="100" height="110" rx="14"/>
-                <rect class="hk-oel" x="34" y="282" width="92" height="54" rx="10"/>
-                <path class="hk-linie fein" d="M30 282h100"/>
-                <text class="hk-label" x="30" y="222">ÖLTANK</text>
-              </g>
-            </g>
-
-            <!-- Nur Solar: Kollektor auf dem Dach mit Solarkreis -->
-            <g class="nur nur-solar">
-              <path class="hk-rohr solar" d="M372 76V300M408 300V76"/>
-              <path class="hk-fluss solar" d="M408 76V300"/>
-              <path class="hk-fluss solar-rueck" d="M372 300V76"/>
-              <path class="hk-linie fein" d="M372 300h36"/>
-              <g class="teil" data-teil="kollektor" tabindex="0" role="button" aria-label="Solarkollektor erklären">
-                <rect class="hk-trefffl" x="300" y="6" width="200" height="80"/>
-                <path class="hk-linie kollektor" d="M310 76L336 22H486L460 76Z"/>
-                <path class="hk-linie fein" d="M341 76L367 22M372 76L398 22M403 76L429 22M434 76L460 22M323 49H473"/>
-                <text class="hk-label" x="500" y="40">SOLARKOLLEKTOR</text>
-              </g>
-            </g>
-
-            <!-- Abgas -->
-            <g class="teil" data-teil="abgas" tabindex="0" role="button" aria-label="Abgasleitung erklären">
-              <rect class="hk-trefffl" x="200" y="40" width="50" height="140"/>
-              <path class="hk-linie" d="M215 180V62H235V180"/>
-              <path class="hk-abgas" d="M220 52c-6-8 6-12 0-20s6-12 0-20M232 52c-6-8 6-12 0-20s6-12 0-20"/>
-              <text class="hk-label" x="140" y="74">ABGAS</text>
-            </g>
-
-            <!-- Kessel -->
-            <g class="teil" data-teil="kessel" tabindex="0" role="button" aria-label="Kessel erklären">
-              <rect class="hk-trefffl" x="160" y="170" width="130" height="170"/>
-              <rect class="hk-linie hk-kessel" x="170" y="180" width="110" height="150" rx="6"/>
-              <rect class="hk-linie fein" x="186" y="196" width="78" height="26" rx="3"/>
-              <circle class="hk-led" cx="198" cy="209" r="3"/>
-              <path class="hk-flamme" d="M225 312c-14-4-18-20-8-32 0 8 5 10 8 10-4-12 2-22 10-28-2 10 8 16 8 28 0 14-8 22-18 22z"/>
-              <text class="hk-label" x="170" y="356"><tspan class="nur-text nur-gas">GAS-BRENNWERTKESSEL</tspan><tspan class="nur-text nur-oel">ÖL-BRENNWERTKESSEL</tspan><tspan class="nur-text nur-solar">KESSEL (NACHHEIZUNG)</tspan></text>
-            </g>
-
-            <!-- Pumpe -->
-            <g class="teil" data-teil="pumpe" tabindex="0" role="button" aria-label="Pumpe erklären">
-              <rect class="hk-trefffl" x="293" y="293" width="44" height="44"/>
-              <circle class="hk-linie hk-pumpe" cx="315" cy="315" r="11"/>
-              <path class="hk-linie fein" d="M310 309l10 6-10 6z"/>
-              <text class="hk-label" x="294" y="296">PUMPE</text>
-            </g>
-
-            <!-- Speicher -->
-            <g class="teil" data-teil="speicher" tabindex="0" role="button" aria-label="Speicher erklären">
-              <rect class="hk-trefffl" x="340" y="130" width="100" height="220"/>
-              <rect class="hk-linie hk-speicher" x="350" y="140" width="80" height="200" rx="40"/>
-              <path class="hk-linie fein" d="M352 240H428"/>
-              <text class="hk-label" x="440" y="126">SPEICHER</text>
-            </g>
-
-            <!-- Heizkörper -->
-            <g class="teil" data-teil="heizkoerper" tabindex="0" role="button" aria-label="Heizkörper erklären">
-              <rect class="hk-trefffl" x="550" y="150" width="150" height="160"/>
-              <rect class="hk-linie hk-hk" x="560" y="170" width="130" height="120" rx="6"/>
-              <path class="hk-linie fein" d="M576 178v104M592 178v104M608 178v104M624 178v104M640 178v104M656 178v104M672 178v104"/>
-              <circle class="hk-linie" cx="570" cy="160" r="7"/>
-              <text class="hk-label" x="560" y="312">HEIZKÖRPER</text>
-            </g>
-          </svg>
-        </div>
-
-        <div class="glas hk-info" aria-live="polite" hidden>
-          <p class="hk-info-kicker">Bauteil</p>
-          <h3 class="hk-info-titel"></h3>
-          <p class="hk-info-text"></p>
-        </div>
-
-        <!-- Erklärungen: ohne JavaScript als Liste sichtbar, mit JavaScript in der Info-Karte -->
-        <dl class="hk-liste">
-          <div data-teil="kessel"><dt>Kessel</dt>
-            <dd data-typ="gas">Der Gas-Brennwertkessel verbrennt Gas und erwärmt damit das Heizungswasser. Brennwert heißt: Er nutzt auch die Wärme im Abgas.</dd>
-            <dd data-typ="oel">Der Öl-Brennwertkessel verbrennt Heizöl und erwärmt damit das Heizungswasser. Auch er nutzt die Wärme im Abgas mit.</dd>
-            <dd data-typ="solar">Der Kessel heizt nach, wenn die Sonne nicht reicht – zum Beispiel im Winter oder an trüben Tagen.</dd></div>
-          <div data-teil="speicher"><dt>Speicher</dt>
-            <dd>Im Speicher wird warmes Wasser vorrätig gehalten. So haben Sie sofort warmes Wasser, auch wenn die Heizung gerade nicht läuft.</dd>
-            <dd data-typ="solar">Bei Solarthermie kommt die Sonnenwärme über eine Rohrschlange unten in den Speicher.</dd></div>
-          <div data-teil="heizkoerper"><dt>Heizkörper</dt>
-            <dd>Warmes Wasser fließt durch den Heizkörper und gibt die Wärme an den Raum ab. Das Thermostat regelt, wie warm es wird.</dd></div>
-          <div data-teil="pumpe"><dt>Pumpe</dt>
-            <dd>Die Umwälzpumpe hält das Wasser in Bewegung: warm hin zum Heizkörper (Vorlauf), abgekühlt zurück zum Kessel (Rücklauf).</dd></div>
-          <div data-teil="abgas"><dt>Abgas</dt>
-            <dd>Über die Abgasleitung ziehen die Abgase des Kessels sicher nach draußen.</dd></div>
-          <div data-teil="gas"><dt>Gasanschluss</dt>
-            <dd>Über den Gasanschluss kommt das Gas aus dem öffentlichen Netz ins Haus. Der Gaszähler misst, wie viel Sie verbrauchen.</dd></div>
-          <div data-teil="oel"><dt>Öltank</dt>
-            <dd>Im Öltank lagert das Heizöl. Eine Leitung bringt es zum Kessel.</dd></div>
-          <div data-teil="kollektor"><dt>Solarkollektor</dt>
-            <dd>Die Kollektoren auf dem Dach fangen Sonnenwärme ein. Eine Flüssigkeit bringt die Wärme hinunter in den Speicher.</dd></div>
-        </dl>
-      </div>
-    </section>
-
     <section class="section section--white">
       <div class="container">
         <h2>Hersteller, mit denen wir arbeiten <mark class="hinweis">[PRÜFEN: Marken mit Lange abstimmen]</mark></h2>
@@ -279,7 +128,7 @@
         <h2>Neue Heizung geplant?</h2>
         <p>Schreiben Sie uns. Wir vereinbaren einen Termin für die Beratung vor Ort.</p>
         <div class="btn-row">
-          <a class="btn btn--primary" href="kontakt.html?anliegen=Heizung">Beratung anfragen</a>
+          <a class="btn btn--primary" href="kontakt.html">Beratung anfragen</a>
           <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
         </div>
       </div>

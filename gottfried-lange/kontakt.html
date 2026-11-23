@@ -11,7 +11,6 @@
   <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/menu.js" defer></script>
-  <script src="js/seite.js" defer></script>
   <script src="js/einblenden.js" defer></script>
   <script src="js/formular.js" defer></script>
   <script src="js/karte.js" defer></script>
@@ -84,7 +83,7 @@
       </div>
     </section>
 
-    <section class="section bauplan anfrage">
+    <section class="section">
       <div class="container narrow">
         <h2>Ihre Anfrage</h2>
         <p class="form-emergency">Notfall? Bitte nicht schreiben, sondern anrufen: <a href="tel:+491722152961">0172 2152961</a>.</p>
@@ -101,91 +100,60 @@
 
           <p class="form-hint">Felder mit * sind Pflichtfelder.</p>
 
-          <!-- Fortschritt: nur mit JavaScript sichtbar -->
-          <ol class="form-fortschritt" hidden>
-            <li class="is-aktiv"><span>01</span> Anliegen</li>
-            <li><span>02</span> Beschreibung</li>
-            <li><span>03</span> Kontakt</li>
-          </ol>
+          <div class="field">
+            <label for="name">Name *</label>
+            <input id="name" name="name" type="text" autocomplete="name" required
+                   data-error="Bitte geben Sie Ihren Namen ein.">
+          </div>
 
-          <fieldset class="schritt" data-schritt="1">
-            <legend class="schritt-titel" tabindex="-1">Worum geht es?</legend>
-            <div class="field field--kacheln">
-              <label class="kachel" for="anliegen-heizung">
-                <input id="anliegen-heizung" type="radio" name="anliegen" value="Heizung" required data-error="Bitte wählen Sie Ihr Anliegen aus.">
-                <span>Heizung</span>
-              </label>
-              <label class="kachel" for="anliegen-bad">
-                <input id="anliegen-bad" type="radio" name="anliegen" value="Bad" required>
-                <span>Bad</span>
-              </label>
-              <label class="kachel" for="anliegen-kundendienst">
-                <input id="anliegen-kundendienst" type="radio" name="anliegen" value="Kundendienst" required>
-                <span>Kundendienst</span>
-              </label>
-              <label class="kachel" for="anliegen-sonstiges">
-                <input id="anliegen-sonstiges" type="radio" name="anliegen" value="Sonstiges" required>
-                <span>Sonstiges</span>
-              </label>
-            </div>
-            <div class="schritt-knoepfe" hidden>
-              <button class="btn btn--primary schritt-weiter" type="button">Weiter</button>
-            </div>
-          </fieldset>
+          <div class="field">
+            <label for="telefon">Telefon *</label>
+            <input id="telefon" name="telefon" type="tel" autocomplete="tel" required
+                   data-error="Bitte geben Sie eine Telefonnummer ein, unter der wir Sie zurückrufen können.">
+          </div>
 
-          <fieldset class="schritt" data-schritt="2">
-            <legend class="schritt-titel" tabindex="-1">Was können wir für Sie tun?</legend>
-            <div class="field">
-              <label for="nachricht">Beschreiben Sie kurz Ihr Anliegen *</label>
-              <textarea id="nachricht" name="nachricht" rows="6" required
-                        data-error="Bitte schreiben Sie uns kurz, worum es geht."></textarea>
-            </div>
-            <div class="schritt-knoepfe" hidden>
-              <button class="btn btn--secondary schritt-zurueck" type="button">Zurück</button>
-              <button class="btn btn--primary schritt-weiter" type="button">Weiter</button>
-            </div>
-          </fieldset>
+          <div class="field">
+            <label for="email">E-Mail (freiwillig)</label>
+            <input id="email" name="email" type="email" autocomplete="email"
+                   data-error="Bitte prüfen Sie Ihre E-Mail-Adresse, z. B. name@beispiel.de.">
+          </div>
 
-          <fieldset class="schritt" data-schritt="3">
-            <legend class="schritt-titel" tabindex="-1">Wie erreichen wir Sie?</legend>
-            <div class="field">
-              <label for="name">Name *</label>
-              <input id="name" name="name" type="text" autocomplete="name" required
-                     data-error="Bitte geben Sie Ihren Namen ein.">
-            </div>
+          <div class="field">
+            <label for="ort">PLZ / Ort *</label>
+            <input id="ort" name="plz-ort" type="text" autocomplete="address-level2" required
+                   data-error="Bitte geben Sie Ihre Postleitzahl oder Ihren Ort ein.">
+          </div>
 
-            <div class="field">
-              <label for="telefon">Telefon *</label>
-              <input id="telefon" name="telefon" type="tel" autocomplete="tel" required
-                     data-error="Bitte geben Sie eine Telefonnummer ein, unter der wir Sie zurückrufen können.">
-            </div>
+          <div class="field">
+            <label for="anliegen">Ihr Anliegen *</label>
+            <select id="anliegen" name="anliegen" required
+                    data-error="Bitte wählen Sie Ihr Anliegen aus.">
+              <option value="">Bitte auswählen</option>
+              <option>Heizung erneuern</option>
+              <option>Bad sanieren</option>
+              <option>Wartung</option>
+              <option>Reparatur</option>
+              <option>Sonstiges</option>
+            </select>
+          </div>
 
-            <div class="field">
-              <label for="email">E-Mail (freiwillig)</label>
-              <input id="email" name="email" type="email" autocomplete="email"
-                     data-error="Bitte prüfen Sie Ihre E-Mail-Adresse, z. B. name@beispiel.de.">
-            </div>
+          <div class="field">
+            <label for="nachricht">Ihre Nachricht *</label>
+            <textarea id="nachricht" name="nachricht" rows="6" required
+                      data-error="Bitte schreiben Sie uns kurz, worum es geht."></textarea>
+          </div>
 
-            <div class="field">
-              <label for="ort">PLZ / Ort *</label>
-              <input id="ort" name="plz-ort" type="text" autocomplete="address-level2" required
-                     data-error="Bitte geben Sie Ihre Postleitzahl oder Ihren Ort ein.">
-            </div>
+          <div class="field">
+            <label for="rueckruf">Beste Zeit für einen Rückruf (freiwillig)</label>
+            <select id="rueckruf" name="rueckrufzeit">
+              <option value="">Bitte auswählen</option>
+              <option>vormittags</option>
+              <option>nachmittags</option>
+              <option>egal</option>
+            </select>
+          </div>
 
-            <div class="field">
-              <label for="rueckruf">Beste Zeit für einen Rückruf (freiwillig)</label>
-              <select id="rueckruf" name="rueckrufzeit">
-                <option value="">Bitte auswählen</option>
-                <option>vormittags</option>
-                <option>nachmittags</option>
-                <option>egal</option>
-              </select>
-            </div>
-            <div class="schritt-knoepfe">
-              <button class="btn btn--secondary schritt-zurueck" type="button" hidden>Zurück</button>
-              <button class="btn btn--primary" type="submit">Anfrage senden</button>
-            </div>
-          </fieldset>
+          <button class="btn btn--primary" type="submit">Anfrage senden</button>
 
           <p class="form-privacy">Mit dem Absenden werden Ihre Angaben zur Bearbeitung Ihrer Anfrage gespeichert. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
         </form>

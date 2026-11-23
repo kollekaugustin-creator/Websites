@@ -11,9 +11,7 @@
   <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/menu.js" defer></script>
-  <script src="js/seite.js" defer></script>
   <script src="js/einblenden.js" defer></script>
-  <script src="js/unterseiten.js" defer></script>
 </head>
 <body class="thema-bad">
 
@@ -55,7 +53,7 @@
           <h1>Ihr neues Bad – geplant und gebaut vom Meisterbetrieb</h1>
           <p class="lead">Von der ersten Idee bis zur Übergabe: Wir kümmern uns um Ihr Bad.</p>
           <div class="btn-row">
-            <a class="btn btn--primary" href="kontakt.html?anliegen=Bad">Bad-Beratung anfragen</a>
+            <a class="btn btn--primary" href="kontakt.html">Bad-Beratung anfragen</a>
             <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
           </div>
         </div>
@@ -83,49 +81,14 @@
       </div>
     </section>
 
-    <!-- Ablauf als Bauplan: das Rohr wächst beim Scrollen, Schritt für Schritt -->
-    <section class="section bauplan" aria-labelledby="ablauf-titel">
-      <div class="container narrow">
-        <div class="section-intro">
-          <p class="kicker">Ihr Weg zum neuen Bad</p>
-          <h2 id="ablauf-titel">In 5 Schritten zum neuen Bad <mark class="hinweis">[PRÜFEN]</mark></h2>
-        </div>
-        <ol class="ablauf">
-          <li class="ablauf-schritt">
-            <span class="ablauf-nr" aria-hidden="true">01</span>
-            <div class="glas ablauf-karte">
-              <h3><span class="visually-hidden">Schritt 1: </span>Beratung</h3>
-              <p>Sie erzählen uns, wie Ihr Bad werden soll. Wir sehen uns den Raum vor Ort an.</p>
-            </div>
-          </li>
-          <li class="ablauf-schritt">
-            <span class="ablauf-nr" aria-hidden="true">02</span>
-            <div class="glas ablauf-karte">
-              <h3><span class="visually-hidden">Schritt 2: </span>Planung</h3>
-              <p>Wir planen Aufteilung, Leitungen und Produkte – passend zu Ihren Wünschen.</p>
-            </div>
-          </li>
-          <li class="ablauf-schritt">
-            <span class="ablauf-nr" aria-hidden="true">03</span>
-            <div class="glas ablauf-karte">
-              <h3><span class="visually-hidden">Schritt 3: </span>Angebot</h3>
-              <p>Sie bekommen ein klares Angebot mit allen Kosten.</p>
-            </div>
-          </li>
-          <li class="ablauf-schritt">
-            <span class="ablauf-nr" aria-hidden="true">04</span>
-            <div class="glas ablauf-karte">
-              <h3><span class="visually-hidden">Schritt 4: </span>Umbau</h3>
-              <p>Wir bauen sauber und halten die Termine ein.</p>
-            </div>
-          </li>
-          <li class="ablauf-schritt">
-            <span class="ablauf-nr" aria-hidden="true">05</span>
-            <div class="glas ablauf-karte">
-              <h3><span class="visually-hidden">Schritt 5: </span>Übergabe</h3>
-              <p>Wir zeigen Ihnen alles und übergeben Ihr fertiges Bad.</p>
-            </div>
-          </li>
+    <section class="section">
+      <div class="container">
+        <h2>So entsteht Ihr neues Bad</h2>
+        <ol class="steps">
+          <li><h3>Wunschgespräch</h3><p>Sie erzählen uns, wie Ihr Bad werden soll.</p></li>
+          <li><h3>Planung</h3><p>Wir planen das Bad und erstellen ein Angebot.</p></li>
+          <li><h3>Umbau</h3><p>Wir bauen sauber und halten die Termine ein.</p></li>
+          <li><h3>Übergabe</h3><p>Wir zeigen Ihnen alles und übergeben Ihr fertiges Bad.</p></li>
         </ol>
       </div>
     </section>
@@ -148,16 +111,6 @@
     <section class="section">
       <div class="container">
         <h2>Beispiele aus unserer Arbeit <mark class="hinweis">[PLATZHALTER]</mark></h2>
-        <!-- Vorher-Nachher: ohne JavaScript nebeneinander, mit JavaScript als Schieberegler -->
-        <figure class="vorher-nachher">
-          <div class="vn-flaeche">
-          <div class="vn-bild vn-nachher"><span>[PLATZHALTER: Nachher-Foto eines Lange-Bads]</span><b class="vn-schild">Nachher</b></div>
-          <div class="vn-bild vn-vorher"><span>[PLATZHALTER: Vorher-Foto eines Lange-Bads]</span><b class="vn-schild">Vorher</b></div>
-          <span class="vn-griff" aria-hidden="true"></span>
-          <input class="vn-regler" type="range" min="0" max="100" value="50" step="1" aria-label="Vorher-Nachher-Vergleich: links Vorher, rechts Nachher" hidden>
-          </div>
-          <figcaption>Vorher und nachher: das gleiche Bad vor und nach dem Umbau.</figcaption>
-        </figure>
         <div class="gallery">
           <img class="photo" src="img/referenz-bad-1.jpg" alt="Modernes Bad mit freistehender Badewanne und Glasdusche" width="1600" height="1200" loading="lazy" decoding="async">
           <img class="photo" src="img/referenz-bad-2.jpg" alt="Kleines, helles Bad mit Waschtisch auf Holzplatte und Wand-WC" width="1600" height="1200" loading="lazy" decoding="async">
@@ -171,7 +124,7 @@
         <h2>Ihr Traumbad planen?</h2>
         <p>Schreiben Sie uns. Wir vereinbaren ein unverbindliches Wunschgespräch.</p>
         <div class="btn-row">
-          <a class="btn btn--primary" href="kontakt.html?anliegen=Bad">Bad-Beratung anfragen</a>
+          <a class="btn btn--primary" href="kontakt.html">Bad-Beratung anfragen</a>
           <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
         </div>
       </div>
