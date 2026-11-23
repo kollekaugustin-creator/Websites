@@ -57,9 +57,13 @@
   }
   function pulsieren() {
     if (ruhig()) return;
+    // Farbfläche + Schild jedes Raums leuchten nacheinander sanft auf
     ["keller", "wohnzimmer", "kueche", "bad", "dach"].forEach(function (id, i) {
-      var r = svg.querySelector('.raum[data-raum="' + id + '"]');
-      setTimeout(function () { r.classList.add("puls"); setTimeout(function () { r.classList.remove("puls"); }, 900); }, 300 + i * 380);
+      setTimeout(function () {
+        if (offen) return;
+        hot(id, true);
+        setTimeout(function () { if (offen !== id) hot(id, false); }, 900);
+      }, 400 + i * 550);
     });
   }
   if (ruhig()) fertig();
@@ -82,7 +86,10 @@
   $$(".haus-karte").forEach(function (k) { karten[k.getAttribute("data-raum")] = k; });
   $$(".raum-label", svg).forEach(function (l) { labels[l.getAttribute("data-raum")] = l; });
   var tourNav = $(".tour-nav"), tourNr = $(".tour-nr"), offen = null, schritt = 0, modus = null;
-  function hot(id, an) { if (labels[id]) labels[id].classList.toggle("is-hot", an); }
+  function hot(id, an) {
+    if (labels[id]) labels[id].classList.toggle("is-hot", an);
+    $$('.raum-farbe[data-raum="' + id + '"]', svg).forEach(function (f) { f.classList.toggle("aktiv", an); });
+  }
   function poly(id) { return svg.querySelector('.raum[data-raum="' + id + '"]'); }
 
   function zoomAuf(id) {
@@ -279,5 +286,54 @@
       .then(function () { repariert(true); return anim(mInnen, [{ opacity: 1 }, { opacity: 1, offset: .6 }, { opacity: 0 }], 1400, 300); })
       .then(function () { return anim(van, [{ transform: "none", opacity: 1 }, { opacity: 1, offset: .7 }, { transform: xy("data-van", -1), opacity: 0 }], 1500); })
       .then(function () { [van, mAussen, mInnen].forEach(function (el) { el.getAnimations().forEach(function (a) { a.cancel(); }); }); rufen.disabled = false; });
+  });
+
+  /* ---------- Notfall-Modus „Rohrbruch?“ (höchstens 5 Sekunden) ---------- */
+  var nKnopf = $(".notfall-knopf"), nKarte = $(".notfall-karte"), flut = $(".flut", svg), mKeller = $(".monteur-keller", svg);
+  function notfallKarte() {
+    nKarte.hidden = false;
+    nKarte.classList.toggle("leuchtet", false); void nKarte.offsetWidth; nKarte.classList.toggle("leuchtet", true);
+    $(".notfall-anruf", nKarte).focus({ preventScroll: true });
+    nKnopf.disabled = false;
+  }
+  if (nKnopf) nKnopf.addEventListener("click", function () {
+    nKnopf.disabled = true;
+    nKarte.hidden = true;
+    schritt = 0; anzeigen(null, 0); fertig();
+    if (ruhig() || !flut.animate) { notfallKarte(); return; }
+    var weg = xy("data-weg-aussen", 1), fern = xy("data-van", -1);
+    var o = { duration: 4900, easing: "ease-in-out" };
+    root.classList.toggle("spritzt", true);
+    setTimeout(function () { root.classList.toggle("spritzt", false); }, 3100);
+    flut.animate([{ transform: "translateY(26px)", opacity: 0 }, { opacity: 1, offset: .06 }, { transform: "none", opacity: 1, offset: .26 },
+      { transform: "none", opacity: 1, offset: .64 }, { transform: "translateY(26px)", opacity: 0, offset: .82 }, { transform: "translateY(26px)", opacity: 0 }], o);
+    van.animate([{ transform: fern, opacity: 0 }, { transform: fern, opacity: 0, offset: .16 }, { transform: "none", opacity: 1, offset: .42 },
+      { transform: "none", opacity: 1, offset: .82 }, { transform: fern, opacity: 0 }], o);
+    mAussen.animate([{ opacity: 0 }, { opacity: 0, transform: "none", offset: .43 }, { opacity: 1, offset: .46 },
+      { opacity: 1, transform: weg, offset: .57 }, { opacity: 0, transform: weg, offset: .6 }, { opacity: 0, transform: weg }], o);
+    mKeller.animate([{ opacity: 0 }, { opacity: 0, offset: .58 }, { opacity: 1, offset: .64 }, { opacity: 1, offset: .76 },
+      { opacity: 0, offset: .86 }, { opacity: 0 }], o);
+    setTimeout(notfallKarte, 4000);
+  });
+  if (nKarte) $(".notfall-zu", nKarte).addEventListener("click", function () { nKarte.hidden = true; nKnopf.focus(); });
+
+  /* ---------- Heizungs-Check im Keller ---------- */
+  var regler = $(".heizcheck-regler"), jahrOut = $(".heizcheck-jahr"), hText = $(".heizcheck-text"), JAHR = jetzt.getFullYear();
+  var SAETZE = { alt: "Ein Austausch lohnt sich oft.", mittel: "Regelmäßige Wartung hält sie effizient.", neu: "Sieht gut aus – wir warten auch ohne Vertrag." };
+  function heizcheck() {
+    var j = +regler.value, alter = JAHR - j, stufe = alter > 25 ? "alt" : (alter >= 10 ? "mittel" : "neu");
+    jahrOut.textContent = j;
+    regler.setAttribute("aria-valuetext", j + ", " + alter + " Jahre alt");
+    root.classList.toggle("kessel-alt", stufe === "alt");
+    root.classList.toggle("kessel-neu", stufe === "neu");
+    hText.innerHTML = SAETZE[stufe] + ' <mark class="hinweis">[PRÜFEN: fachlich mit Lange abstimmen]</mark>';
+  }
+  if (regler) { regler.max = JAHR; regler.value = JAHR - 15; regler.addEventListener("input", heizcheck); heizcheck(); }
+
+  /* ---------- Rohrzange als Mauszeiger: „packt“ beim Klicken zu ---------- */
+  buehne.addEventListener("pointerdown", function (e) {
+    if (e.pointerType !== "mouse") return;
+    buehne.classList.toggle("packt", true);
+    setTimeout(function () { buehne.classList.toggle("packt", false); }, 220);
   });
 })();
