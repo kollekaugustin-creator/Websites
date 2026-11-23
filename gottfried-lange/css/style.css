@@ -760,3 +760,130 @@ address { font-style: normal; margin-bottom: 1rem; }
 
   .footer-grid { grid-template-columns: 1.3fr 1.6fr 1fr 1fr; }
 }
+
+/* =========================================================
+   Das Lange-Haus (Startseite, Abschnitt „Unsere Leistungen“)
+   Aufbau, Leben und Zoom steuert js/haus.js.
+   Ohne JavaScript bleibt das Haus verborgen, die drei Karten bleiben.
+   ========================================================= */
+:root { --kopf: 72px; }
+
+.haus-hinweis {
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  margin: 0 0 .75rem; font-weight: 600; color: var(--blau);
+}
+.haus-hinweis::before {
+  content: ""; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--gelb); box-shadow: 0 0 0 4px rgba(255, 212, 0, .35);
+  animation: haus-puls 1.6s ease-in-out infinite;
+}
+@keyframes haus-puls { 50% { box-shadow: 0 0 0 8px rgba(255, 212, 0, 0); } }
+
+.haus-buehne {
+  position: relative; overflow: hidden; width: 100%;
+  aspect-ratio: 526 / 720; border-radius: var(--radius);
+}
+.haus-zoom { width: 100%; height: 100%; transform-origin: 0 0; transition: transform .8s cubic-bezier(.22, .8, .24, 1); }
+.haus-svg { display: block; width: 100%; height: 100%; }
+
+/* Aufbau: Werte 0 bis 1 kommen aus js/haus.js (ohne JS: fertig) */
+.haus-svg { --p-platte: 1; --p-dach: 1; --p-wasser: 1; --p-warm: 1; }
+.haus-svg .bau-platte { opacity: var(--p-platte); }
+.haus-svg .dach { opacity: var(--p-dach); transform: translateY(calc((1 - var(--p-dach)) * -70px)); }
+.haus-svg .rohr { fill: none; stroke: var(--gelb); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.haus-svg .wasser {
+  fill: none; stroke: #BFE6FF; stroke-width: 1.8; stroke-linecap: round;
+  stroke-dasharray: 3 9; opacity: var(--p-wasser);
+}
+.haus-svg .flamme { transform-box: fill-box; transform-origin: 50% 100%; transform: scale(var(--p-wasser)); }
+.haus-svg .flamme path { transform-box: fill-box; transform-origin: 50% 100%; }
+.haus-svg .fenster-licht { opacity: calc(var(--p-warm) * .55); }
+.haus-svg .dampf { opacity: var(--p-warm); }
+.haus-svg .dampf circle { transform-box: fill-box; transform-origin: center; }
+.haus-svg .tropfen { opacity: 0; }
+
+/* Leben: nur wenn fertig gebaut und im Bild */
+.haus.is-fertig.is-sichtbar .wasser { animation: haus-fliessen .9s linear infinite; }
+.haus.is-fertig.is-sichtbar .flamme path { animation: haus-flackern .45s ease-in-out infinite alternate; }
+.haus.is-fertig.is-sichtbar .flamme path + path { animation-duration: .3s; }
+.haus.is-fertig.is-sichtbar .dampf circle { animation: haus-dampf 3.2s ease-out infinite; }
+.haus.is-fertig.is-sichtbar .dampf circle:nth-child(2) { animation-delay: -1.1s; }
+.haus.is-fertig.is-sichtbar .dampf circle:nth-child(3) { animation-delay: -2.2s; }
+.haus.is-fertig.is-sichtbar .tropfen { animation: haus-tropfen 1.8s ease-in infinite; }
+@keyframes haus-fliessen { to { stroke-dashoffset: -12; } }
+@keyframes haus-flackern { from { transform: scale(1, 1); } to { transform: scale(.9, 1.14); } }
+@keyframes haus-dampf {
+  0% { transform: translate(0, 8px) scale(.5); opacity: 0; }
+  25% { opacity: .95; }
+  100% { transform: translate(8px, -22px) scale(1.3); opacity: 0; }
+}
+@keyframes haus-tropfen {
+  0%, 45% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 1; }
+  85% { transform: translateY(12px); opacity: 1; }
+  90%, 100% { transform: translateY(13px); opacity: 0; }
+}
+
+/* Räume: Schilder, Hervorhebung, Fokus */
+.raum-labels { opacity: 0; transition: opacity .4s ease; pointer-events: none; }
+.haus.is-fertig .raum-labels { opacity: 1; }
+.raum-label rect { fill: var(--white); stroke: var(--text); stroke-width: 1; }
+.raum-label text { font-family: var(--font); font-size: 12px; font-weight: 600; fill: var(--text); }
+.raum-label.is-hot rect { fill: var(--gelb); }
+.raum { fill: transparent; stroke: transparent; cursor: pointer; outline: none; }
+.raum:focus-visible { fill: rgba(255, 212, 0, .16); stroke: var(--sanitaer); stroke-width: 3; stroke-dasharray: 8 6; }
+@media (hover: hover) {
+  .raum:hover { fill: rgba(255, 212, 0, .16); stroke: var(--sanitaer); stroke-width: 3; stroke-dasharray: 8 6; }
+}
+.haus.is-offen .raum { pointer-events: none; fill: transparent; stroke: transparent; }
+.haus.is-offen .raum-labels { opacity: 0; }
+
+/* Seite neben/unter dem Haus: Farblegende und Infokarten */
+.haus-seite { margin-top: 1.5rem; }
+.haus-legende { list-style: none; margin: 0 0 1rem; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.25rem; }
+.haus-legende li { display: inline-flex; align-items: center; gap: .45rem; font-weight: 600; font-size: 16px; }
+.haus-legende li::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--thema); }
+.haus-karte {
+  background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-hover);
+  border-top: 6px solid var(--thema); padding: 1.5rem;
+  animation: haus-karte-ein .45s ease-out;
+  scroll-margin-bottom: 110px; /* nicht hinter der festen Anfrage-Leiste */
+}
+.haus-karte h3 { font-size: 26px; font-weight: 800; color: var(--thema); outline: none; }
+.haus-karte .btn-row { margin: 1.25rem 0 0; }
+.haus-zurueck { background: transparent; color: var(--blau); border-color: transparent; padding-left: .5rem; padding-right: .5rem; min-height: 44px; }
+.haus-zurueck:hover { background: var(--tint); }
+@keyframes haus-karte-ein { from { opacity: 0; transform: translateY(12px); } }
+
+/* Handy: Schilder größer, damit sie lesbar bleiben */
+@media (max-width: 47.99rem) {
+  .raum-label { transform: scale(1.55); }
+}
+
+/* Ab Tablet: Haus rastet ein, Aufbau folgt dem Scrollen */
+@media (min-width: 48rem) {
+  .haus[data-modus="scroll"] .haus-scroll { height: 230vh; height: 230svh; }
+  .haus-sticky {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2.5rem; align-items: center;
+  }
+  .haus[data-modus="scroll"] .haus-sticky {
+    position: sticky; top: var(--kopf);
+    height: calc(100vh - var(--kopf)); height: calc(100svh - var(--kopf));
+  }
+  .haus-links { width: min(56vw, calc((100vh - var(--kopf) - 5rem) * 526 / 720)); }
+  @supports (height: 100svh) {
+    .haus-links { width: min(56vw, calc((100svh - var(--kopf) - 5rem) * 526 / 720)); }
+  }
+  .haus-seite { margin-top: 0; align-self: center; }
+  .haus-seite .section-intro { margin-bottom: 1.5rem; }
+  .haus-legende { justify-content: flex-start; }
+}
+@media (min-width: 64rem) {
+  :root { --kopf: 84px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haus-zoom { transition: none; }
+  .haus *, .haus *::before { animation: none !important; }
+  .haus-hinweis::before { animation: none; }
+}
