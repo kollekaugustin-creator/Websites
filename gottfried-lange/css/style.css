@@ -760,3 +760,517 @@ address { font-style: normal; margin-bottom: 1rem; }
 
   .footer-grid { grid-template-columns: 1.3fr 1.6fr 1fr 1fr; }
 }
+
+/* =========================================================
+   Das Lange-Haus (Startseite, Abschnitt „Unsere Leistungen“)
+   Aufbau, Leben, Zoom und Überraschungen steuert js/haus.js.
+   Ohne JavaScript bleibt das Haus verborgen, die drei Karten bleiben.
+   ========================================================= */
+:root { --kopf: 72px; }
+@media (min-width: 64rem) { :root { --kopf: 84px; } }
+
+.haus-leiste { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; margin-bottom: .75rem; }
+.haus-hinweis { display: flex; align-items: center; gap: .6rem; margin: 0; font-weight: 600; color: var(--blau); }
+.haus-hinweis::before {
+  content: ""; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--gelb); box-shadow: 0 0 0 4px rgba(255, 212, 0, .35);
+  animation: haus-puls 1.6s ease-in-out infinite;
+}
+@keyframes haus-puls { 50% { box-shadow: 0 0 0 8px rgba(255, 212, 0, 0); } }
+
+/* Umschalter (Sommer/Winter, 1974/Heute) */
+.umschalter { display: inline-flex; padding: 3px; gap: 3px; background: var(--white); border: 1px solid var(--line); border-radius: 999px; box-shadow: var(--shadow); }
+.umschalter button {
+  display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; padding: 0 1rem;
+  font: 600 15px var(--font); color: var(--text); background: transparent; border: 0; border-radius: 999px; cursor: pointer;
+}
+.umschalter button[aria-pressed="true"] { background: var(--blau); color: var(--white); }
+.umschalter button:not([aria-pressed="true"]):hover { background: var(--tint); }
+.umschalter--gross { margin: .25rem 0 .5rem; }
+.umschalter--gross button { font-size: 17px; padding: 0 1.4rem; }
+
+.haus-buehne { position: relative; overflow: hidden; width: 100%; aspect-ratio: 518 / 751; border-radius: 18px; touch-action: pan-y; }
+.haus-zoom { width: 100%; height: 100%; transform-origin: 0 0; transition: transform .8s cubic-bezier(.22, .8, .24, 1); }
+.haus-svg { display: block; width: 100%; height: 100%; }
+
+/* Aufbau: Werte 0 bis 1 kommen aus js/haus.js (ohne JS: fertig) */
+.haus-svg { --p-platte: 1; --p-dach: 1; --p-rohre: 1; --p-wasser: 1; --p-warm: 1; --waerme: 1; }
+.haus-svg .bau-platte { opacity: var(--p-platte); }
+.haus-svg .dach { opacity: var(--p-dach); transform: translateY(calc((1 - var(--p-dach)) * -70px)); }
+.haus-svg .rohr-teil { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.haus-svg .rohr-extra { opacity: clamp(0, calc((var(--p-rohre) - .9) * 10), 1); }
+.haus-svg .wasser { fill: none; stroke: #BFE6FF; stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 3 9; opacity: var(--p-wasser); }
+.haus-svg .flamme { transform-box: fill-box; transform-origin: 50% 100%; transform: scale(var(--p-wasser)); }
+.haus-svg .flamme path { transform-box: fill-box; transform-origin: 50% 100%; }
+.haus-svg .fenster-licht { opacity: calc(var(--p-warm) * .35); }
+.haus-svg .dampf { opacity: var(--p-warm); }
+.haus-svg .dampf circle, .haus-svg .funkeln { transform-box: fill-box; transform-origin: center; }
+.haus-svg .tropfen { opacity: 0; }
+.haus-svg .waerme { opacity: calc(var(--waerme) * var(--p-warm)); }
+.haus-svg .lampen-licht, .haus-svg .funkeln, .haus-svg .kollektor-glanz { opacity: 0; }
+.haus-svg .van, .haus-svg .monteur, .haus-svg .repariert { opacity: 0; }
+
+/* Leben: nur wenn fertig gebaut und im Bild */
+.haus.is-fertig.is-sichtbar .wasser { animation: haus-fliessen .9s linear infinite; }
+.haus.is-fertig.is-sichtbar .flamme path { animation: haus-flackern .45s ease-in-out infinite alternate; }
+.haus.is-fertig.is-sichtbar .flamme path + path { animation-duration: .3s; }
+.haus.is-fertig.is-sichtbar .dampf circle { animation: haus-dampf 3.2s ease-out infinite; }
+.haus.is-fertig.is-sichtbar .dampf circle:nth-child(2) { animation-delay: -1.1s; }
+.haus.is-fertig.is-sichtbar .dampf circle:nth-child(3) { animation-delay: -2.2s; }
+.haus.is-fertig.is-sichtbar:not(.ist-repariert) .tropfen { animation: haus-tropfen 1.8s ease-in infinite; }
+.haus.is-fertig.is-sichtbar .waerme path { animation: haus-waerme 2.4s ease-in-out infinite; }
+@keyframes haus-fliessen { to { stroke-dashoffset: -12; } }
+@keyframes haus-fliessen-rueck { to { stroke-dashoffset: 12; } }
+@keyframes haus-flackern { from { transform: scale(1, 1); } to { transform: scale(.9, 1.14); } }
+@keyframes haus-dampf {
+  0% { transform: translate(0, 8px) scale(.5); opacity: 0; }
+  25% { opacity: .95; }
+  100% { transform: translate(8px, -22px) scale(1.3); opacity: 0; }
+}
+@keyframes haus-tropfen {
+  0%, 45% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 1; }
+  85% { transform: translateY(14px); opacity: 1; }
+  90%, 100% { transform: translateY(15px); opacity: 0; }
+}
+@keyframes haus-waerme { 0%, 100% { transform: translateY(0); opacity: .4; } 50% { transform: translateY(-3px); opacity: 1; } }
+
+/* Jahreszeit: Winter (Schnee, Dampf, kahler Baum) – Sommer (Sonne, Kollektoren glitzern, Solarwasser) */
+.haus-svg .schnee, .haus-svg .baum-winter { display: none; }
+.saison-winter .haus-svg .schnee, .saison-winter .haus-svg .baum-winter { display: inline; }
+.saison-winter .haus-svg .baum-sommer, .saison-winter .haus-svg .sonne { display: none; }
+.saison-winter .haus-svg { --himmel-oben: #D7E0EA; --himmel-unten: #F4F5F6; }
+.saison-sommer .haus-svg .dampf { display: none; }
+.saison-sommer .haus-svg .wasser.solar { stroke: #FFB067; stroke-width: 2; stroke-dasharray: 4 7; }
+.haus.saison-sommer.is-fertig.is-sichtbar .wasser.solar { animation: haus-fliessen-rueck .8s linear infinite; }
+.haus.saison-sommer.is-fertig .kollektor-glanz { opacity: .08; }
+.haus.saison-sommer.is-fertig.is-sichtbar .funkeln { animation: haus-funkeln 3.3s ease-in-out infinite; }
+.haus.saison-sommer.is-fertig.is-sichtbar .kollektor-glanz { animation: haus-glanz 4s ease-in-out infinite; }
+.haus.saison-sommer.is-sichtbar .sonne-strahlen { transform-box: fill-box; transform-origin: center; animation: haus-sonne 30s linear infinite; }
+@keyframes haus-funkeln { 0%, 70%, 100% { opacity: 0; transform: scale(.3); } 80% { opacity: 1; transform: scale(1); } }
+@keyframes haus-glanz { 0%, 100% { opacity: .04; } 50% { opacity: .18; } }
+@keyframes haus-sonne { to { transform: rotate(360deg); } }
+
+/* Abend (ab 18 Uhr): dunkler Himmel, Sterne, Mond, warme Fenster, Lampen an */
+.haus-svg .mond, .haus-svg .sterne { display: none; }
+.abend .haus-svg { --himmel-oben: #1C2744; --himmel-unten: #3D4C72; --glas-oben: #2B3A5C; --glas-unten: #46577E; }
+.abend .haus-svg .mond, .abend .haus-svg .sterne { display: inline; }
+.abend .haus-svg .sonne { display: none; }
+.abend .haus-svg .fenster-licht { opacity: calc(var(--p-warm) * .85); }
+.abend .haus-svg .lampen-licht { opacity: var(--p-warm); }
+.abend .haus-svg .garten { filter: brightness(.72) saturate(.85); }
+.abend .haus-svg .dach { filter: brightness(.85); }
+
+/* Bad: Zeitreise 1974 */
+.haus-svg .bad-1974 { display: none; }
+.bad-1974-an .haus-svg .bad-1974 { display: inline; }
+.bad-1974-an .haus-svg .bad-heute { display: none; }
+
+/* Küche: Monteur-Einsatz */
+.ist-repariert .haus-svg .repariert { opacity: 1; }
+.ist-repariert .haus-svg .repariert-inner { animation: haus-pop .5s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes haus-pop { from { transform: scale(.3); opacity: 0; } }
+.lange-status { min-height: 1.5em; font-weight: 600; color: var(--blau); margin: .25rem 0 0; }
+
+/* Räume: Schilder, Hervorhebung, Fokus */
+.raum-labels { opacity: 0; transition: opacity .4s ease; pointer-events: none; }
+.haus.is-fertig .raum-labels { opacity: 1; }
+.haus.is-offen .raum-labels { opacity: 0; }
+.raum-label rect { fill: var(--white); stroke: var(--text); stroke-width: 1; }
+.raum-label text { font-family: var(--font); font-size: 12.5px; font-weight: 600; fill: var(--text); }
+.raum-label.is-hot rect { fill: var(--gelb); }
+.repariert text { font-family: var(--font); fill: #2F8A55; }
+.raum { fill: transparent; stroke: transparent; cursor: pointer; outline: none; }
+.raum:focus-visible { fill: rgba(255, 212, 0, .16); stroke: var(--sanitaer); stroke-width: 3; stroke-dasharray: 8 6; }
+@media (hover: hover) {
+  .raum:hover { fill: rgba(255, 212, 0, .16); stroke: var(--sanitaer); stroke-width: 3; stroke-dasharray: 8 6; }
+}
+.haus.is-offen .raum { pointer-events: none; fill: transparent; stroke: transparent; }
+.zoom-ziel { pointer-events: none; }
+
+.haus-karte {
+  background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-hover);
+  border-top: 6px solid var(--thema); padding: 1.5rem;
+  animation: haus-karte-ein .45s ease-out;
+  scroll-margin-bottom: 110px; /* nicht hinter der festen Anfrage-Leiste */
+}
+.haus-karte h3 { font-size: 26px; font-weight: 800; color: var(--thema); outline: none; }
+.haus-karte .btn-row { margin: 1.25rem 0 0; }
+.haus-zurueck { background: transparent; color: var(--blau); border-color: transparent; padding-left: .5rem; padding-right: .5rem; min-height: 44px; }
+.haus-zurueck:hover { background: var(--tint); }
+@keyframes haus-karte-ein { from { opacity: 0; transform: translateY(12px); } }
+
+/* Thermostat-Drehregler */
+.thermostat-feld { display: flex; align-items: center; gap: 1.25rem; margin: .5rem 0; }
+.thermostat { width: 120px; height: 120px; flex-shrink: 0; border-radius: 50%; cursor: grab; touch-action: none; }
+.thermostat:active { cursor: grabbing; }
+.thermostat svg { display: block; width: 100%; height: 100%; }
+.thermostat-skala { fill: none; stroke: url(#thermo-verlauf); stroke-width: 8; stroke-dasharray: 254 340; stroke-linecap: round; transform: rotate(135deg); transform-origin: 60px 60px; }
+.thermostat-knopf { transform-origin: 60px 60px; transition: transform .15s ease-out; }
+.thermostat-knopf circle { fill: #F7F7F5; stroke: #C9CDD3; stroke-width: 2; filter: drop-shadow(0 3px 4px rgba(26, 36, 51, .2)); }
+.thermostat-knopf rect { fill: var(--text); }
+.thermostat:focus-visible { outline: 3px solid var(--sanitaer); outline-offset: 4px; }
+.thermostat-wert { margin: 0; font-family: var(--font-head); font-size: 34px; font-weight: 800; line-height: 1.1; color: var(--text); }
+.thermostat-wert small { font-family: var(--font); font-size: 15px; font-weight: 600; color: var(--muted); }
+
+/* Handy: Schilder größer, damit sie lesbar bleiben */
+@media (max-width: 47.99rem) {
+  .raum-label, .repariert-inner { transform: scale(1.5); }
+  .haus-leiste { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haus-zoom, .thermostat-knopf { transition: none; }
+  .haus *, .haus *::before { animation: none !important; }
+}
+
+/* =========================================================
+   Rohr-Linie (js/rohrlinie.js): ab 1024 px am linken Seitenrand
+   ========================================================= */
+main { position: relative; }
+.rohrlinie { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; overflow: visible; }
+.rohrlinie path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.rl-kontur { stroke: #B08E00; stroke-width: 10; }
+.rl-rohr { stroke: var(--gelb); stroke-width: 7.5; }
+.rl-glanz { stroke: #FFF3A6; stroke-width: 1.8; transform: translate(-1.6px, -1.2px); }
+.rl-wasser { stroke: #BFE6FF; stroke-width: 2.4; stroke-dasharray: 5 13; animation: haus-fliessen-rl 1s linear infinite; }
+@keyframes haus-fliessen-rl { to { stroke-dashoffset: -18; } }
+.rl-muffe { fill: #C9A400; }
+.rl-uhr-rand { fill: #C9CDD3; stroke: #8D97A6; stroke-width: 1.5; }
+.rl-uhr-blatt { fill: #FFFFFF; }
+.rl-uhr-skala { fill: none; stroke: var(--rot); stroke-width: 1.6; stroke-dasharray: 2 2.2; }
+.rl-uhr-achse { fill: var(--text); }
+.rl-zeiger { fill: var(--rot); transform: rotate(-60deg); transition: transform .9s cubic-bezier(.3, 1.7, .5, 1); }
+.rl-uhr.aktiv .rl-zeiger { transform: rotate(48deg); }
+.emergency-number.leuchtet span { animation: nummer-leuchtet 1.4s ease-out; }
+@keyframes nummer-leuchtet {
+  0% { text-shadow: 0 0 0 rgba(255, 212, 0, 0); }
+  30% { text-shadow: 0 0 22px rgba(255, 212, 0, .95), 0 0 6px rgba(255, 255, 255, .8); }
+  100% { text-shadow: 0 0 0 rgba(255, 212, 0, 0); }
+}
+@media (max-width: 1023.98px) { .rohrlinie { display: none; } }
+@media (prefers-reduced-motion: reduce) { .rohrlinie { display: none; } }
+
+/* =========================================================
+   Hero mit dem Lange-Haus + Kamerafahrt / Tour
+   ========================================================= */
+.hero-haus { background: var(--blau); color: var(--white); }
+.hh-sticky {
+  display: grid; grid-template-areas: "intro" "haus" "karten"; row-gap: 1.25rem;
+  padding-top: 2rem; padding-bottom: 2.5rem;
+}
+.hh-intro { grid-area: intro; }
+.hh-haus { grid-area: haus; }
+.hh-karten { grid-area: karten; }
+.hero-haus h1 { color: var(--white); }
+.hero-haus .hero-sub { color: var(--on-blau); font-size: 20px; margin-bottom: 1.5rem; max-width: 34rem; }
+.hero-haus .btn-row { margin-bottom: 1rem; }
+.hero-haus .haus-entdecken { color: var(--on-blau); text-align: left; margin: 0 0 .75rem; max-width: 32rem; }
+.hero-haus .haus-hinweis { color: var(--white); }
+.hero-haus a:focus-visible, .hero-haus button:focus-visible { outline-color: var(--gelb); }
+.hero-haus .raum:focus-visible { stroke: var(--gelb); }
+.haus-buehne { box-shadow: 0 18px 40px rgba(10, 20, 40, .35); }
+
+.rundgang-start {
+  display: inline-flex; align-items: center; gap: .5rem; min-height: 44px;
+  color: var(--white); font-weight: 600; text-decoration: none;
+  border-bottom: 2px solid var(--gelb);
+}
+.rundgang-start span { display: inline-block; color: var(--gelb); }
+.hero-haus.is-sichtbar .rundgang-start span { animation: rundgang-hops 1.8s ease-in-out infinite; }
+@keyframes rundgang-hops { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(5px); } }
+
+/* Räume pulsieren nach dem Aufbau einmal nacheinander auf */
+.raum.puls { animation: raum-puls .9s ease-out; }
+@keyframes raum-puls {
+  0% { fill: rgba(255, 212, 0, 0); stroke: rgba(255, 212, 0, 0); }
+  35% { fill: rgba(255, 212, 0, .32); stroke: var(--gelb); stroke-width: 4; }
+  100% { fill: rgba(255, 212, 0, 0); stroke: rgba(255, 212, 0, 0); }
+}
+
+/* Tour-Steuerung (1 / 4) */
+.tour-nav { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: .75rem; }
+.tour-stand { margin: 0; font-family: var(--font-head); font-weight: 800; font-size: 20px; color: var(--white); }
+.tour-btn {
+  min-height: 44px; padding: 0 1rem; border-radius: 999px; border: 2px solid rgba(255, 255, 255, .7);
+  background: transparent; color: var(--white); font: 600 16px var(--font); cursor: pointer;
+}
+.tour-btn:hover { background: rgba(255, 255, 255, .12); }
+.im-rundgang .haus-zurueck { display: none; }
+.hero-haus .haus-karte { color: var(--text); }
+
+/* Ohne Karte: Intro sichtbar; mit Karte: Karte statt Intro (ab Tablet im selben Platz) */
+.hero-haus .trust { margin-top: 0; }
+.hero-haus + .trust { margin-top: 2rem; }
+
+@media (max-width: 47.99rem) {
+  .hero-haus .hh-haus { margin: 0 calc(var(--gutter) * -0.5); }
+}
+
+/* Ab Tablet: links Text, rechts das Haus */
+@media (min-width: 48rem) {
+  .hh-sticky {
+    grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "links haus";
+    column-gap: 3rem; align-items: center; padding-top: 1.5rem; padding-bottom: 1.5rem;
+  }
+  .hh-intro, .hh-karten { grid-area: links; }
+  .hero-haus.karte-offen .hh-intro { visibility: hidden; }
+  .hh-haus { width: min(58vw, calc((100vh - var(--kopf) - 8rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .hh-haus { width: min(58vw, calc((100svh - var(--kopf) - 8rem) * 518 / 751)); }
+  }
+  .hero-haus h1 { font-size: 44px; }
+  /* Kamerafahrt: Hero bleibt stehen, 4 Räume + Herauszoomen */
+  .hero-haus[data-modus="kamera"] .hh-scroll { height: calc(100vh + 5 * 85vh); height: calc(100svh + 5 * 85svh); }
+  .hero-haus[data-modus="kamera"] .hh-sticky {
+    position: sticky; top: var(--kopf);
+    height: calc(100vh - var(--kopf)); height: calc(100svh - var(--kopf));
+  }
+}
+/* iPad hochkant: Text/Karte oben, Haus darunter */
+@media (min-width: 48rem) and (max-width: 63.99rem) and (orientation: portrait) {
+  .hh-sticky { grid-template-columns: 1fr; grid-template-areas: "links" "haus"; row-gap: 1rem; align-content: center; justify-items: center; }
+  .hh-intro, .hh-karten { width: 100%; }
+  .hero-haus h1 { font-size: 38px; }
+  .hh-haus { width: min(86vw, calc((100vh - var(--kopf) - 27rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .hh-haus { width: min(86vw, calc((100svh - var(--kopf) - 27rem) * 518 / 751)); }
+  }
+}
+@media (min-width: 64rem) {
+  .hero-haus h1 { font-size: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .raum.puls, .rundgang-start span { animation: none; }
+}
+.hero-haus [hidden] { display: none !important; }
+.hero-haus.karte-offen .raum-label:not(.is-hot) { opacity: 0; }
+.hero-haus.karte-offen .raum { pointer-events: none; }
+.hero-haus.karte-offen .raum.puls { animation: none; }
+.tour-nav { scroll-margin-bottom: 96px; }
+@media (min-width: 48rem) and (max-width: 63.99rem) and (orientation: portrait) {
+  .hero-haus .haus-entdecken { display: none; }
+  .hero-haus .hero-sub { margin-bottom: 1rem; }
+  .hero-haus .btn-row { margin-bottom: .5rem; }
+  .hh-haus { width: min(86vw, calc((100vh - var(--kopf) - 25rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .hh-haus { width: min(86vw, calc((100svh - var(--kopf) - 25rem) * 518 / 751)); }
+  }
+}
+@media (min-width: 48rem) and (max-width: 63.99rem) and (orientation: portrait) {
+  .hh-haus { width: 100%; }
+  .hero-haus .haus-leiste { justify-content: center; }
+  .haus-buehne { margin: 0 auto; width: min(86vw, calc((100vh - var(--kopf) - 33rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .haus-buehne { width: min(86vw, calc((100svh - var(--kopf) - 33rem) * 518 / 751)); }
+  }
+  .hero-haus[data-modus="kamera"] .hh-sticky { padding-bottom: 6rem; }
+}
+@media (min-width: 48rem) and (max-width: 63.99rem) and (orientation: portrait) {
+  .hero-haus.karte-offen .haus-leiste { display: none; }
+  .hero-haus.karte-offen .haus-buehne { width: min(86vw, calc((100vh - var(--kopf) - 38rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .hero-haus.karte-offen .haus-buehne { width: min(86vw, calc((100svh - var(--kopf) - 38rem) * 518 / 751)); }
+  }
+  .hero-haus .haus-karte { padding: 1.25rem 1.5rem; }
+}
+
+/* =========================================================
+   Lange-Haus im Stil „Bauplan / Technik“
+   ========================================================= */
+
+.hero-haus {
+  --bp-grund: #182B4A;
+  background-color: var(--bp-grund);
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px, 12px 12px, 12px 12px;
+}
+.hero-haus .haus-buehne { box-shadow: none; border-radius: 0; overflow: visible; }
+.hero-haus .haus-svg .wasser {
+  stroke: #FFF4C2; stroke-width: 3.4; stroke-linecap: round; stroke-dasharray: 0.1 52; opacity: .95;
+}
+.hero-haus .haus-svg .fenster-licht { opacity: 0; }
+.hero-haus .haus-svg .flamme { opacity: .9; }
+.hero-haus .raum { fill: rgba(255,255,255,.015); }
+.hero-haus .raum-labels { opacity: 1; }
+.hero-haus .raum-label .label-linie { fill: none; stroke: var(--gelb); stroke-width: 1.3; }
+.hero-haus .raum-label text {
+  font-family: var(--font); font-size: 8.2px; font-weight: 600; letter-spacing: .24em; fill: rgba(255,255,255,.92);
+}
+.hero-haus .raum-label.is-hot .label-linie { stroke-width: 2; }
+/* Glas-Karten */
+.hero-haus .haus-karte {
+  background: rgba(12, 24, 44, .55); color: #fff;
+  border: 1px solid rgba(255,255,255,.16); border-top: 1px solid rgba(255,212,0,.55);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 24px 48px rgba(0,0,0,.28);
+}
+.hero-haus .haus-karte h3 { color: #fff; font-weight: 700; }
+.hero-haus .haus-karte p { color: rgba(255,255,255,.82); }
+.hero-haus .haus-karte .kicker { color: var(--gelb); text-transform: uppercase; letter-spacing: .2em; font-size: 12px; }
+.hero-haus .haus-karte .btn--secondary { color: #fff; border-color: rgba(255,255,255,.6); }
+.hero-haus .haus-zurueck { color: #fff; }
+.hero-haus .umschalter { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); box-shadow: none; }
+.hero-haus .umschalter button { color: #fff; }
+.hero-haus .umschalter button[aria-pressed="true"] { background: rgba(255,212,0,.9); color: #1A2433; }
+.hero-haus .haus-hinweis::before { box-shadow: 0 0 0 4px rgba(255,212,0,.25), 0 0 12px rgba(255,212,0,.8); }
+/* Farbe: zarte Raumflächen, aktiver Raum leuchtet */
+.hero-haus .raum-farbe { opacity: .17; stroke: none; transition: opacity .9s ease; }
+.hero-haus .raum-farbe.aktiv { opacity: .5; }
+.hero-haus .leitung { fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.hero-haus .leitung-warm { stroke: #FF7A63; }
+.hero-haus .leitung-kalt { stroke: #9ADCFF; }
+.hero-haus .haus-svg .fenster-licht { opacity: .55; }
+.hero-haus .raum-label { opacity: .45; transition: opacity .9s ease; }
+.hero-haus .raum-label.is-hot { opacity: 1; }
+.hero-haus .raum-label.is-hot .label-linie { stroke-width: 2.2; }
+
+/* Wasser als Lichtpunkt, Solarwasser im Sommer orange */
+.hero-haus.is-fertig.is-sichtbar .haus-svg .wasser { animation: bp-fliessen 2.4s linear infinite; }
+.hero-haus.saison-sommer .haus-svg .wasser.solar { stroke: #FFB067; stroke-width: 3.4; stroke-dasharray: .1 40; }
+.hero-haus.saison-sommer.is-fertig.is-sichtbar .haus-svg .wasser.solar { animation: bp-fliessen-rueck 2.4s linear infinite; }
+@keyframes bp-fliessen { to { stroke-dashoffset: -52; } }
+@keyframes bp-fliessen-rueck { to { stroke-dashoffset: 40; } }
+
+/* Heizkörper glühen je nach Thermostat */
+.hero-haus .heizkoerper polygon { fill: var(--hk-farbe, #E5482A); fill-opacity: calc(.1 + var(--waerme, .3) * .4); stroke: var(--hk-farbe, #E5482A); }
+.hero-haus .heizkoerper line { stroke: var(--hk-farbe, #E5482A); }
+
+/* Schnee, Dampf, Sonne, Mond */
+.hero-haus .schnee polygon, .hero-haus .schnee path { fill: rgba(236, 244, 255, .5); stroke: rgba(255, 255, 255, .8); }
+.hero-haus .dampf circle { fill: rgba(255, 255, 255, .12); stroke: rgba(255, 255, 255, .55); }
+.hero-haus .mond circle + circle { fill: var(--bp-grund); }
+.hero-haus.abend { --bp-grund: #0F1C33; }
+.hero-haus.abend .haus-svg .fenster-licht { opacity: .9; }
+.hero-haus.abend .haus-svg .garten, .hero-haus.abend .haus-svg .dach { filter: none; }
+
+/* Bad 1974: avocadogrüner Schimmer */
+.hero-haus.bad-1974-an .raum-farbe[data-raum="bad"] { fill: #9DA94E; }
+.hero-haus .bad-1974 polygon { fill: rgba(157, 169, 78, .16); }
+
+/* „Repariert“-Abzeichen im Glas-Look */
+.hero-haus .repariert rect { fill: rgba(12, 24, 44, .85); stroke: #4CD08A; }
+.hero-haus .repariert text { fill: #8BE8B4; }
+.hero-haus .lange-status { color: var(--gelb); }
+
+/* Notfall-Modus */
+.notfall-knopf {
+  display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; padding: 0 1rem;
+  border: 0; border-radius: 999px; background: var(--rot); color: var(--white);
+  font: 600 15px var(--font); cursor: pointer; box-shadow: 0 0 18px rgba(229, 72, 42, .45);
+  transition: background-color .4s ease, box-shadow .4s ease;
+}
+.notfall-knopf:hover { background: #C93A1F; box-shadow: 0 0 26px rgba(229, 72, 42, .6); }
+.notfall-knopf:disabled { opacity: .7; cursor: default; }
+.hh-haus { position: relative; }
+.notfall-karte {
+  position: absolute; z-index: 5; left: 50%; bottom: 6%; transform: translateX(-50%);
+  width: min(92%, 22rem); padding: 1.25rem 1.25rem 1.4rem; text-align: center; color: var(--white);
+  background: rgba(12, 24, 44, .78); border: 1px solid rgba(255, 255, 255, .18); border-top: 1px solid rgba(229, 72, 42, .8);
+  border-radius: var(--radius); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, .35); animation: bp-ein .7s ease;
+}
+.notfall-karte .kicker { justify-content: center; color: var(--gelb); text-transform: uppercase; letter-spacing: .2em; font-size: 12px; }
+.notfall-titel { margin: 0 0 .25rem; font-family: var(--font-head); font-weight: 700; font-size: 20px; }
+.notfall-nummer { display: block; margin-bottom: .9rem; font-family: var(--font-head); font-weight: 800; font-size: 34px; color: var(--gelb); text-decoration: none; }
+.notfall-karte.leuchtet .notfall-nummer { animation: bp-leuchten 1.8s ease-out; }
+.notfall-anruf { justify-content: center; width: 100%; }
+.notfall-zu {
+  position: absolute; top: 4px; right: 4px; width: 44px; height: 44px; border: 0; background: transparent;
+  color: var(--white); font-size: 26px; line-height: 1; cursor: pointer; border-radius: 50%;
+}
+.notfall-zu:hover { background: rgba(255, 255, 255, .1); }
+@keyframes bp-leuchten {
+  0% { text-shadow: 0 0 0 rgba(255, 212, 0, 0); transform: scale(1); }
+  35% { text-shadow: 0 0 26px rgba(255, 212, 0, .95); transform: scale(1.06); }
+  100% { text-shadow: 0 0 0 rgba(255, 212, 0, 0); transform: scale(1); }
+}
+.hero-haus .haus-svg .flut { transform: translateY(26px); }
+.hero-haus .haus-svg .spritzer { opacity: 0; }
+.hero-haus .haus-svg .spritzer-strahl { fill: none; stroke: #9ADCFF; stroke-width: 1.4; stroke-linecap: round; }
+.hero-haus .haus-svg .spritzer circle { fill: #BFE6FF; }
+.hero-haus.spritzt .haus-svg .spritzer { opacity: 1; animation: bp-spritzen .45s ease-in-out infinite alternate; transform-box: fill-box; }
+@keyframes bp-spritzen { from { opacity: .55; } to { opacity: 1; } }
+
+/* Heizungs-Check: alt = rattert + qualmt, neu = ruhig mit kleiner grüner Flamme */
+.heizcheck { margin: .75rem 0 .25rem; padding-top: .75rem; border-top: 1px solid rgba(255, 255, 255, .15); }
+.heizcheck-label { display: block; font-weight: 600; color: var(--white); }
+.heizcheck-jahr { margin-left: .4rem; font-family: var(--font-head); font-weight: 800; font-size: 20px; color: var(--gelb); }
+.heizcheck-regler { width: 100%; height: 44px; accent-color: var(--gelb); cursor: pointer; }
+.heizcheck-text { min-height: 3em; }
+.hero-haus .haus-svg .qualm { opacity: 0; transition: opacity 1.2s ease; }
+.hero-haus .haus-svg .qualm circle { fill: rgba(220, 220, 220, .15); stroke: rgba(255, 255, 255, .4); transform-box: fill-box; transform-origin: center; }
+.hero-haus.kessel-alt .haus-svg .qualm { opacity: 1; }
+.hero-haus.kessel-alt.is-sichtbar .haus-svg .qualm circle { animation: haus-dampf 3.6s ease-out infinite; }
+.hero-haus.kessel-alt.is-sichtbar .haus-svg .qualm circle:nth-child(2) { animation-delay: -1.2s; }
+.hero-haus.kessel-alt.is-sichtbar .haus-svg .qualm circle:nth-child(3) { animation-delay: -2.4s; }
+.hero-haus.kessel-alt.is-sichtbar .haus-svg .kessel { animation: bp-rattern .14s linear infinite; }
+@keyframes bp-rattern { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(.7px, -.4px); } 75% { transform: translate(-.7px, .4px); } }
+.hero-haus.kessel-neu .haus-svg .flamme path { fill: #3FCB7E; }
+.hero-haus.kessel-neu .haus-svg .flamme path + path { fill: #C8F7DA; }
+.hero-haus.kessel-neu .haus-svg .flamme { transform: scale(calc(var(--p-wasser) * .65)); }
+
+/* Rohrzange als Mauszeiger (nur Desktop, nur über dem Haus) */
+@media (hover: hover) and (pointer: fine) {
+  .hero-haus .haus-buehne, .hero-haus .haus-buehne .raum {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M29 29 16 16' stroke='%231A2433' stroke-width='6'/%3E%3Cpath d='M29 29 16 16' stroke='%23FFD400' stroke-width='3.4'/%3E%3Cpath d='M16 16 7 7Q4 4 7 3l5 0' stroke='%231A2433' stroke-width='4.4'/%3E%3Cpath d='M16 16 7 7Q4 4 7 3l5 0' stroke='%23fff' stroke-width='2.2'/%3E%3Cpath d='M14 19 4 12' stroke='%231A2433' stroke-width='4.4'/%3E%3Cpath d='M14 19 4 12' stroke='%23fff' stroke-width='2.2'/%3E%3C/g%3E%3C/svg%3E") 5 5, pointer;
+  }
+  .hero-haus .haus-buehne.packt, .hero-haus .haus-buehne.packt .raum {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M29 29 16 16' stroke='%231A2433' stroke-width='6'/%3E%3Cpath d='M29 29 16 16' stroke='%23FFD400' stroke-width='3.4'/%3E%3Cpath d='M16 16 7 7Q4 4 7 3l5 0' stroke='%231A2433' stroke-width='4.4'/%3E%3Cpath d='M16 16 7 7Q4 4 7 3l5 0' stroke='%23fff' stroke-width='2.2'/%3E%3Cpath d='M15 17 6 8' stroke='%231A2433' stroke-width='4.4'/%3E%3Cpath d='M15 17 6 8' stroke='%23fff' stroke-width='2.2'/%3E%3C/g%3E%3C/svg%3E") 5 5, pointer;
+  }
+}
+
+/* Räume: Hover/Fokus über die Farbfläche statt gelber Füllung */
+.hero-haus .raum:hover { fill: rgba(255, 255, 255, .015); stroke: transparent; }
+.hero-haus .raum:focus-visible { fill: rgba(255, 255, 255, .03); stroke: var(--gelb); stroke-width: 1.6; stroke-dasharray: 5 5; }
+
+/* Thermostat im Glas-Look */
+.hero-haus .thermostat-knopf circle { fill: rgba(255, 255, 255, .08); stroke: rgba(255, 255, 255, .6); filter: none; }
+.hero-haus .thermostat-knopf rect { fill: var(--gelb); }
+.hero-haus .thermostat-wert { color: var(--white); }
+.hero-haus .thermostat-wert small { color: rgba(255, 255, 255, .7); }
+
+/* Ruhige, weiche Bewegungen */
+.hero-haus .haus-zoom { transition: transform 1.3s cubic-bezier(.45, 0, .2, 1); }
+.hero-haus .haus-karte { animation: bp-ein .7s ease; }
+.hero-haus.is-sichtbar .rundgang-start span { animation: bp-schweben 2.8s ease-in-out infinite; }
+.ist-repariert .haus-svg .repariert-inner { animation: bp-ein .9s ease; }
+@keyframes bp-ein { from { opacity: 0; transform: translateY(8px); } }
+.notfall-karte { animation-name: bp-ein-mitte; }
+@keyframes bp-ein-mitte { from { opacity: 0; transform: translate(-50%, 8px); } }
+@keyframes bp-schweben { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(3px); opacity: .7; } }
+
+/* Handy: größere Schilder */
+@media (max-width: 47.99rem) {
+  .hero-haus .raum-label { transform: scale(2); }
+}
+
+/* Rohr-Linie im Bauplan-Stil */
+.rl-kontur { stroke: rgba(255, 212, 0, .2); stroke-width: 11; }
+.rl-rohr { stroke: var(--gelb); stroke-width: 3; }
+.rl-glanz { display: none; }
+.rl-wasser { stroke: #FFF4C2; stroke-width: 4.5; stroke-dasharray: .1 60; animation: bp-fliessen-rl 2.6s linear infinite; }
+@keyframes bp-fliessen-rl { to { stroke-dashoffset: -60; } }
+.rl-muffe { fill: var(--gelb); }
+.rl-uhr-rand { fill: rgba(12, 24, 44, .88); stroke: rgba(255, 255, 255, .65); stroke-width: 1.2; }
+.rl-uhr-blatt { fill: none; stroke: rgba(255, 255, 255, .25); }
+.rl-uhr-skala { stroke: rgba(255, 255, 255, .5); }
+.rl-uhr-achse { fill: var(--gelb); }
+.rl-zeiger { fill: var(--gelb); transition: transform 1.4s cubic-bezier(.45, 0, .2, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-haus .haus-zoom, .rl-zeiger { transition: none; }
+  .notfall-karte, .hero-haus .haus-karte { animation: none; }
+}
+
+/* Bildausschnitt des Hauses: sauber begrenzt, mit feinem Plan-Rahmen */
+.hero-haus .haus-buehne { overflow: hidden; border: 1px solid rgba(255, 255, 255, .1); border-radius: 4px; }
+.hero-haus .notfall-knopf { position: absolute; z-index: 4; top: 10px; right: 10px; }
+.hero-haus .haus-svg .flut polygon:first-child { fill: rgba(90, 180, 255, .5); }
+.hero-haus .haus-svg .flut polygon + polygon { fill: rgba(90, 180, 255, .4); }
+.hero-haus .haus-svg .spritzer { transform: scale(1.7); transform-box: fill-box; transform-origin: 50% 100%; }
+.hero-haus .haus-svg .spritzer-strahl { stroke-width: 1.8; }
+.hero-haus .haus-svg .flut { opacity: 0; }
