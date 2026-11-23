@@ -86,6 +86,7 @@
     if (!svg) return;
     var kopf = innerHeight * 0.72 - main.getBoundingClientRect().top; // Wasserspitze im Koordinatensystem von <main>
     var h = Math.max(0, kopf - startY);
+    clipRect.setAttribute("y", startY);
     clipRect.setAttribute("height", h);
     uhren.forEach(function (u) { u.el.classList.toggle("aktiv", kopf > u.y); });
     if (!angekommen && kopf > endeY + 10) {
