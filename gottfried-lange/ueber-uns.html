@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/menu.js" defer></script>
   <script src="js/einblenden.js" defer></script>
+  <script src="js/geschichte.js" defer></script>
 </head>
 <body>
 
@@ -24,7 +25,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="index.html" aria-label="Lange – Sanitär und Heizung, zur Startseite">
-        <svg class="logo-svg" viewBox="0 0 150 96" width="150" height="96" aria-hidden="true" focusable="false"><rect class="logo-bg" width="150" height="96" rx="6"/><path d="M15 11V71H37" fill="none" stroke="#24365E" stroke-width="9.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 11V71H37" fill="none" stroke="#FFE500" stroke-width="7.2" stroke-linecap="round" stroke-linejoin="round"/><text x="34" y="21" textLength="71" lengthAdjust="spacingAndGlyphs" class="logo-t logo-t--sanitaer">Sanitär</text><text x="108.5" y="21" textLength="33" lengthAdjust="spacingAndGlyphs" class="logo-t logo-t--und">und</text><text x="66" y="44" textLength="75.5" lengthAdjust="spacingAndGlyphs" class="logo-t logo-t--heizung">Heizung</text><text x="42" y="75" textLength="99" lengthAdjust="spacingAndGlyphs" class="logo-ange">ange</text></svg>
+        <img class="logo-img" src="img/logo-lange.svg" alt="Lange – Sanitär und Heizung" width="150" height="96">
       </a>
 
       <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
@@ -54,40 +55,106 @@
       </div>
     </section>
 
+    <!-- Geschichte als Zeitstrahl: die Linie wächst beim Scrollen mit -->
     <section class="section section--white">
       <div class="container">
-        <h2>Unsere Geschichte</h2>
-        <p>Die Gottfried Lange GmbH wurde 1974 gegründet. Heute führt Ralf Lange den Betrieb in 2. Generation. <mark class="hinweis">[PLATZHALTER: weitere Stationen der Firmengeschichte]</mark></p>
+        <div class="section-intro">
+          <p class="kicker">1974 bis heute</p>
+          <h2>Unsere Geschichte</h2>
+        </div>
+        <ol class="timeline">
+          <li class="timeline-item">
+            <div class="timeline-card">
+              <p class="timeline-year">1974</p>
+              <h3>Gründung in Neuss-Furth</h3>
+              <p>Gottfried Lange gründet den Betrieb in Neuss-Furth.</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-card">
+              <p class="timeline-year"><mark class="hinweis">[PRÜFEN: Jahr]</mark></p>
+              <h3>Die 2. Generation</h3>
+              <p>Ralf Lange übernimmt den Betrieb in 2. Generation.</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-card">
+              <p class="timeline-year"><mark class="hinweis">[PLATZHALTER: Jahr]</mark></p>
+              <h3>Weitere Station</h3>
+              <p><mark class="hinweis">[PLATZHALTER: 1–2 weitere Stationen, z. B. Meisterprüfung, Umzug, neue Leistungen]</mark></p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-card">
+              <p class="timeline-year">Heute</p>
+              <h3>Alles aus einer Hand</h3>
+              <p>Heizung, Bad und Kundendienst aus einer Hand.</p>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
+    <!-- Zahlen-Leiste: Zahlen zählen beim Erscheinen kurz hoch -->
+    <section class="section section--blau stats-section" aria-label="Lange in Zahlen">
+      <div class="container">
+        <ul class="stats">
+          <li>
+            <span class="stat-number" data-count="50" data-suffix="+" aria-hidden="true">50+</span>
+            <span class="stat-label" aria-hidden="true">Jahre</span>
+            <span class="visually-hidden">Mehr als 50 Jahre</span>
+          </li>
+          <li>
+            <span class="stat-number" data-count="2" aria-hidden="true">2</span>
+            <span class="stat-label" aria-hidden="true">Generationen</span>
+            <span class="visually-hidden">2 Generationen</span>
+          </li>
+          <li>
+            <span class="stat-number" data-count="1" aria-hidden="true">1</span>
+            <span class="stat-label"><span aria-hidden="true">fester Ansprechpartner</span> <mark class="hinweis">[PRÜFEN]</mark></span>
+            <span class="visually-hidden">1 fester Ansprechpartner</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Ralf Lange: Porträt + Zitat (beides folgt von Lange) -->
     <section class="section">
-      <div class="container split">
-        <div>
+      <div class="container duo duo--reverse">
+        <div class="media media--team duo-media portrait">
+          <div class="media-fallback" aria-hidden="true">
+            <svg class="icon media-icon" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+            <span class="media-label">Foto: [PLATZHALTER: Foto Ralf Lange] (img/ralf-lange.jpg)</span>
+          </div>
+          <img src="img/ralf-lange.jpg" alt="Porträt von Ralf Lange" loading="lazy" decoding="async" onerror="this.hidden=true">
+        </div>
+        <div class="duo-text">
+          <p class="kicker">Die Menschen hinter Lange</p>
           <h2>Ralf Lange und Team</h2>
-          <p>Ralf Lange ist Geschäftsführer und Handwerksmeister für Heizung und Sanitär.</p>
+          <figure class="person-quote">
+            <blockquote>
+              <p><mark class="hinweis">[PLATZHALTER: Zitat von Ralf Lange]</mark></p>
+            </blockquote>
+            <figcaption><strong>Ralf Lange</strong><br>Geschäftsführer und Handwerksmeister für Heizung und Sanitär</figcaption>
+          </figure>
           <p>Unser Team: <mark class="hinweis">[PLATZHALTER: Namen und Aufgaben der Mitarbeitenden]</mark></p>
         </div>
-        <img class="photo" src="img/werkzeug.jpg" alt="Rohrzange, Zange und Schraubenschlüssel auf dunklem Untergrund" width="1600" height="1200" loading="lazy" decoding="async">
-      </div>
-      <div class="container">
-        <div class="gallery">
-          <img class="photo" src="img/team-1.jpg" alt="Hände greifen in einen Werkzeugkoffer" width="1600" height="1200" loading="lazy" decoding="async">
-          <img class="photo" src="img/team-2.jpg" alt="Manometer an einer Heizungsanlage" width="1600" height="1200" loading="lazy" decoding="async">
-          <img class="photo" src="img/team-3.jpg" alt="Handwerker öffnet einen Werkzeugkoffer" width="1600" height="1200" loading="lazy" decoding="async">
-        </div>
       </div>
     </section>
 
+    <!-- Werte als 3 Kacheln -->
     <section class="section section--white">
       <div class="container">
-        <h2>Darauf können Sie sich verlassen</h2>
-        <ul class="feature-list">
-          <li><strong>Meisterbetrieb:</strong> Ein Meister ist ein Handwerker mit der höchsten Prüfung in seinem Beruf.</li>
-          <li><strong>Ausbildungsbetrieb:</strong> Wir bilden selbst junge Fachkräfte aus.</li>
-          <li><strong>Innungsbetrieb <mark class="hinweis">[PRÜFEN: Innungsname]</mark>:</strong> Wir sind Mitglied der Handwerks-Innung.</li>
-          <li><strong>Regelmäßige Schulungen:</strong> Unser Team bildet sich laufend weiter.</li>
+        <div class="section-intro">
+          <p class="kicker">Unsere Werte</p>
+          <h2>Darauf können Sie sich verlassen</h2>
+        </div>
+        <ul class="value-tiles">
+          <li><span class="badge badge--blau"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="9" r="6"/><path d="M8.6 13.9 7 21l5-3 5 3-1.6-7.1"/></svg></span><h3>Meisterbetrieb</h3><p>Ein Meister ist ein Handwerker mit der höchsten Prüfung in seinem Beruf.</p></li>
+          <li><span class="badge badge--gelb"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg></span><h3>Ausbildungsbetrieb</h3><p>Wir bilden selbst junge Fachkräfte aus.</p></li>
+          <li><span class="badge badge--rot"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 11 12 4l9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg></span><h3>Innungsbetrieb <mark class="hinweis">[PRÜFEN: Innungsname]</mark></h3><p>Wir sind Mitglied der Handwerks-Innung.</p></li>
         </ul>
+        <p class="value-note">Unser Team bildet sich regelmäßig weiter.</p>
       </div>
     </section>
 
@@ -127,7 +194,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <a class="logo logo--footer" href="index.html" aria-label="Lange – Sanitär und Heizung, zur Startseite">
-          <svg class="logo-svg" viewBox="0 0 150 96" width="150" height="96" aria-hidden="true" focusable="false"><rect class="logo-bg" width="150" height="96" rx="6"/><path d="M15 11V71H37" fill="none" stroke="#24365E" stroke-width="9.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 11V71H37" fill="none" stroke="#FFE500" stroke-width="7.2" stroke-linecap="round" stroke-linejoin="round"/><text x="34" y="21" textLength="71" lengthAdjust="spacingAndGlyphs" class="logo-t logo-t--sanitaer">Sanitär</text><text x="108.5" y="21" textLength="33" lengthAdjust="spacingAndGlyphs" class="logo-t logo-t--und">und</text><text x="66" y="44" textLength="75.5" lengthAdjust="spacingAndGlyphs" class="logo-t logo-t--heizung">Heizung</text><text x="42" y="75" textLength="99" lengthAdjust="spacingAndGlyphs" class="logo-ange">ange</text></svg>
+          <img class="logo-img" src="img/logo-lange.svg" alt="Lange – Sanitär und Heizung" width="150" height="96">
         </a>
         <p>Gottfried Lange GmbH<br>Heizung und Sanitär in Neuss – seit 1974</p>
       </div>
