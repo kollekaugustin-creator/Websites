@@ -767,6 +767,7 @@ address { font-style: normal; margin-bottom: 1rem; }
    Ohne JavaScript bleibt das Haus verborgen, die drei Karten bleiben.
    ========================================================= */
 :root { --kopf: 72px; }
+@media (min-width: 64rem) { :root { --kopf: 84px; } }
 
 .haus-leiste { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; margin-bottom: .75rem; }
 .haus-hinweis { display: flex; align-items: center; gap: .6rem; margin: 0; font-weight: 600; color: var(--blau); }
@@ -788,7 +789,7 @@ address { font-style: normal; margin-bottom: 1rem; }
 .umschalter--gross { margin: .25rem 0 .5rem; }
 .umschalter--gross button { font-size: 17px; padding: 0 1.4rem; }
 
-.haus-buehne { position: relative; overflow: hidden; width: 100%; aspect-ratio: 518 / 751; border-radius: 18px; }
+.haus-buehne { position: relative; overflow: hidden; width: 100%; aspect-ratio: 518 / 751; border-radius: 18px; touch-action: pan-y; }
 .haus-zoom { width: 100%; height: 100%; transform-origin: 0 0; transition: transform .8s cubic-bezier(.22, .8, .24, 1); }
 .haus-svg { display: block; width: 100%; height: 100%; }
 
@@ -887,12 +888,6 @@ address { font-style: normal; margin-bottom: 1rem; }
 .haus.is-offen .raum { pointer-events: none; fill: transparent; stroke: transparent; }
 .zoom-ziel { pointer-events: none; }
 
-/* Seite neben/unter dem Haus */
-.haus-seite { margin-top: 1.5rem; }
-.haus-legende { list-style: none; margin: 0 0 .75rem; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.25rem; }
-.haus-legende li { display: inline-flex; align-items: center; gap: .45rem; font-weight: 600; font-size: 16px; }
-.haus-legende li::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--thema); }
-.haus-entdecken { color: var(--muted); font-size: 16px; text-align: center; margin: 0 0 1rem; }
 .haus-karte {
   background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-hover);
   border-top: 6px solid var(--thema); padding: 1.5rem;
@@ -922,27 +917,6 @@ address { font-style: normal; margin-bottom: 1rem; }
 @media (max-width: 47.99rem) {
   .raum-label, .repariert-inner { transform: scale(1.5); }
   .haus-leiste { justify-content: center; }
-}
-
-/* Ab Tablet: Haus rastet ein, Aufbau folgt dem Scrollen */
-@media (min-width: 48rem) {
-  .haus[data-modus="scroll"] .haus-scroll { height: 230vh; height: 230svh; }
-  .haus-sticky { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2.5rem; align-items: center; }
-  .haus[data-modus="scroll"] .haus-sticky {
-    position: sticky; top: var(--kopf);
-    height: calc(100vh - var(--kopf)); height: calc(100svh - var(--kopf));
-  }
-  .haus-links { width: min(56vw, calc((100vh - var(--kopf) - 6rem) * 518 / 751)); }
-  @supports (height: 100svh) {
-    .haus-links { width: min(56vw, calc((100svh - var(--kopf) - 6rem) * 518 / 751)); }
-  }
-  .haus-seite { margin-top: 0; align-self: center; }
-  .haus-seite .section-intro { margin-bottom: 1.5rem; }
-  .haus-legende { justify-content: flex-start; }
-  .haus-entdecken { text-align: left; max-width: 30rem; }
-}
-@media (min-width: 64rem) {
-  :root { --kopf: 84px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -976,3 +950,127 @@ main { position: relative; }
 }
 @media (max-width: 1023.98px) { .rohrlinie { display: none; } }
 @media (prefers-reduced-motion: reduce) { .rohrlinie { display: none; } }
+
+/* =========================================================
+   Hero mit dem Lange-Haus + Kamerafahrt / Tour
+   ========================================================= */
+.hero-haus { background: var(--blau); color: var(--white); }
+.hh-sticky {
+  display: grid; grid-template-areas: "intro" "haus" "karten"; row-gap: 1.25rem;
+  padding-top: 2rem; padding-bottom: 2.5rem;
+}
+.hh-intro { grid-area: intro; }
+.hh-haus { grid-area: haus; }
+.hh-karten { grid-area: karten; }
+.hero-haus h1 { color: var(--white); }
+.hero-haus .hero-sub { color: var(--on-blau); font-size: 20px; margin-bottom: 1.5rem; max-width: 34rem; }
+.hero-haus .btn-row { margin-bottom: 1rem; }
+.hero-haus .haus-entdecken { color: var(--on-blau); text-align: left; margin: 0 0 .75rem; max-width: 32rem; }
+.hero-haus .haus-hinweis { color: var(--white); }
+.hero-haus a:focus-visible, .hero-haus button:focus-visible { outline-color: var(--gelb); }
+.hero-haus .raum:focus-visible { stroke: var(--gelb); }
+.haus-buehne { box-shadow: 0 18px 40px rgba(10, 20, 40, .35); }
+
+.rundgang-start {
+  display: inline-flex; align-items: center; gap: .5rem; min-height: 44px;
+  color: var(--white); font-weight: 600; text-decoration: none;
+  border-bottom: 2px solid var(--gelb);
+}
+.rundgang-start span { display: inline-block; color: var(--gelb); }
+.hero-haus.is-sichtbar .rundgang-start span { animation: rundgang-hops 1.8s ease-in-out infinite; }
+@keyframes rundgang-hops { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(5px); } }
+
+/* Räume pulsieren nach dem Aufbau einmal nacheinander auf */
+.raum.puls { animation: raum-puls .9s ease-out; }
+@keyframes raum-puls {
+  0% { fill: rgba(255, 212, 0, 0); stroke: rgba(255, 212, 0, 0); }
+  35% { fill: rgba(255, 212, 0, .32); stroke: var(--gelb); stroke-width: 4; }
+  100% { fill: rgba(255, 212, 0, 0); stroke: rgba(255, 212, 0, 0); }
+}
+
+/* Tour-Steuerung (1 / 4) */
+.tour-nav { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: .75rem; }
+.tour-stand { margin: 0; font-family: var(--font-head); font-weight: 800; font-size: 20px; color: var(--white); }
+.tour-btn {
+  min-height: 44px; padding: 0 1rem; border-radius: 999px; border: 2px solid rgba(255, 255, 255, .7);
+  background: transparent; color: var(--white); font: 600 16px var(--font); cursor: pointer;
+}
+.tour-btn:hover { background: rgba(255, 255, 255, .12); }
+.im-rundgang .haus-zurueck { display: none; }
+.hero-haus .haus-karte { color: var(--text); }
+
+/* Ohne Karte: Intro sichtbar; mit Karte: Karte statt Intro (ab Tablet im selben Platz) */
+.hero-haus .trust { margin-top: 0; }
+.hero-haus + .trust { margin-top: 2rem; }
+
+@media (max-width: 47.99rem) {
+  .hero-haus .hh-haus { margin: 0 calc(var(--gutter) * -0.5); }
+}
+
+/* Ab Tablet: links Text, rechts das Haus */
+@media (min-width: 48rem) {
+  .hh-sticky {
+    grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "links haus";
+    column-gap: 3rem; align-items: center; padding-top: 1.5rem; padding-bottom: 1.5rem;
+  }
+  .hh-intro, .hh-karten { grid-area: links; }
+  .hero-haus.karte-offen .hh-intro { visibility: hidden; }
+  .hh-haus { width: min(58vw, calc((100vh - var(--kopf) - 8rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .hh-haus { width: min(58vw, calc((100svh - var(--kopf) - 8rem) * 518 / 751)); }
+  }
+  .hero-haus h1 { font-size: 44px; }
+  /* Kamerafahrt: Hero bleibt stehen, 4 Räume + Herauszoomen */
+  .hero-haus[data-modus="kamera"] .hh-scroll { height: calc(100vh + 5 * 85vh); height: calc(100svh + 5 * 85svh); }
+  .hero-haus[data-modus="kamera"] .hh-sticky {
+    position: sticky; top: var(--kopf);
+    height: calc(100vh - var(--kopf)); height: calc(100svh - var(--kopf));
+  }
+}
+/* iPad hochkant: Text/Karte oben, Haus darunter */
+@media (min-width: 48rem) and (max-width: 63.99rem) and (orientation: portrait) {
+  .hh-sticky { grid-template-columns: 1fr; grid-template-areas: "links" "haus"; row-gap: 1rem; align-content: center; justify-items: center; }
+  .hh-intro, .hh-karten { width: 100%; }
+  .hero-haus h1 { font-size: 38px; }
+  .hh-haus { width: min(86vw, calc((100vh - var(--kopf) - 27rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .hh-haus { width: min(86vw, calc((100svh - var(--kopf) - 27rem) * 518 / 751)); }
+  }
+}
+@media (min-width: 64rem) {
+  .hero-haus h1 { font-size: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .raum.puls, .rundgang-start span { animation: none; }
+}
+.hero-haus [hidden] { display: none !important; }
+.hero-haus.karte-offen .raum-label:not(.is-hot) { opacity: 0; }
+.hero-haus.karte-offen .raum { pointer-events: none; }
+.hero-haus.karte-offen .raum.puls { animation: none; }
+.tour-nav { scroll-margin-bottom: 96px; }
+@media (min-width: 48rem) and (max-width: 63.99rem) and (orientation: portrait) {
+  .hero-haus .haus-entdecken { display: none; }
+  .hero-haus .hero-sub { margin-bottom: 1rem; }
+  .hero-haus .btn-row { margin-bottom: .5rem; }
+  .hh-haus { width: min(86vw, calc((100vh - var(--kopf) - 25rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .hh-haus { width: min(86vw, calc((100svh - var(--kopf) - 25rem) * 518 / 751)); }
+  }
+}
+@media (min-width: 48rem) and (max-width: 63.99rem) and (orientation: portrait) {
+  .hh-haus { width: 100%; }
+  .hero-haus .haus-leiste { justify-content: center; }
+  .haus-buehne { margin: 0 auto; width: min(86vw, calc((100vh - var(--kopf) - 33rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .haus-buehne { width: min(86vw, calc((100svh - var(--kopf) - 33rem) * 518 / 751)); }
+  }
+  .hero-haus[data-modus="kamera"] .hh-sticky { padding-bottom: 6rem; }
+}
+@media (min-width: 48rem) and (max-width: 63.99rem) and (orientation: portrait) {
+  .hero-haus.karte-offen .haus-leiste { display: none; }
+  .hero-haus.karte-offen .haus-buehne { width: min(86vw, calc((100vh - var(--kopf) - 38rem) * 518 / 751)); }
+  @supports (height: 100svh) {
+    .hero-haus.karte-offen .haus-buehne { width: min(86vw, calc((100svh - var(--kopf) - 38rem) * 518 / 751)); }
+  }
+  .hero-haus .haus-karte { padding: 1.25rem 1.5rem; }
+}

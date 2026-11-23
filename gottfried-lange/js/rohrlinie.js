@@ -6,7 +6,7 @@
   "use strict";
   var NS = "http://www.w3.org/2000/svg";
   var main = document.querySelector("main");
-  var haus = document.querySelector(".haus");
+  var haus = document.querySelector(".hero-haus");
   var nummer = document.querySelector(".emergency-number");
   if (!main || !haus || !nummer) return;
   var notdienst = nummer.closest("section");
@@ -30,15 +30,15 @@
   function aufbauen() {
     abbauen();
     if (!gross.matches || ruhig.matches || haus.hidden) return;
-    var buehne = haus.querySelector(".haus-buehne"), sticky = haus.querySelector(".haus-sticky");
-    var scroller = haus.querySelector(".haus-scroll"), hsvg = haus.querySelector(".haus-svg");
+    var buehne = haus.querySelector(".haus-buehne"), sticky = haus.querySelector(".hh-sticky");
+    var scroller = haus.querySelector(".hh-scroll"), hsvg = haus.querySelector(".haus-svg");
     var inhalt = notdienst.querySelector(".container");
     // Rohr in der Mitte des linken Seitenrands
     var cs = getComputedStyle(inhalt);
     var x = Math.max(16, (inhalt.getBoundingClientRect().left + parseFloat(cs.paddingLeft) - main.getBoundingClientRect().left) / 2);
     // Anschluss am Haus: Lage im SVG, umgerechnet auf die Endposition des eingerasteten Hauses
     var b = buehne.getBoundingClientRect(), st = sticky.getBoundingClientRect(), sc = scroller.getBoundingClientRect();
-    var endUnten = seiteY(sc) + sc.height + (b.bottom - st.bottom);
+    var endUnten = haus.getAttribute("data-modus") === "kamera" ? seiteY(sc) + sc.height + (b.bottom - st.bottom) : seiteY(b) + b.height;
     var vb = hsvg.viewBox.baseVal, u = b.width / vb.width, a = hsvg.getAttribute("data-anschluss").split(",");
     var ax = seiteX(b) + (+a[0] - vb.x) * u, ay = endUnten - b.height + (+a[1] - vb.y) * u;
     // Ziel: unter der Notdienst-Nummer, Weg unter dem Text entlang
@@ -46,8 +46,9 @@
     var nx = seiteX(n) + 30, ny = seiteY(n) + n.height + 10;
     var lauf = seiteY(ns) + ns.height - 48;
     startY = ay - 20; endeY = lauf;
-    var r = 16;
-    var d = "M" + ax + "," + ay + " H" + (x + r) + " Q" + x + "," + ay + " " + x + "," + (ay + r) +
+    var r = 16, unter = seiteY(haus.getBoundingClientRect()) + haus.offsetHeight + 16;
+    var d = "M" + ax + "," + ay + " V" + (unter - r) + " Q" + ax + "," + unter + " " + (ax - r) + "," + unter +
+      " H" + (x + r) + " Q" + x + "," + unter + " " + x + "," + (unter + r) +
       " V" + (lauf - r) + " Q" + x + "," + lauf + " " + (x + r) + "," + lauf +
       " H" + (nx - r) + " Q" + nx + "," + lauf + " " + nx + "," + (lauf - r) + " V" + ny;
 
@@ -61,7 +62,7 @@
     el("path", { d: d, "class": "rl-glanz" }, g);
     el("path", { d: d, "class": "rl-wasser" }, g);
     // Muffen in regelmäßigen Abständen
-    for (var y = ay + 180; y < lauf - 60; y += 260) el("rect", { x: x - 6, y: y, width: 12, height: 7, rx: 2, "class": "rl-muffe" }, g);
+    for (var y = unter + 140; y < lauf - 60; y += 260) el("rect", { x: x - 6, y: y, width: 12, height: 7, rx: 2, "class": "rl-muffe" }, g);
     // Manometer an jedem Abschnitt zwischen Haus und Notdienst
     Array.prototype.forEach.call(main.children, function (s) {
       if (s.tagName !== "SECTION") return;

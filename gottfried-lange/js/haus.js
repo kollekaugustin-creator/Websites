@@ -1,33 +1,27 @@
-// Das Lange-Haus auf der Startseite (Abschnitt „Unsere Leistungen“).
-// Aufbau beim Scrollen (Handy: automatisch), danach lebt das Haus.
-// Räume sind Buttons: Zoom + Infokarte mit Überraschung (Thermostat, Bad 1974, Monteur).
-// Jahreszeit (Nov–Feb Winter) und Abend (ab 18 Uhr) automatisch, Sommer/Winter umschaltbar.
-// „Bewegung reduzieren“: Haus sofort fertig, keine Animation. Ohne JS: die drei Karten.
+// Das Lange-Haus im Hero der Startseite.
+// - Baut sich beim Laden einmal auf (2,5 s), danach pulsiert jeder Raum kurz auf.
+// - Kamerafahrt: ab 768 px bleibt der Hero beim Scrollen stehen und zoomt nacheinander auf
+//   Keller, Bad, Küche und Dach (1 / 4 …), danach zoomt das Haus heraus.
+//   Handy: Tour mit Wischen bzw. „Weiter“/„Zurück“. Räume sind Buttons (Zoom + Infokarte).
+// - Überraschungen: Thermostat, Bad 1974, „Lange rufen“, Sommer/Winter, Abend.
+// - „Bewegung reduzieren“: kein Festhalten, keine Kamerafahrt, alles sofort im Endzustand.
+// Ohne JavaScript: Haus als Bild, darunter die drei Leistungs-Karten.
 (function () {
   "use strict";
-  var root = document.querySelector(".haus");
+  var root = document.querySelector(".hero-haus");
   if (!root || !window.SVGElement) return;
   var $ = function (sel, el) { return (el || root).querySelector(sel); };
   var $$ = function (sel, el) { return Array.prototype.slice.call((el || root).querySelectorAll(sel)); };
-
-  var section = root.closest("section");
-  var svg = $(".haus-svg"), buehne = $(".haus-buehne"), zoomEl = $(".haus-zoom"), scroller = $(".haus-scroll");
-  var motion = matchMedia("(prefers-reduced-motion: reduce)");
-  var wide = matchMedia("(min-width: 768px)");
+  var svg = $(".haus-svg"), buehne = $(".haus-buehne"), zoomEl = $(".haus-zoom"), scroller = $(".hh-scroll");
+  var motion = matchMedia("(prefers-reduced-motion: reduce)"), wide = matchMedia("(min-width: 768px)");
   var ruhig = function () { return motion.matches; };
+  var TOUR = ["keller", "bad", "kueche", "dach"];
 
-  root.hidden = false;
-  var fallback = section.querySelector(".service-cards");
-  if (fallback) fallback.hidden = true;
-
-  // Überschrift: ab Tablet neben dem Haus, auf dem Handy darüber
-  var intro = section.querySelector(".section-intro"), seite = $(".haus-seite");
-  var introPlatz = intro && intro.parentNode;
-  function introSetzen() {
-    if (!intro) return;
-    var ziel = wide.matches ? seite : introPlatz;
-    if (intro.parentNode !== ziel) ziel.insertBefore(intro, ziel.firstChild);
-  }
+  // Mit JS: Bedienelemente zeigen, alte Leistungs-Karten ausblenden (der Rundgang ersetzt sie)
+  $$(".haus-leiste, .haus-entdecken, .rundgang-start").forEach(function (e) { e.hidden = false; });
+  var alt = document.querySelector(".leistungen-ohne-js");
+  if (alt) alt.hidden = true;
+  root.classList.add("mit-js");
 
   /* ---------- Aufbau ---------- */
   var gruppen = {};
@@ -41,12 +35,7 @@
   var reveals = $$("rect.reveal", svg);
   var PH = { platte: [0, .08], keller: [.08, .22], eg: [.22, .38], og: [.38, .52], dach: [.52, .64], rohre: [.64, .84], wasser: [.84, .92], warm: [.92, 1] };
   function seg(p, n) { var r = PH[n]; return Math.max(0, Math.min(1, (p - r[0]) / (r[1] - r[0]))); }
-
-  var aktuell = -1;
   function render(p) {
-    p = Math.max(0, Math.min(1, p));
-    if (Math.abs(p - aktuell) < 0.0005) return;
-    aktuell = p;
     ["platte", "dach", "rohre", "wasser", "warm"].forEach(function (n) { svg.style.setProperty("--p-" + n, seg(p, n).toFixed(3)); });
     reveals.forEach(function (r) {
       var f = seg(p, r.getAttribute("data-stock")), yb = +r.getAttribute("data-yb"), yt = +r.getAttribute("data-yt");
@@ -58,122 +47,159 @@
       rest -= r.len;
       r.els.forEach(function (el) { el.style.strokeDasharray = r.len + " " + r.len; el.style.strokeDashoffset = (r.len - zeig).toFixed(1); });
     });
-    root.classList.toggle("is-fertig", p >= 0.999);
   }
+  var gebaut = false, bauRaf = 0;
   function fertig() {
-    aktuell = -1; render(1);
+    cancelAnimationFrame(bauRaf);
+    render(1);
     rohre.forEach(function (r) { r.els.forEach(function (el) { el.style.strokeDasharray = el.style.strokeDashoffset = ""; }); });
+    if (!gebaut) { gebaut = true; root.classList.add("is-fertig"); pulsieren(); }
   }
-
-  var modus = null, autoFertig = false, autoRaf = 0, tick = false, offen = null;
-  function kopf() { var h = document.querySelector(".site-header"); return h ? h.getBoundingClientRect().height : 0; }
-  function scrollFortschritt() {
-    var r = scroller.getBoundingClientRect(), k = kopf();
-    var strecke = Math.max(0, scroller.offsetHeight - innerHeight + k), start = innerHeight * 0.6;
-    var weg = start - k + strecke * 0.75;
-    return weg > 0 ? (start - r.top) / weg : 1;
+  function pulsieren() {
+    if (ruhig()) return;
+    ["keller", "wohnzimmer", "kueche", "bad", "dach"].forEach(function (id, i) {
+      var r = svg.querySelector('.raum[data-raum="' + id + '"]');
+      setTimeout(function () { r.classList.add("puls"); setTimeout(function () { r.classList.remove("puls"); }, 900); }, 300 + i * 380);
+    });
   }
-  function autoStart() {
-    if (autoFertig) return;
-    var r = buehne.getBoundingClientRect();
-    if (r.top > innerHeight * 0.75 || r.bottom < 0) return;
-    autoFertig = true;
+  if (ruhig()) fertig();
+  else {
+    render(0);
     var t0 = null;
-    (function step(t) {
+    bauRaf = requestAnimationFrame(function step(t) {
       if (!t0) t0 = t;
-      var x = Math.min(1, (t - t0) / 3000);
+      var x = Math.min(1, (t - t0) / 2500);
       render(x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
-      if (x < 1) autoRaf = requestAnimationFrame(step); else fertig();
-    })(performance.now());
+      if (x < 1) bauRaf = requestAnimationFrame(step); else fertig();
+    });
   }
-  function update() {
-    tick = false;
-    if (modus === "scroll" && !offen) render(scrollFortschritt());
-    else if (modus === "auto") autoStart();
-  }
-  function onScroll() { if (!tick) { tick = true; requestAnimationFrame(update); } }
-  function setModus() {
-    introSetzen();
-    var m = ruhig() ? "fertig" : (wide.matches ? "scroll" : "auto");
-    if (m === modus) return;
-    modus = m;
-    cancelAnimationFrame(autoRaf);
-    root.setAttribute("data-modus", m);
-    if (m === "fertig" || (m === "auto" && autoFertig)) fertig();
-    else if (m === "auto") { render(0); autoStart(); }
-    else update();
-  }
-  addEventListener("scroll", onScroll, { passive: true });
-  addEventListener("resize", onScroll);
-  [motion, wide].forEach(function (mq) { mq.addEventListener ? mq.addEventListener("change", setModus) : mq.addListener(setModus); });
-  setModus();
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(function (e) { root.classList.toggle("is-sichtbar", e[0].isIntersecting); }).observe(buehne);
   } else root.classList.add("is-sichtbar");
 
-  /* ---------- Räume: hervorheben, zoomen, Infokarte ---------- */
+  /* ---------- Anzeigen: Raum + Karte (Zoom), oder ganzes Haus ---------- */
   var raeume = $$(".raum", svg), karten = {}, labels = {};
   $$(".haus-karte").forEach(function (k) { karten[k.getAttribute("data-raum")] = k; });
   $$(".raum-label", svg).forEach(function (l) { labels[l.getAttribute("data-raum")] = l; });
+  var tourNav = $(".tour-nav"), tourNr = $(".tour-nr"), offen = null, schritt = 0, modus = null;
   function hot(id, an) { if (labels[id]) labels[id].classList.toggle("is-hot", an); }
+  function poly(id) { return svg.querySelector('.raum[data-raum="' + id + '"]'); }
 
-  function zoomAuf(poly) {
-    if (ruhig()) return;
-    var id = poly.getAttribute("data-raum");
-    var ziel = svg.querySelector('.zoom-ziel[data-raum="' + id + '"]') || poly;
+  function zoomAuf(id) {
+    if (ruhig() || !id) { zoomEl.style.transform = ""; return; }
+    var ziel = svg.querySelector('.zoom-ziel[data-raum="' + id + '"]') || poly(id);
     var vb = svg.viewBox.baseVal, bb = ziel.getBBox(), w = buehne.clientWidth, h = buehne.clientHeight, u = w / vb.width;
-    var rw = bb.width * u, rh = bb.height * u;
-    var z = Math.min(w * 0.95 / rw, h * 0.85 / rh, 2.1);
+    var rw = bb.width * u, rh = bb.height * u, z = Math.min(w * 0.95 / rw, h * 0.85 / rh, 2.1);
     var tx = w / 2 - ((bb.x - vb.x) * u + rw / 2) * z, ty = h / 2 - ((bb.y - vb.y) * u + rh / 2) * z;
     zoomEl.style.transform = "translate(" + tx.toFixed(1) + "px," + ty.toFixed(1) + "px) scale(" + z.toFixed(3) + ")";
   }
-  function oeffnen(poly) {
-    var id = poly.getAttribute("data-raum");
-    if (offen) schliessen(false);
-    offen = poly;
-    cancelAnimationFrame(autoRaf); autoFertig = true; fertig();
-    root.classList.add("is-offen");
+  // id = Raum oder null (ganzes Haus); nr = Tour-Schritt 1–4 oder 0; fokus = Fokus auf die Karte setzen
+  function anzeigen(id, nr, fokus) {
+    if (id) fertig();
+    if (offen && offen !== id) { karten[offen].hidden = true; hot(offen, false); }
+    offen = id;
+    root.classList.toggle("karte-offen", !!id);
+    root.classList.toggle("im-rundgang", !!nr);
+    tourNav.hidden = !nr;
+    if (nr) tourNr.textContent = nr;
+    raeume.forEach(function (r) {
+      r.setAttribute("tabindex", id ? "-1" : "0");
+      r.setAttribute("aria-expanded", r.getAttribute("data-raum") === id ? "true" : "false");
+    });
+    zoomAuf(id);
+    if (!id) return;
     hot(id, true);
-    raeume.forEach(function (r) { r.setAttribute("tabindex", "-1"); r.setAttribute("aria-expanded", r === poly ? "true" : "false"); });
-    zoomAuf(poly);
     var k = karten[id];
     k.hidden = false;
-    $("h3", k).focus({ preventScroll: true });
-    if (!wide.matches) k.scrollIntoView({ behavior: ruhig() ? "auto" : "smooth", block: "nearest" });
+    if (fokus) {
+      $("h3", k).focus({ preventScroll: true });
+      // Handy: im Rundgang bleiben Haus und „Weiter/Zurück“ im Blick, sonst die Karte
+      if (!wide.matches) (nr ? tourNav : k).scrollIntoView({ behavior: ruhig() ? "auto" : "smooth", block: nr ? "end" : "nearest" });
+    }
   }
-  function schliessen(fokus) {
-    if (!offen) return;
-    var poly = offen, id = poly.getAttribute("data-raum");
-    offen = null;
-    root.classList.remove("is-offen");
-    hot(id, false);
-    zoomEl.style.transform = "";
-    karten[id].hidden = true;
-    raeume.forEach(function (r) { r.setAttribute("tabindex", "0"); r.setAttribute("aria-expanded", "false"); });
-    if (fokus !== false) poly.focus({ preventScroll: true });
-    onScroll();
+  function schliessen() {
+    var war = offen;
+    schritt = 0;
+    anzeigen(null, 0);
+    if (war && poly(war)) poly(war).focus({ preventScroll: true });
   }
+
+  /* ---------- Kamerafahrt (ab 768 px) bzw. Tour (Handy, „Bewegung reduzieren“) ---------- */
+  function kopf() { var h = document.querySelector(".site-header"); return h ? h.getBoundingClientRect().height : 0; }
+  function schrittLaenge() { return innerHeight * 0.85; }
+  function kameraSchritt() {
+    var s = (kopf() - scroller.getBoundingClientRect().top) / schrittLaenge();
+    return s < 0.5 ? 0 : Math.min(5, Math.floor(s + 0.5));
+  }
+  function geheZu(n) {
+    n = Math.max(0, Math.min(modus === "kamera" ? 5 : 4, n));
+    if (modus === "kamera") {
+      var y = scroller.getBoundingClientRect().top + scrollY - kopf() + n * schrittLaenge() + 2;
+      scrollTo({ top: y, behavior: "smooth" });
+      return;
+    }
+    schritt = n;
+    anzeigen(n >= 1 && n <= 4 ? TOUR[n - 1] : null, n >= 1 && n <= 4 ? n : 0, true);
+    if (n === 0) $(".rundgang-start").focus({ preventScroll: true });
+  }
+  var tick = false;
+  function update() {
+    tick = false;
+    if (modus !== "kamera") return;
+    var n = kameraSchritt();
+    if (n === schritt) return;
+    schritt = n;
+    anzeigen(n >= 1 && n <= 4 ? TOUR[n - 1] : null, n >= 1 && n <= 4 ? n : 0, false);
+  }
+  function setModus() {
+    var m = ruhig() ? "ruhig" : (wide.matches ? "kamera" : "tour");
+    if (m === modus) return;
+    modus = m;
+    root.setAttribute("data-modus", m);
+    schritt = 0;
+    anzeigen(null, 0);
+    update();
+  }
+  addEventListener("scroll", function () { if (!tick) { tick = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener("resize", function () { if (offen) zoomAuf(offen); });
+  [motion, wide].forEach(function (mq) { mq.addEventListener ? mq.addEventListener("change", setModus) : mq.addListener(setModus); });
+  setModus();
+
+  $(".rundgang-start").addEventListener("click", function (e) {
+    e.preventDefault();
+    if (modus === "kamera") geheZu(1);
+    else geheZu(1);
+  });
+  $(".tour-weiter").addEventListener("click", function () { geheZu((modus === "kamera" ? kameraSchritt() : schritt) + 1); });
+  $(".tour-zurueck").addEventListener("click", function () { geheZu((modus === "kamera" ? kameraSchritt() : schritt) - 1); });
+  // Wischen auf dem Haus (Handy-Tour)
+  var x0 = null;
+  buehne.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse") x0 = e.clientX; });
+  buehne.addEventListener("pointerup", function (e) {
+    if (x0 === null || modus === "kamera") return;
+    var dx = e.clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) geheZu(schritt + (dx < 0 ? 1 : -1));
+  });
+
   raeume.forEach(function (r) {
     var id = r.getAttribute("data-raum");
     r.setAttribute("aria-expanded", "false");
     r.setAttribute("aria-controls", "haus-karte-" + id);
-    r.addEventListener("click", function () { oeffnen(r); });
-    r.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); oeffnen(r); } });
+    var auf = function () { var nr = TOUR.indexOf(id) + 1; if (modus !== "kamera") schritt = nr; anzeigen(id, modus !== "kamera" ? nr : 0, true); };
+    r.addEventListener("click", auf);
+    r.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); auf(); } });
     r.addEventListener("mouseenter", function () { hot(id, true); });
-    r.addEventListener("mouseleave", function () { if (offen !== r) hot(id, false); });
+    r.addEventListener("mouseleave", function () { if (offen !== id) hot(id, false); });
     r.addEventListener("focus", function () { hot(id, true); });
-    r.addEventListener("blur", function () { if (offen !== r) hot(id, false); });
+    r.addEventListener("blur", function () { if (offen !== id) hot(id, false); });
   });
-  $$(".haus-zurueck").forEach(function (b) { b.addEventListener("click", function () { schliessen(true); }); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && offen) schliessen(true); });
-  addEventListener("resize", function () { if (offen) zoomAuf(offen); });
+  $$(".haus-zurueck").forEach(function (b) { b.addEventListener("click", schliessen); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && offen) schliessen(); });
 
-  /* ---------- Umschalter (Jahreszeit, Bad) ---------- */
+  /* ---------- Jahreszeit + Abend ---------- */
   function umschalter(attr, wert) {
     $$("[data-" + attr + "]").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-" + attr) === wert ? "true" : "false"); });
   }
-
-  /* ---------- Jahreszeit + Abend ---------- */
   var jetzt = new Date(), monat = jetzt.getMonth(), stunde = jetzt.getHours();
   function saison(s) {
     root.classList.toggle("saison-winter", s === "winter");
@@ -232,7 +258,7 @@
 
   /* ---------- Küche: Lange rufen ---------- */
   var rufen = $(".lange-rufen"), status = $(".lange-status");
-  var van = $(".van", svg), mAussen = $(".monteur-aussen", svg), mInnen = $(".monteur-innen", svg), haken = $(".repariert", svg);
+  var van = $(".van", svg), mAussen = $(".monteur-aussen", svg), mInnen = $(".monteur-innen", svg);
   function xy(attr, f) { var p = svg.getAttribute(attr).split(","); return "translate(" + (+p[0] * f) + "px," + (+p[1] * f) + "px)"; }
   function anim(el, frames, ms, delay) {
     return el.animate(frames, { duration: ms, delay: delay || 0, easing: "ease-in-out", fill: "forwards" }).finished;
