@@ -151,15 +151,15 @@ mark.hinweis {
   padding: .45rem var(--gutter);
 }
 
-/* ---------- Logo: Original-Bild (150 × 96 px) als „Kachel“ ----------
-   Nie größer als 150 × 96 px anzeigen, sonst wird es unscharf. */
+/* ---------- Logo: Vektorgrafik (img/logo-lange.svg) als „Kachel“ ----------
+   SVG ist in jeder Größe scharf. Handy 90 px, Desktop 120 px breit. */
 .logo {
   position: relative; display: inline-block; line-height: 0;
   border-radius: 10px; overflow: hidden; text-decoration: none;
   box-shadow: 0 1px 2px rgba(26, 36, 51, .10), 0 4px 12px rgba(26, 36, 51, .12);
   transition: transform .25s ease, box-shadow .25s ease;
 }
-.logo-img { display: block; width: 85px; height: auto; max-width: 150px; }
+.logo-img { display: block; width: 90px; height: auto; }
 /* Lichtschimmer: ein heller Streifen, der beim Darüberfahren einmal über das Logo läuft */
 .logo::after {
   content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 60%;
@@ -190,7 +190,7 @@ mark.hinweis {
 }
 .header-inner {
   display: flex; flex-wrap: wrap; align-items: center;
-  gap: .5rem 1rem; min-height: 72px; padding-top: .5rem; padding-bottom: .5rem;
+  gap: .5rem 1rem; min-height: 72px; padding-top: .25rem; padding-bottom: .25rem; /* wenig Innenabstand, damit das Logo die Kopfzeile nicht erhöht */
 }
 .header-inner .logo { margin-right: auto; }
 
@@ -733,9 +733,9 @@ address { font-style: normal; margin-bottom: 1rem; }
   }
   .main-nav a:hover { background: var(--tint); color: var(--text); }
   .main-nav a[aria-current="page"] { box-shadow: none; padding-left: .85rem; background: var(--gelb); color: var(--text); }
-  .header-inner { min-height: 84px; }
+  .header-inner { min-height: 84px; padding-top: 0; padding-bottom: 0; }
   .header-inner .logo { margin-right: 0; }
-  .logo-img { width: 106px; } /* ergibt 68 px Höhe – Kopfzeile bleibt gleich hoch */
+  .logo-img { width: 120px; } /* knapp 77 px hoch – passt in die 84 px hohe Kopfzeile */
 
   .hero-home { min-height: 680px; height: calc(100svh - 120px); max-height: 860px; align-items: center; }
   .hero-home::after {

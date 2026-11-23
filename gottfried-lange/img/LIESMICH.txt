@@ -1,6 +1,6 @@
 Bilder der Probe-Website Gottfried Lange GmbH
 
-- logo-original.png: Original-Logo von Lange (150 x 96 px), unverändert – nie größer anzeigen
+- logo-lange.svg: Logo von Lange als scharfe Vektorgrafik (nachgebaut nach dem 150-px-Original) – in jeder Größe scharf
 - Fotos und Hero-Video: Pexels (frei nutzbar), zugeschnitten und verkleinert
 - marken/: Herstellerlogos aus Wikimedia Commons, in Graustufen
 - Fehlt noch: ralf-lange.jpg (Porträt für die Über-uns-Seite)
