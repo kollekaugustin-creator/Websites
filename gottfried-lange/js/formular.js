@@ -51,6 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Häkchen bei richtig ausgefüllten Feldern
+  Array.prototype.forEach.call(form.querySelectorAll(".field input:not([type=radio]), .field textarea, .field select"), function (f) {
+    function pruefeOk() { f.closest(".field").classList.toggle("ist-ok", f.value.trim() !== "" && f.checkValidity()); }
+    f.addEventListener("input", pruefeOk);
+    f.addEventListener("change", pruefeOk);
+    f.addEventListener("blur", pruefeOk);
+  });
+  var ruhig = window.matchMedia("(prefers-reduced-motion: reduce)").matches, sendet = false;
+
   /* ---------- Schritte ---------- */
   var schritte = Array.prototype.slice.call(form.querySelectorAll(".schritt"));
   var fortschritt = form.querySelector(".form-fortschritt");
@@ -116,6 +125,16 @@ document.addEventListener("DOMContentLoaded", function () {
       var n = schritte.findIndex(function (s) { return s.contains(fehler); });
       if (n > -1 && n !== aktuell) zeige(n, false);
       fehler.focus();
+      return;
     }
+    // Alles richtig: der Button füllt sich wie ein Rohr, dann wird normal an Netlify gesendet
+    if (ruhig || sendet) return;
+    e.preventDefault();
+    sendet = true;
+    var knopf = form.querySelector("button[type=submit]");
+    knopf.classList.add("fuellt");
+    knopf.setAttribute("aria-busy", "true");
+    knopf.textContent = "Wird gesendet …";
+    setTimeout(function () { HTMLFormElement.prototype.submit.call(form); }, 850);
   });
 });
