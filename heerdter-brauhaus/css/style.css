@@ -155,43 +155,48 @@ address { font-style: normal; margin-bottom: 1em; }
 .link-pfeil { font-weight: 600; }
 .link-pfeil::after { content: " →"; }
 
-/* ---------- Hero mit dem 3D-Glas ---------- */
+/* ---------- Hero: Vollbild-Video „Bier wird gezapft“ ---------- */
 .hero {
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+  min-height: min(calc(100svh - 94px), 820px);
+  padding: 120px 0 104px; /* unten Platz für den festen Handy-Button */
   color: var(--creme);
-  padding: 16px 0 32px;
-  /* warmer Lichtkegel von oben, wie eine Lampe über der Theke */
-  background:
-    radial-gradient(ellipse 60% 70% at 50% -8%, rgba(255, 196, 120, .30), rgba(255, 196, 120, 0) 70%),
-    var(--ochsenblut);
+  background: var(--ochsenblut) url("../img/hero-zapfen-poster.jpg") center / cover no-repeat;
 }
-.hero-inner { display: grid; gap: 8px; align-items: center; }
-.hero h1 { color: var(--creme); margin-bottom: .3em; }
-.hero-sub { font-size: 1.2rem; }
-.hero-text .btn-row { margin: .8em 0; }
-.hero-status { font-size: .95rem; color: var(--creme-dunkler); border-top: 1px solid rgba(246, 239, 226, .25); padding-top: 10px; margin-bottom: 0; }
-
-/* Bühne für das Glas: auf dem Handy mittig oben, etwas kleiner */
-.hero-buehne {
-  position: relative;
-  order: -1;
-  height: clamp(200px, 36svh, 340px);
-}
-.glas-standbild,
-.glas-canvas {
+.hero-video {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  transition: opacity .6s ease;
+  object-fit: cover;
 }
-.glas-canvas { opacity: 0; }
-.glas-aktiv .glas-canvas { opacity: 1; }
-.glas-aktiv .glas-standbild { opacity: 0; }
-.glas-kippen {
-  position: absolute; right: 0; bottom: 4px; z-index: 2;
-  min-height: 40px; padding: 6px 14px; font-size: .95rem;
+/* Ochsenblut-Verlauf über dem Video, damit der Text gut lesbar ist */
+.hero-verlauf {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(74, 14, 14, .96) 0%, rgba(74, 14, 14, .82) 38%, rgba(74, 14, 14, .35) 75%, rgba(74, 14, 14, .2) 100%);
 }
-.glas-kippen[hidden] { display: none; }
+.hero-inner { position: relative; z-index: 1; }
+.hero-text { max-width: 36rem; }
+.hero h1 { color: var(--creme); margin-bottom: .3em; text-shadow: 0 2px 18px rgba(0, 0, 0, .35); }
+.hero-sub { font-size: 1.2rem; }
+.hero-text .btn-row { margin: .8em 0; }
+.hero-status { font-size: .95rem; color: var(--creme-dunkler); border-top: 1px solid rgba(246, 239, 226, .3); padding-top: 10px; margin-bottom: 0; }
+.hero-video-knopf {
+  position: absolute; right: 12px; bottom: 84px; z-index: 2;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(42, 6, 6, .55); color: var(--creme);
+  border: 1px solid rgba(246, 239, 226, .5); cursor: pointer;
+}
+.hero-video-knopf[hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) {
-  .glas-standbild, .glas-canvas { transition: none; }
+  .hero-video { display: none; } /* nur das Posterbild (Hintergrund) */
+}
+
+/* ---------- Fotos ---------- */
+.foto {
+  display: block; width: 100%; height: auto;
+  object-fit: cover; border-radius: var(--radius);
+  background: var(--platzhalter);
 }
 
 /* ---------- Feiern & Kegeln: 3D-Kegelbahn „Alle Neune!“ ---------- */
@@ -287,7 +292,7 @@ address { font-style: normal; margin-bottom: 1em; }
 /* ---------- Kacheln ---------- */
 .kacheln { list-style: none; margin: 0; padding: 0; display: grid; gap: 24px; }
 .kachel { background: var(--creme); border-radius: var(--radius); overflow: hidden; border-top: 4px solid var(--gold); }
-.kachel .bild-platzhalter { border-radius: 0; }
+.kachel .bild-platzhalter, .kachel .foto { border-radius: 0; aspect-ratio: 4 / 3; }
 .kachel h3, .kachel p { padding: 0 20px; }
 .kachel h3 { margin-top: 16px; }
 .kachel h3 a { color: var(--dunkel); }
@@ -321,21 +326,157 @@ address { font-style: normal; margin-bottom: 1em; }
 .mitnahme { display: inline-block; font-weight: 600; border: 2px solid var(--braun); color: var(--braun); padding: 4px 12px; border-radius: 999px; }
 
 /* ---------- Speisekarte ---------- */
-.sprungleiste {
+/* Seitenkopf mit abgedunkeltem Foto */
+.seitenkopf--foto { position: relative; overflow: hidden; padding: 72px 0 56px; }
+.seitenkopf-bild {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 65% 50%;
+}
+.seitenkopf--foto::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(42, 6, 6, .92), rgba(74, 14, 14, .7) 60%, rgba(74, 14, 14, .45));
+}
+.seitenkopf--foto .container { position: relative; z-index: 1; }
+.seitenkopf--foto p { font-size: 1.15rem; max-width: 34rem; margin: 0; }
+
+/* Umschalter „Speisen | Getränke“ und Filter */
+.karte-steuerung {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+  padding-top: 24px; padding-bottom: 16px;
+}
+.umschalter {
+  display: inline-flex; padding: 4px; gap: 4px;
+  background: var(--creme-dunkler); border-radius: 999px; border: 1px solid rgba(130, 94, 36, .35);
+}
+.umschalter a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 8px 22px;
+  border-radius: 999px; color: var(--dunkel); font-weight: 600; text-decoration: none;
+}
+.umschalter a[aria-current="true"] { background: var(--ochsenblut); color: var(--creme); }
+.filter-knopf {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px;
+  background: transparent; color: var(--dunkel); cursor: pointer;
+  border: 2px solid #3F6B2A; border-radius: 999px; font: 600 1rem var(--schrift-text);
+}
+.filter-knopf .icon--veg { margin: 0; }
+.filter-knopf[aria-pressed="true"] { background: #3F6B2A; color: #fff; }
+.filter-knopf[aria-pressed="true"] .icon--veg { color: #fff; }
+.filter-knopf[hidden] { display: none; }
+
+/* Kategorie-Leiste: bleibt oben, markiert die aktuelle Kategorie */
+.kategorie-leiste {
   position: sticky; top: 0; z-index: 10;
-  background: var(--creme); border-bottom: 2px solid var(--braun);
+  background: var(--creme); border-bottom: 1px solid rgba(130, 94, 36, .4);
+  transition: box-shadow .2s;
 }
-.sprungleiste ul {
-  list-style: none; margin: 0; padding: 0; display: flex; gap: 4px;
-  overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+.kategorie-leiste.klebt { box-shadow: 0 6px 16px rgba(42, 29, 20, .12); }
+.kategorie-leiste .container { display: flex; }
+.kategorie-leiste ul {
+  list-style: none; margin: 0; padding: 0; display: flex; gap: 2px;
+  overflow-x: auto; white-space: nowrap; scrollbar-width: none;
 }
-.sprungleiste a { display: block; padding: 12px 10px; color: var(--dunkel); font-weight: 600; text-decoration: none; }
-.sprungleiste a:hover { color: var(--ochsenblut); text-decoration: underline; }
-.kategorie { scroll-margin-top: 60px; margin-bottom: 40px; }
-.kategorie h2 { border-bottom: 3px solid var(--gold); padding-bottom: 6px; }
-.kategorie h3 { color: var(--braun); margin-top: 1.4em; }
+.kategorie-leiste ul::-webkit-scrollbar { display: none; }
+.kategorie-leiste ul[hidden] { display: none; }
+.kategorie-leiste a {
+  display: block; padding: 12px 12px 10px; color: var(--dunkel); font-weight: 600; text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+.kategorie-leiste a:hover { color: var(--ochsenblut); }
+.kategorie-leiste a[aria-current="true"] { color: var(--ochsenblut); border-bottom-color: var(--gold); }
+
+.speisekarte-inhalt { padding-top: 32px; padding-bottom: 48px; }
+.karte-bereich[hidden] { display: none; }
+.kategorie { scroll-margin-top: 64px; margin-bottom: 48px; }
+
+/* Foto-Banner mit Kategoriename */
+.kategorie-banner {
+  position: relative; overflow: hidden;
+  border-radius: 10px; margin-bottom: 20px;
+  height: clamp(150px, 30vw, 290px);
+  background: var(--ochsenblut);
+}
+.kategorie-bild { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.kategorie-banner::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(42, 6, 6, .85), rgba(42, 6, 6, .1) 60%);
+}
+.kategorie-banner h2,
+.kategorie-banner h3 {
+  position: absolute; left: 20px; right: 20px; bottom: 14px; z-index: 1; margin: 0;
+  color: var(--creme); font-size: clamp(1.6rem, 5vw, 2.4rem);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .4);
+}
+.kategorie-banner--gross { height: clamp(170px, 34vw, 340px); }
+/* Kategorien ohne Foto: dezentes Ornament in den Hausfarben */
+.kategorie-banner--ornament {
+  height: auto;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 26px 20px 22px; text-align: center;
+  background:
+    repeating-linear-gradient(45deg, rgba(201, 150, 47, .07) 0 12px, transparent 12px 24px),
+    var(--ochsenblut);
+  border: 2px solid var(--gold);
+}
+.kategorie-banner--ornament::after { content: none; }
+.kategorie-banner--ornament h3 { position: static; }
+.ornament { color: var(--gold); max-width: 70%; height: auto; }
+
 .kategorie-hinweis { font-style: italic; }
 .kategorie-zusatz { font-family: var(--schrift-text); font-size: .95rem; font-weight: 400; }
+
+/* Gerichte: Name links, Punktlinie, Preis rechts; Beschreibung kleiner darunter */
+.gerichte { list-style: none; margin: 0; padding: 0; display: grid; column-gap: 48px; }
+.gerichte .gericht { padding: 12px 0; border-bottom: 1px solid rgba(130, 94, 36, .2); }
+.gericht-zeile { display: flex; align-items: baseline; gap: 8px; }
+.gericht-zeile .gericht-name { flex: 0 1 auto; }
+.punktlinie { flex: 1 1 24px; min-width: 24px; border-bottom: 2px dotted rgba(130, 94, 36, .6); transform: translateY(-5px); }
+.gericht-zeile .preis { flex: 0 0 auto; }
+.gerichte .gericht-beschreibung { font-size: .93rem; color: #5A4636; margin-top: 2px; }
+.symbol-veg { white-space: nowrap; }
+.badge-klassiker {
+  display: inline-block; vertical-align: 2px; margin-left: 6px;
+  padding: 1px 8px; border-radius: 999px;
+  background: var(--ochsenblut); color: var(--creme);
+  font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+}
+.gerichte .gericht--highlight { border-bottom: 0; padding: 14px 16px; }
+.gerichte .gericht--highlight .punktlinie { border-color: rgba(42, 29, 20, .5); }
+
+/* Wochenempfehlungen kompakt */
+.wochen-kompakt {
+  background: var(--creme-dunkler); border-radius: 10px; padding: 20px 20px 8px; margin-bottom: 40px;
+  border-left: 4px solid var(--gold);
+}
+.wochen-kompakt h3 { font-size: 1.5rem; }
+
+/* Filter aktiv: nur vegetarische Gerichte und Kategorien mit vegetarischen Gerichten */
+.nur-veg [data-bereich="speisen"] .gericht:not([data-veg]) { display: none; }
+.nur-veg [data-bereich="speisen"] [data-kategorie]:not([data-hat-veg]) { display: none; }
+.nur-veg [data-leiste="speisen"] li:not([data-hat-veg]) { display: none; }
+
+/* Kasten „Unser Bier“ */
+.unser-bier {
+  background: var(--ochsenblut); color: var(--creme); border-radius: 10px;
+  padding: 20px 22px 6px; margin: 0 0 36px; border-left: 4px solid var(--gold);
+}
+.unser-bier h3 { color: var(--gold); }
+.pruefen { background: #FFE58A; color: var(--dunkel); padding: 0 4px; font-size: .85rem; }
+
+/* Getränke kompakt als Tabelle */
+.getraenke-raster { display: grid; column-gap: 48px; }
+.getraenke-kategorie { margin-bottom: 32px; }
+.getraenke-kategorie h3 { color: var(--braun); border-bottom: 3px solid var(--gold); padding-bottom: 6px; }
+.getraenke-tabelle { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.getraenke-tabelle thead th {
+  font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--braun);
+  text-align: right; padding: 0 0 4px 12px;
+}
+.getraenke-tabelle tbody th { text-align: left; font-weight: 600; padding: 8px 0; }
+.getraenke-tabelle td { text-align: right; padding: 8px 0 8px 12px; white-space: nowrap; }
+.getraenke-tabelle td.menge { color: var(--braun); }
+.getraenke-tabelle td.preis { font-size: 1.1rem; }
+.getraenke-tabelle tbody tr { border-bottom: 1px solid rgba(130, 94, 36, .2); }
+
 .legende { border-top: 1px solid var(--braun); padding-top: 24px; font-size: .95rem; }
 .legende h2 { font-size: 1.3rem; color: var(--braun); }
 .legende ul { list-style: none; padding: 0; margin: 0 0 1em; columns: 2 220px; }
@@ -408,13 +549,15 @@ address { font-style: normal; margin-bottom: 1em; }
   .main-nav a { border-top: 0; padding: 8px 0; border-bottom: 3px solid transparent; }
   .main-nav a[aria-current="page"] { border-bottom-color: var(--gold); }
 
-  .hero {
-    padding: 48px 0 56px;
+  .hero { align-items: center; padding: 80px 0; }
+  .hero-verlauf {
     background:
-      radial-gradient(ellipse 45% 85% at 72% -10%, rgba(255, 196, 120, .32), rgba(255, 196, 120, 0) 70%),
-      var(--ochsenblut);
+      linear-gradient(to right, rgba(74, 14, 14, .94) 0%, rgba(74, 14, 14, .78) 38%, rgba(74, 14, 14, .25) 75%, rgba(74, 14, 14, .1) 100%),
+      linear-gradient(to top, rgba(74, 14, 14, .6) 0%, rgba(74, 14, 14, 0) 35%);
   }
-  .hero-inner { grid-template-columns: 1.1fr 1fr; gap: 32px; }
-  .hero-buehne { order: 0; height: min(560px, calc(100svh - 200px)); min-height: 400px; }
+  .hero-video-knopf { bottom: 20px; right: 20px; }
   .section { padding: 80px 0; }
+  /* Speisekarte: Gerichte und Getränke zweispaltig */
+  .gerichte, .getraenke-raster { grid-template-columns: 1fr 1fr; }
+  .seitenkopf--foto { padding: 110px 0 80px; }
 }
