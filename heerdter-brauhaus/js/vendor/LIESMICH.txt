@@ -1,9 +1,15 @@
-three.js (Version 0.187.0, MIT-Lizenz, siehe LICENSE-three.txt)
-=================================================================
-three-glas.min.js ist eine verkleinerte three.js-Datei, die nur die Teile
-enthält, die das 3D-Glas auf der Startseite braucht (plus RoomEnvironment
-aus den three.js-Addons). Sie liegt lokal hier, es wird kein CDN genutzt.
+Fremde Bibliotheken für die Wow-Effekte (lokal, kein CDN)
+=========================================================
 
-So wurde sie einmalig erzeugt (nur nötig, wenn man three.js aktualisiert):
-  npm i three@0.187.0 esbuild
+three-glas.min.js – three.js 0.187.0 (MIT-Lizenz, siehe LICENSE-three.txt)
+  Verkleinerte Datei mit genau den Teilen, die das 3D-Glas (Startseite)
+  und die 3D-Kegelbahn (Feiern & Kegeln) brauchen, plus RoomEnvironment.
+  Welche Teile das sind, steht in three-glas-eintrag.js.
+
+cannon-es.min.js – cannon-es 0.20.0 (MIT-Lizenz, siehe LICENSE-cannon-es.txt)
+  Physik-Engine für die fallenden Kegel.
+
+So wurden die Dateien einmalig erzeugt (nur nötig beim Aktualisieren):
+  npm i three@0.187.0 cannon-es@0.20.0 esbuild
   npx esbuild three-glas-eintrag.js --bundle --format=esm --minify --legal-comments=eof --outfile=three-glas.min.js
+  npx esbuild node_modules/cannon-es/dist/cannon-es.js --format=esm --minify --legal-comments=eof --outfile=cannon-es.min.js
