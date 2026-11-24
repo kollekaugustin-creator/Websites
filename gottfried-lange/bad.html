@@ -13,6 +13,7 @@
   <script src="js/menu.js" defer></script>
   <script src="js/seite.js" defer></script>
   <script src="js/einblenden.js" defer></script>
+  <script src="js/wow.js" defer></script>
   <script src="js/unterseiten.js" defer></script>
 </head>
 <body class="thema-bad">
@@ -58,6 +59,11 @@
             <a class="btn btn--primary" href="kontakt.html?anliegen=Bad">Bad-Beratung anfragen</a>
             <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
           </div>
+          <ul class="fakten">
+            <li>Seit <strong data-zaehlen="1974" data-von="1950">1974</strong> in Neuss</li>
+            <li><strong data-zaehlen="2" data-von="0">2</strong> Generationen</li>
+            <li>Meister- und Ausbildungsbetrieb</li>
+          </ul>
         </div>
         <img class="photo" src="img/bad-dusche.jpg" alt="Helles, modernes Bad mit Glasdusche, Waschtisch und Handtuchheizkörper" width="1600" height="1200" decoding="async">
       </div>
@@ -79,6 +85,40 @@
             <h3>Neubau-Installation</h3>
             <p>Im Neubau verlegen wir die komplette Sanitärinstallation.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stil-Umschalter: Bild und Stichpunkte wechseln weich -->
+    <section class="section stil-wahl" aria-labelledby="stil-titel">
+      <div class="container">
+        <div class="section-intro">
+          <p class="kicker">Ihr Stil</p>
+          <h2 id="stil-titel">Welches Bad passt zu Ihnen? <mark class="hinweis">[PRÜFEN]</mark></h2>
+        </div>
+        <div class="umschalter stil-umschalter" role="group" aria-label="Badstil wählen" hidden><button type="button" data-stil="modern" aria-pressed="true">Modern</button><button type="button" data-stil="klassisch" aria-pressed="false">Klassisch</button><button type="button" data-stil="barrierearm" aria-pressed="false">Barrierearm</button></div>
+        <div class="stil-panels" aria-live="polite">
+          <div class="stil-panel" data-stil="modern" id="stil-modern">
+            <div class="platzhalter-bild"><span>[PLATZHALTER: Bild modernes Bad]</span></div>
+            <div class="stil-text">
+              <h3>Modern</h3>
+              <ul><li>Großformatige Fliesen mit wenigen Fugen</li><li>Bodengleiche Dusche mit Glaswand</li><li>Wand-WC und schwebender Waschtisch</li></ul>
+            </div>
+          </div>
+          <div class="stil-panel" data-stil="klassisch" id="stil-klassisch">
+            <div class="platzhalter-bild"><span>[PLATZHALTER: Bild klassisches Bad]</span></div>
+            <div class="stil-text">
+              <h3>Klassisch</h3>
+              <ul><li>Zeitlose Fliesen in warmen Tönen</li><li>Badewanne als Mittelpunkt</li><li>Armaturen in Chrom oder Messing</li></ul>
+            </div>
+          </div>
+          <div class="stil-panel" data-stil="barrierearm" id="stil-barrierearm">
+            <div class="platzhalter-bild"><span>[PLATZHALTER: Bild barrierearmes Bad]</span></div>
+            <div class="stil-text">
+              <h3>Barrierearm</h3>
+              <ul><li>Dusche ohne Schwelle</li><li>Haltegriffe und Duschsitz</li><li>Mehr Bewegungsfläche, unterfahrbarer Waschtisch</li></ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>

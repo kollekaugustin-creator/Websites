@@ -13,6 +13,7 @@
   <script src="js/menu.js" defer></script>
   <script src="js/seite.js" defer></script>
   <script src="js/einblenden.js" defer></script>
+  <script src="js/wow.js" defer></script>
   <script src="js/unterseiten.js" defer></script>
 </head>
 <body class="thema-heizung">
@@ -58,20 +59,72 @@
             <a class="btn btn--primary" href="kontakt.html?anliegen=Heizung">Beratung anfragen</a>
             <a class="btn btn--secondary" href="tel:+49213155661">02131 55661 anrufen</a>
           </div>
+          <ul class="fakten">
+            <li>Seit <strong data-zaehlen="1974" data-von="1950">1974</strong> in Neuss</li>
+            <li><strong data-zaehlen="2" data-von="0">2</strong> Generationen</li>
+            <li>Meister- und Ausbildungsbetrieb</li>
+          </ul>
         </div>
         <img class="photo" src="img/heizung-anlage.jpg" alt="Heizkreisverteiler mit Pumpe und Rohrleitungen an einer Kellerwand" width="1600" height="1200" decoding="async">
       </div>
     </section>
 
+    <!-- Ablauf: ein Rohr verbindet die Schritte beim Scrollen -->
+    <section class="section bauplan" aria-labelledby="ablauf-titel">
+      <div class="container narrow">
+        <div class="section-intro">
+          <p class="kicker">Schritt für Schritt</p>
+          <h2 id="ablauf-titel">So läuft Ihr Heizungstausch</h2>
+        </div>
+        <ol class="ablauf">
+          <li class="ablauf-schritt">
+            <span class="ablauf-nr" aria-hidden="true">01</span>
+            <div class="glas ablauf-karte">
+              <h3><span class="visually-hidden">Schritt 1: </span>Beratung vor Ort</h3>
+              <p>Wir sehen uns Ihr Haus und Ihre jetzige Heizung an.</p>
+            </div>
+          </li>
+          <li class="ablauf-schritt">
+            <span class="ablauf-nr" aria-hidden="true">02</span>
+            <div class="glas ablauf-karte">
+              <h3><span class="visually-hidden">Schritt 2: </span>Angebot</h3>
+              <p>Sie bekommen ein klares Angebot mit allen Kosten.</p>
+            </div>
+          </li>
+          <li class="ablauf-schritt">
+            <span class="ablauf-nr" aria-hidden="true">03</span>
+            <div class="glas ablauf-karte">
+              <h3><span class="visually-hidden">Schritt 3: </span>Einbau</h3>
+              <p>Wir bauen die neue Heizung sauber und termingerecht ein.</p>
+            </div>
+          </li>
+          <li class="ablauf-schritt">
+            <span class="ablauf-nr" aria-hidden="true">04</span>
+            <div class="glas ablauf-karte">
+              <h3><span class="visually-hidden">Schritt 4: </span>Wartung</h3>
+              <p>Auf Wunsch warten wir Ihre Heizung regelmäßig – ohne Vertrag.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Vorher / Nachher: alter Kessel und moderne Anlage -->
     <section class="section section--white">
       <div class="container">
-        <h2>So läuft Ihr Heizungstausch ab</h2>
-        <ol class="steps">
-          <li><h3>Beratung vor Ort</h3><p>Wir sehen uns Ihr Haus und Ihre jetzige Heizung an.</p></li>
-          <li><h3>Angebot</h3><p>Sie bekommen ein klares Angebot mit allen Kosten.</p></li>
-          <li><h3>Einbau</h3><p>Wir bauen die neue Heizung sauber und termingerecht ein.</p></li>
-          <li><h3>Wartung</h3><p>Auf Wunsch warten wir Ihre Heizung regelmäßig – ohne Vertrag.</p></li>
-        </ol>
+        <div class="section-intro">
+          <p class="kicker">Vorher – nachher</p>
+          <h2>Vom alten Kessel zur modernen Anlage <mark class="hinweis">[PLATZHALTER]</mark></h2>
+        </div>
+        <figure class="vorher-nachher">
+          <div class="vn-flaeche">
+          <div class="vn-bild vn-nachher"><span>[PLATZHALTER: Bild moderne Heizungsanlage]</span><b class="vn-schild">Nachher</b></div>
+          <div class="vn-bild vn-vorher"><span>[PLATZHALTER: Bild alter Heizkessel]</span><b class="vn-schild">Vorher</b></div>
+          <span class="vn-griff" aria-hidden="true"></span>
+          <input class="vn-regler" type="range" min="0" max="100" value="50" step="1" aria-label="Vorher-Nachher-Vergleich: links Vorher, rechts Nachher" hidden>
+          </div>
+          <figcaption>Ziehen Sie den Regler: links der alte Kessel, rechts die neue Anlage.</figcaption>
+        </figure>
       </div>
     </section>
 

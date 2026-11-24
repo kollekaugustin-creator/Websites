@@ -1566,3 +1566,126 @@ html.seite-geht body { opacity: 0; transition: opacity .18s ease; }
   .nur, .ablauf-karte, .ablauf-nr, .hilfe-kachel, .kachel span, .form-fortschritt::after, .form-fortschritt span { transition: none !important; }
   .hilfe--js .hilfe-panel:not([hidden]), .form--schritte .schritt:not([hidden]) { animation: none; }
 }
+
+/* =========================================================
+   Unterseiten: kleine Wow-Effekte (hochwertig, dosiert, nie im Weg)
+   ========================================================= */
+/* Bauplan-Abschnitte im klaren Look wie das Haus: kein Raster mehr */
+.bauplan {
+  background-color: #22416F;
+  background-image: radial-gradient(70% 80% at 70% 40%, #34588F 0%, #284B80 45%, #1F3C69 100%);
+  background-size: auto;
+}
+/* Inhalte gleiten gestaffelt ins Bild */
+.gleiten { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.gleiten.ist-da { opacity: 1; transform: none; }
+/* Karten heben sich leicht an, Bilder zoomen minimal */
+.card, .ablauf-karte, .stil-panel { transition: transform .3s ease, box-shadow .3s ease; }
+.photo { transition: transform .6s ease; }
+@media (hover: hover) {
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .ablauf-karte:hover { transform: translateY(-3px); }
+  .gallery .photo:hover, .hero .photo:hover { transform: scale(1.02); }
+}
+/* Buttons: die Farbe läuft beim Hover von links nach rechts hinein – wie Wasser in einem Rohr */
+.btn--primary, .btn--secondary, .btn--light {
+  background-size: 205% 100%; background-position: 100% 0;
+  transition: background-position .45s ease, color .3s ease, box-shadow .2s ease, transform .2s ease, border-color .3s ease;
+}
+.btn--primary { background-image: linear-gradient(90deg, #FFE766 50%, var(--gelb) 50%); }
+.btn--primary:hover { background-color: var(--gelb); background-image: linear-gradient(90deg, #FFE766 50%, var(--gelb) 50%); background-position: 0 0; }
+.btn--secondary { background-image: linear-gradient(90deg, var(--blau) 50%, transparent 50%); }
+.btn--secondary:hover { background-color: transparent; background-image: linear-gradient(90deg, var(--blau) 50%, transparent 50%); background-position: 0 0; color: var(--white); }
+.bauplan .btn--secondary { background-image: linear-gradient(90deg, rgba(255, 255, 255, .16) 50%, transparent 50%); }
+.bauplan .btn--secondary:hover { background-image: linear-gradient(90deg, rgba(255, 255, 255, .16) 50%, transparent 50%); }
+.btn--light { background-image: linear-gradient(90deg, #E3ECF8 50%, var(--white) 50%); }
+.btn--light:hover { background-color: var(--white); background-image: linear-gradient(90deg, #E3ECF8 50%, var(--white) 50%); background-position: 0 0; }
+/* Fakten-Zeile im Kopf der Unterseiten */
+.fakten { list-style: none; margin: .75rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; font-size: 16px; color: var(--muted); }
+.fakten li { display: flex; align-items: center; gap: .5rem; }
+.fakten li + li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gelb); margin-right: .25rem; }
+.fakten strong { font-family: var(--font-head); font-weight: 800; font-size: 20px; color: var(--text); font-variant-numeric: tabular-nums; }
+/* Herstellerlogos: zwei Reihen laufen langsam gegeneinander */
+.laufband {
+  display: grid; gap: 22px; margin-top: 1.5rem; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.laufband-reihe { overflow: hidden; }
+.laufband-spur { display: flex; width: max-content; animation: laufband 40s linear infinite; }
+.laufband-rueck .laufband-spur { animation-direction: reverse; }
+.laufband:hover .laufband-spur { animation-play-state: paused; }
+@keyframes laufband { to { transform: translateX(-50%); } }
+.laufband-logo { display: flex; align-items: center; justify-content: center; height: 56px; padding: 0 28px; }
+.laufband-logo img { display: block; height: 32px; width: auto; filter: grayscale(1); opacity: .6; transition: filter .3s ease, opacity .3s ease; }
+.laufband-logo img:hover { filter: none; opacity: 1; }
+/* Bad: Stil-Umschalter */
+.stil-umschalter { margin-bottom: 1.25rem; }
+.stil-panels { display: grid; gap: 1.5rem; }
+.stil-panel { display: grid; gap: 1rem; align-items: center; }
+.stil-panels--js { grid-template-areas: "stapel"; }
+.stil-panels--js .stil-panel { grid-area: stapel; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease, visibility 0s .45s; }
+.stil-panels--js .stil-panel.ist-aktiv { opacity: 1; visibility: visible; transform: none; transition: opacity .45s ease, transform .45s ease, visibility 0s; }
+.stil-text h3 { margin: 0 0 .5rem; }
+.stil-text ul { margin: 0; padding-left: 1.2rem; }
+.stil-text li { margin-bottom: .35rem; }
+.stil-text li::marker { color: var(--thema); }
+.platzhalter-bild {
+  display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; padding: 1rem; text-align: center;
+  border-radius: var(--radius); background: #C9CDD3; color: #2B3445; font-weight: 600; font-size: 15px;
+}
+@media (min-width: 48rem) { .stil-panel { grid-template-columns: 1.2fr 1fr; gap: 2rem; } }
+/* Kundendienst: Wartungs-Checkliste */
+.checkliste-titel { margin-top: 1.5rem; }
+.checkliste { list-style: none; margin: .75rem 0 0; padding: 0; display: grid; gap: .6rem; }
+.checkliste li { display: flex; align-items: center; gap: .75rem; font-weight: 600; }
+.haken svg { display: block; }
+.haken circle { fill: #2F8A55; stroke: #2F8A55; stroke-width: 1.5; transition: fill .4s ease, stroke .4s ease; }
+.haken path { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 16; stroke-dashoffset: 0; transition: stroke-dashoffset .45s ease .1s; }
+.checkliste--js li:not(.ist-geprueft) .haken circle { fill: transparent; stroke: #8A94A6; }
+.checkliste--js li:not(.ist-geprueft) .haken path { stroke-dashoffset: 16; }
+.checkliste--js li { color: var(--muted); transition: color .4s ease; }
+.checkliste--js li.ist-geprueft { color: var(--text); }
+/* Notdienst: dezent pulsierendes Telefon */
+.puls-tel { position: relative; display: inline-flex; }
+.puls-tel::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid rgba(26, 36, 51, .45); animation: tel-puls 2.2s ease-out infinite; }
+@keyframes tel-puls { 0% { transform: scale(.6); opacity: .9; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
+/* Das gelbe Rohr als roter Faden bis zum Anruf-Button (nur ab 1024 px, im Rand neben dem Inhalt) */
+.rohrfaden { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; overflow: visible; }
+.rohrfaden path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.rohrfaden-glanz { stroke: rgba(255, 212, 0, .28); stroke-width: 9; }
+.rohrfaden-rohr { stroke: var(--gelb); stroke-width: 3; }
+.cta-section a.rohr-da { box-shadow: 0 0 0 4px rgba(255, 212, 0, .45), 0 0 22px rgba(255, 212, 0, .6); }
+@media (max-width: 63.99rem) { .rohrfaden { display: none; } }
+/* Über uns: Jahreszahlen erscheinen nacheinander */
+.timeline--animated .timeline-year { opacity: 0; transform: translateY(6px); transition: opacity .5s ease .3s, transform .5s ease .3s; }
+.timeline--animated .timeline-item.is-visible .timeline-year { opacity: 1; transform: none; }
+/* Kontakt: kurze Anruf-Zeile, Felder heben sich hervor, Häkchen, Button füllt sich */
+.lieber-anrufen { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: 0 0 1rem; padding: .5rem .9rem; border-radius: 999px;
+  background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .2); color: #fff; font-weight: 600; }
+.lieber-anrufen a { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; color: var(--gelb) !important; font-weight: 700; text-decoration: none; }
+.lieber-anrufen a:hover { text-decoration: underline; }
+.anfrage .field input, .anfrage .field textarea, .anfrage .field select { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.anfrage .field input:focus, .anfrage .field textarea:focus, .anfrage .field select:focus { transform: translateY(-1px); box-shadow: 0 0 0 3px rgba(255, 212, 0, .4), 0 10px 24px rgba(0, 0, 0, .25); }
+.field.ist-ok { position: relative; }
+.field.ist-ok input, .field.ist-ok select { padding-right: 2.6rem; }
+.field.ist-ok::after {
+  content: ""; position: absolute; right: .8rem; bottom: 1.05rem; width: 20px; height: 20px; border-radius: 50%;
+  background: #2FBF6E url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 20px no-repeat;
+  animation: ok-ein .3s ease;
+}
+.field.ist-ok:has(textarea)::after { bottom: auto; top: 2.6rem; }
+@keyframes ok-ein { from { transform: scale(.4); opacity: 0; } }
+.btn.fuellt { color: #fff; background-image: linear-gradient(90deg, #2FBF6E 50%, var(--gelb) 50%); background-size: 205% 100%; animation: rohr-fuellen .8s ease forwards; }
+@keyframes rohr-fuellen { from { background-position: 100% 0; } to { background-position: 0 0; } }
+.danke-haken { display: block; margin: 0 0 1rem; }
+.danke-haken circle { fill: #2F8A55; }
+.danke-haken path { fill: none; stroke: #fff; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 44; animation: haken-ziehen .6s ease .25s both; }
+@keyframes haken-ziehen { from { stroke-dashoffset: 44; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .gleiten { opacity: 1; transform: none; transition: none; }
+  .btn--primary, .btn--secondary, .btn--light, .card, .photo, .stil-panels--js .stil-panel, .haken circle, .haken path { transition: none !important; }
+  .card:hover, .photo:hover, .ablauf-karte:hover { transform: none; }
+  .puls-tel::after, .danke-haken path, .field.ist-ok::after, .btn.fuellt { animation: none; }
+  .timeline--animated .timeline-year { opacity: 1; transform: none; transition: none; }
+}
