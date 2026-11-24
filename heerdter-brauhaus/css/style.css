@@ -155,13 +155,44 @@ address { font-style: normal; margin-bottom: 1em; }
 .link-pfeil { font-weight: 600; }
 .link-pfeil::after { content: " →"; }
 
-/* ---------- Hero ---------- */
-.hero { background: var(--ochsenblut); color: var(--creme); padding: 40px 0 56px; }
-.hero-inner { display: grid; gap: 32px; align-items: center; }
-.hero h1 { color: var(--creme); }
-.hero-sub { font-size: 1.25rem; }
-.hero-status { font-size: .95rem; color: var(--creme-dunkler); border-top: 1px solid rgba(246, 239, 226, .25); padding-top: 12px; }
-.hero-buehne { min-height: 280px; display: flex; } /* Platz für das Altbierglas (Wow-Effekt) */
+/* ---------- Hero mit dem 3D-Glas ---------- */
+.hero {
+  color: var(--creme);
+  padding: 16px 0 32px;
+  /* warmer Lichtkegel von oben, wie eine Lampe über der Theke */
+  background:
+    radial-gradient(ellipse 60% 70% at 50% -8%, rgba(255, 196, 120, .30), rgba(255, 196, 120, 0) 70%),
+    var(--ochsenblut);
+}
+.hero-inner { display: grid; gap: 8px; align-items: center; }
+.hero h1 { color: var(--creme); margin-bottom: .3em; }
+.hero-sub { font-size: 1.2rem; }
+.hero-text .btn-row { margin: .8em 0; }
+.hero-status { font-size: .95rem; color: var(--creme-dunkler); border-top: 1px solid rgba(246, 239, 226, .25); padding-top: 10px; margin-bottom: 0; }
+
+/* Bühne für das Glas: auf dem Handy mittig oben, etwas kleiner */
+.hero-buehne {
+  position: relative;
+  order: -1;
+  height: clamp(200px, 36svh, 340px);
+}
+.glas-standbild,
+.glas-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  transition: opacity .6s ease;
+}
+.glas-canvas { opacity: 0; }
+.glas-aktiv .glas-canvas { opacity: 1; }
+.glas-aktiv .glas-standbild { opacity: 0; }
+.glas-kippen {
+  position: absolute; right: 0; bottom: 4px; z-index: 2;
+  min-height: 40px; padding: 6px 14px; font-size: .95rem;
+}
+.glas-kippen[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .glas-standbild, .glas-canvas { transition: none; }
+}
 
 /* ---------- Seitenkopf der Unterseiten ---------- */
 .seitenkopf { background: var(--ochsenblut); color: var(--creme); padding: 40px 0; }
@@ -179,7 +210,6 @@ address { font-style: normal; margin-bottom: 1em; }
   border-radius: var(--radius); font-size: .95rem;
 }
 .bild-platzhalter span::before { content: "Foto: "; font-weight: 600; }
-.bild-platzhalter--dunkel { background: #6A3A2E; color: var(--creme); }
 .bild-platzhalter--klein { aspect-ratio: 3 / 2; max-width: 320px; margin-top: 8px; }
 .bild-platzhalter--klein span::before { content: none; }
 
@@ -307,8 +337,13 @@ address { font-style: normal; margin-bottom: 1em; }
   .main-nav a { border-top: 0; padding: 8px 0; border-bottom: 3px solid transparent; }
   .main-nav a[aria-current="page"] { border-bottom-color: var(--gold); }
 
-  .hero { padding: 72px 0 88px; }
-  .hero-inner { grid-template-columns: 1.1fr 1fr; }
-  .hero-buehne { min-height: 420px; }
+  .hero {
+    padding: 48px 0 56px;
+    background:
+      radial-gradient(ellipse 45% 85% at 72% -10%, rgba(255, 196, 120, .32), rgba(255, 196, 120, 0) 70%),
+      var(--ochsenblut);
+  }
+  .hero-inner { grid-template-columns: 1.1fr 1fr; gap: 32px; }
+  .hero-buehne { order: 0; height: min(560px, calc(100svh - 200px)); min-height: 400px; }
   .section { padding: 80px 0; }
 }
