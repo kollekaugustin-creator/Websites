@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speisekarte – Heerdter Brauhaus Düsseldorf-Heerdt</title>
+  <meta name="description" content="Schnitzel, Haxe, Heerdter Pfännchen und Fisch: die Speisekarte des Heerdter Brauhauses – mit Wochenempfehlungen und Getränken.">
+  <!-- Entwurf: Suchmaschinen sollen die Seite nicht aufnehmen -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preload" href="fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/menu.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+  <!-- Entwurfs-Leiste (auf allen Seiten) -->
+  <div class="entwurf-leiste">Entwurf – nicht die offizielle Website des Heerdter Brauhauses</div>
+
+  <!-- Hinweis-Zeile: kommt später aus content/einstellungen.json (hinweis_anzeigen, hinweis_text, hinweis_bis) -->
+  <div class="hinweis-zeile" data-hinweis hidden>
+    <p class="container" data-hinweis-text></p>
+  </div>
+
+  <!-- Kopfzeile (auf allen Seiten identisch) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Heerdter Brauhaus, zur Startseite">
+        <span class="logo-name">Heerdter Brauhaus</span>
+        <span class="logo-zusatz">Brauereiausschank</span>
+      </a>
+
+      <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="speisekarte.html" aria-current="page">Speisekarte</a></li>
+          <li><a href="feiern.html">Feiern &amp; Kegeln</a></li>
+          <li><a href="kontakt.html">Reservierung &amp; Anfahrt</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn--gold header-btn" href="tel:+492115047268" data-reservieren>Tisch reservieren</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg><span class="menu-toggle-label">Menü</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inhalt">
+
+    <!-- 1. Kurzer Kopf -->
+    <section class="seitenkopf">
+      <div class="container">
+        <h1>Speisekarte</h1>
+        <p>Rheinische Brauhausküche, Schnitzel, Fisch – und dazu ein frisches Uerige vom Fass.</p>
+      </div>
+    </section>
+
+    <!-- Sprungleiste: bleibt beim Scrollen oben, auf dem Handy seitlich wischbar -->
+    <nav class="sprungleiste" aria-label="Kategorien der Speisekarte">
+      <div class="container">
+        <ul>
+          <li><a href="#kleiner-hunger">Für den kleinen Hunger</a></li>
+          <li><a href="#schnitzel">Schnitzel</a></li>
+          <li><a href="#brauhauskueche">Brauhausküche</a></li>
+          <li><a href="#meer">Meer</a></li>
+          <li><a href="#kinder">Kinder</a></li>
+          <li><a href="#dessert">Dessert</a></li>
+          <li><a href="#getraenke">Getränke</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- 2. Wochenempfehlungen kompakt (später aus content/tagesangebot.json, nur wenn aktiv) -->
+    <section class="section section--hell" data-tagesangebot>
+      <div class="container">
+        <h2>Unsere Empfehlungen <span class="zeitraum">vom 23.11. bis 28.11.2026</span></h2>
+        <ul class="gerichte-liste gerichte-liste--kompakt">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Kibbeling </span><span class="preis">13,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Vegetarischer Nudelauflauf <svg class="icon icon--veg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19l8-8"/></svg><span class="sr-only">vegetarisch</span></span><span class="preis">11,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Yakitori-Spieße </span><span class="preis">14,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Schnitzel „Florentina“ </span><span class="preis">16,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Seelachsfilet </span><span class="preis">16,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Schweinefiletgeschnetzeltes </span><span class="preis">15,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Hausgemachte Mousse au Chocolat </span><span class="preis">5,50 €</span></div>
+            </li>
+            <li class="gericht gericht--highlight"><span class="highlight-label">Unsere Empfehlung</span>
+              <div class="gericht-kopf"><span class="gericht-name">Frische Muscheln „Rheinische Art“ </span><span class="preis">18,80 €</span></div>
+            </li>
+        </ul>
+        <p class="hinweis-text">Wir empfehlen unsere Wild- und Gänsekarte. Auch zum Mitnehmen.</p>
+      </div>
+    </section>
+
+    <!-- 3. Kategorien: kommen später komplett aus content/speisekarte.json -->
+    <div class="section">
+      <div class="container speisekarte" data-speisekarte>
+      <section class="kategorie" id="kleiner-hunger">
+        <h2>Für den kleinen Hunger</h2>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">120</span> Gulaschsuppe „nach Art des Hauses“</span><span class="preis">7,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">160</span> Gefüllte Champignonköpfe <svg class="icon icon--veg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19l8-8"/></svg><span class="sr-only">vegetarisch</span></span><span class="preis">9,50 €</span></div>
+              <p class="gericht-beschreibung">mit Spinat, dazu Knoblauchbaguette oder Toastbrot</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">150</span> Toast Hawaii<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>8</sup></span><span class="preis">10,80 €</span></div>
+              <p class="gericht-beschreibung">2 Toasts mit Salatbeilage</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">230</span> Kleiner gemischter Salat<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>1, 5</sup></span><span class="preis">4,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">200</span> Salatteller mit Putenstreifen</span><span class="preis">12,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">240</span> Salat mit Bratkartoffeln und 2 Spiegeleiern <svg class="icon icon--veg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19l8-8"/></svg><span class="sr-only">vegetarisch</span></span><span class="preis">12,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">250</span> Gnocchi in Käse-Kräuterrahm <svg class="icon icon--veg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19l8-8"/></svg><span class="sr-only">vegetarisch</span></span><span class="preis">9,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">260</span> Salatteller mit gebratenen Champignons <svg class="icon icon--veg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19l8-8"/></svg><span class="sr-only">vegetarisch</span></span><span class="preis">11,80 €</span></div>
+              <p class="gericht-beschreibung">mit Knoblauch und Kräutern</p>
+            </li>
+        </ul>
+      </section>
+      <section class="kategorie" id="schnitzel">
+        <h2>Schnitzelvielfalt</h2>
+        <p class="kategorie-hinweis">Wahlweise paniert oder natur, mit Pommes frites oder Bratkartoffeln, dazu ein gemischter Salat.</p>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">430</span> Schnitzel „Wiener Art“</span><span class="preis">15,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">440</span> Schnitzel „Jäger Art“</span><span class="preis">18,50 €</span></div>
+              <p class="gericht-beschreibung">mit Champignonrahmsauce</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">450</span> Schnitzel „Picanta“</span><span class="preis">18,50 €</span></div>
+              <p class="gericht-beschreibung">mit Paprikastreifen</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">460</span> Schnitzel „Toscana“<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>8</sup></span><span class="preis">18,80 €</span></div>
+              <p class="gericht-beschreibung">mit Tomaten und Käse überbacken</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">471</span> Cordon bleu</span><span class="preis">19,80 €</span></div>
+              <p class="gericht-beschreibung">gefüllt mit Käse und Schinken</p>
+            </li>
+        </ul>
+      </section>
+      <section class="kategorie" id="brauhauskueche">
+        <h2>Unsere Brauhausküche</h2>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">300</span> Leberkäse</span><span class="preis">12,80 €</span></div>
+              <p class="gericht-beschreibung">mit Bratkartoffeln, Spiegelei und Salat</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">310</span> Sülze</span><span class="preis">12,80 €</span></div>
+              <p class="gericht-beschreibung">mit Bratkartoffeln und Remoulade</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">320</span> Speckpfannekuchen</span><span class="preis">11,50 €</span></div>
+              <p class="gericht-beschreibung">mit Salat</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">330</span> Heringsstipp<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>8</sup></span><span class="preis">12,80 €</span></div>
+              <p class="gericht-beschreibung">mit Speckkartoffeln</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">350</span> Nürnberger Würstchen<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>5</sup></span><span class="preis">12,80 €</span></div>
+              <p class="gericht-beschreibung">mit Sauerkraut und Kartoffelpüree</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">360</span> „Brauhausteller“<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>1, 11</sup></span><span class="preis">18,80 €</span></div>
+              <p class="gericht-beschreibung">2 Sorten Fleisch, Nürnberger, grüne Bohnen im Speckmantel, Bratkartoffeln und BBQ-Sauce</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">370</span> „Heerdter Pfännchen“<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>5</sup></span><span class="preis">19,50 €</span></div>
+              <p class="gericht-beschreibung">Schweinefiletspitzen in Waldpilzrahm mit Spätzle und Salat</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">380</span> „Düsseldorfer Senfrostbraten“</span><span class="preis">26,80 €</span></div>
+              <p class="gericht-beschreibung">vom argentinischen Rumpsteak mit Röstitalern und gemischtem Gemüse</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">410</span> „Jägertoast“<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>8</sup></span><span class="preis">18,50 €</span></div>
+              <p class="gericht-beschreibung">Schweinefilet auf Toast mit Champignonrahm, mit Käse überbacken, Salatgarnitur</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">399</span> Schweinefiletmedaillons<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>8</sup></span><span class="preis">19,50 €</span></div>
+              <p class="gericht-beschreibung">mit Spinat und Käse überbacken, dazu Bratkartoffeln</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">420</span> Putengeschnetzeltes</span><span class="preis">13,50 €</span></div>
+              <p class="gericht-beschreibung">mit fruchtiger Currysauce und Bandnudeln</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">470</span> Rumpsteak</span><span class="preis">24,80 €</span></div>
+              <p class="gericht-beschreibung">mit Bratkartoffeln, grünen Bohnen und Kräuterbutter</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">473</span> Argentinisches Hüftsteak</span><span class="preis">21,80 €</span></div>
+              <p class="gericht-beschreibung">auf Pfefferrahm, dazu Potato-Wedges und Gurkensalat</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">472</span> Brauhaus-Haxe</span><span class="preis">18,50 €</span></div>
+              <p class="gericht-beschreibung">mit Röstkartoffeln und Krautsalat</p>
+            </li>
+        </ul>
+      </section>
+      <section class="kategorie" id="meer">
+        <h2>… und Meer</h2>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">490</span> Zanderfilet</span><span class="preis">19,90 €</span></div>
+              <p class="gericht-beschreibung">mit Kräuterrahm und Tomatenconcassée, dazu Salzkartoffeln</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">491</span> Seelachsfilet</span><span class="preis">18,80 €</span></div>
+              <p class="gericht-beschreibung">mit Spinatkruste auf Zitronenhollandaise und Petersilienkartoffeln</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">492</span> Pangasiusfilet</span><span class="preis">17,80 €</span></div>
+              <p class="gericht-beschreibung">auf Dillrahm, dazu hausgemachtes Kartoffelpüree und Gurkensalat</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">493</span> Lachssteak</span><span class="preis">22,80 €</span></div>
+              <p class="gericht-beschreibung">mit Weißweinsauce auf Bandnudeln</p>
+            </li>
+        </ul>
+      </section>
+      <section class="kategorie" id="kinder">
+        <h2>Kinderecke</h2>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">500</span> Chicken-Nuggets</span><span class="preis">8,50 €</span></div>
+              <p class="gericht-beschreibung">mit Pommes frites</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">520</span> Kleiner Pfannekuchen</span><span class="preis">7,50 €</span></div>
+              <p class="gericht-beschreibung">mit Schokoriegel</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">530</span> Portion Pommes frites</span><span class="preis">3,50 €</span></div>
+            </li>
+        </ul>
+      </section>
+      <section class="kategorie" id="dessert">
+        <h2>Dessert</h2>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">610</span> Vanilleeis</span><span class="preis">4,80 €</span></div>
+              <p class="gericht-beschreibung">mit Schokoladensauce</p>
+            </li>
+        </ul>
+      </section>
+      <section class="kategorie" id="getraenke">
+        <h2>Getränke</h2>
+        <h3>Bier</h3>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Original Uerige Alt vom Fass <span class="gericht-menge">0,25 l</span></span><span class="preis">2,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Warsteiner Pils <span class="gericht-menge">0,2 l</span></span><span class="preis">2,40 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Warsteiner Pils <span class="gericht-menge">0,4 l</span></span><span class="preis">4,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Warsteiner alkoholfrei <span class="gericht-menge">0,33 l Flasche</span></span><span class="preis">3,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">König Ludwig Weizen <span class="gericht-menge">0,5 l Flasche</span></span><span class="preis">4,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">König Ludwig Weizen alkoholfrei <span class="gericht-menge">0,5 l Flasche</span></span><span class="preis">4,80 €</span></div>
+            </li>
+        </ul>
+        <h3>Alkoholfreie Getränke</h3>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Malzbier <span class="gericht-menge">0,33 l Flasche</span></span><span class="preis">3,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Coca-Cola<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>1, 3, 11</sup></span><span class="preis">2,40 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Coca-Cola light<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>1, 3, 9, 12</sup></span><span class="preis">2,40 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Fanta oder Sprite<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>1, 3, 11</sup></span><span class="preis">2,40 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Mineralwasser „Stiftsquelle“ naturell oder sprudelnd <span class="gericht-menge">0,25 l Flasche</span></span><span class="preis">3,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Mineralwasser „Stiftsquelle“ naturell oder sprudelnd <span class="gericht-menge">0,7 l Flasche</span></span><span class="preis">6,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Tafelwasser</span><span class="preis">2,20 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Bitter Lemon<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>10</sup> <span class="gericht-menge">0,2 l Flasche</span></span><span class="preis">3,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Tonic Water<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>10</sup> <span class="gericht-menge">0,2 l Flasche</span></span><span class="preis">3,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Granini Orangensaft</span><span class="preis">3,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Granini Apfelsaft</span><span class="preis">3,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Lift Apfelschorle</span><span class="preis">2,20 €</span></div>
+            </li>
+        </ul>
+        <h3>Warme Getränke</h3>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Tasse Kaffee<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>9</sup></span><span class="preis">2,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Tasse Tee (schwarz, Pfefferminz oder Rooibos)</span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Cappuccino</span><span class="preis">3,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Espresso</span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Milchkaffee</span><span class="preis">3,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Latte macchiato</span><span class="preis">4,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Kakao</span><span class="preis">3,00 €</span></div>
+            </li>
+        </ul>
+        <h3>Offene Weine und Sekt</h3>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Soave <span class="gericht-menge">0,2 l</span></span><span class="preis">4,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Merlot <span class="gericht-menge">0,2 l</span></span><span class="preis">4,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Weinschorle <span class="gericht-menge">0,2 l</span></span><span class="preis">4,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Sekt Piccolo</span><span class="preis">4,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Sekt Flasche <span class="gericht-menge">0,7 l</span></span><span class="preis">24,50 €</span></div>
+            </li>
+        </ul>
+        <h3>Spirituosen <span class="kategorie-zusatz">(alle 2 cl, außer wo anders angegeben)</span></h3>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Korn 32 % <span class="gericht-menge">2 cl</span></span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Samtkragen mit orig. Boonekamp <span class="gericht-menge">2 cl</span></span><span class="preis">2,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Wodka <span class="gericht-menge">2 cl</span></span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Malteserkreuz <span class="gericht-menge">2 cl</span></span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Jubiläumsaquavit <span class="gericht-menge">2 cl</span></span><span class="preis">3,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Grappa <span class="gericht-menge">2 cl</span></span><span class="preis">3,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Ouzo <span class="gericht-menge">2 cl</span></span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Bacardi light Rum <span class="gericht-menge">2 cl</span></span><span class="preis">3,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Johnnie Walker Red Label <span class="gericht-menge">2 cl</span></span><span class="preis">4,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Jägermeister <span class="gericht-menge">2 cl</span></span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Fernet-Branca, Fernet Menta <span class="gericht-menge">2 cl</span></span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Ramazzotti <span class="gericht-menge">2 cl</span></span><span class="preis">3,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Original Killepitsch <span class="gericht-menge">2 cl</span></span><span class="preis">3,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Berentzen Waldfrucht <span class="gericht-menge">2 cl</span></span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Kleiner Feigling</span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Obstwasser <span class="gericht-menge">2 cl</span></span><span class="preis">3,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Mariacron <span class="gericht-menge">2 cl</span></span><span class="preis">2,50 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Baileys Irish Cream <span class="gericht-menge">2 cl</span></span><span class="preis">3,00 €</span></div>
+            </li>
+        </ul>
+        <h3>Longdrinks</h3>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Aperol Spritz</span><span class="preis">7,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Bacardi-Cola<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>1, 9, 11</sup></span><span class="preis">6,00 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Whiskey-Cola<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>1, 9, 11</sup></span><span class="preis">6,00 €</span></div>
+            </li>
+        </ul>
+      </section>
+
+        <!-- 4. Legende -->
+        <section class="legende" aria-labelledby="legende-titel">
+          <h2 id="legende-titel">Zusatzstoffe</h2>
+          <ul>
+          <li><sup class="kennz">1</sup> mit Farbstoffen</li>
+          <li><sup class="kennz">3</sup> mit Antioxidationsmittel</li>
+          <li><sup class="kennz">5</sup> mit Konservierungsstoff</li>
+          <li><sup class="kennz">7</sup> mit Geschmacksverstärker</li>
+          <li><sup class="kennz">8</sup> Phosphat</li>
+          <li><sup class="kennz">9</sup> coffeinhaltig</li>
+          <li><sup class="kennz">10</sup> chininhaltig</li>
+          <li><sup class="kennz">11</sup> mit Süßungsmittel</li>
+          <li><sup class="kennz">12</sup> Phenylalaninquelle</li>
+          <li><sup class="kennz">13</sup> Nitritpökelsalz</li>
+          </ul>
+          <p><svg class="icon icon--veg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19l8-8"/></svg> = vegetarisch</p>
+          <p>Fragen Sie uns gern nach Allergenen.</p>
+        </section>
+      </div>
+    </div>
+
+    <!-- 5. Abschluss -->
+    <section class="section abschluss">
+      <div class="container">
+        <h2>Tisch reservieren – wir freuen uns auf Sie</h2>
+        <p>Reservieren Sie einfach telefonisch.</p>
+        <div class="btn-row btn-row--center">
+          <a class="btn btn--gold" href="tel:+492115047268" data-reservieren>Tisch reservieren</a>
+          <a class="btn btn--hell" href="tel:+492115047268"><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>0211 5047268</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fußzeile (auf allen Seiten identisch) -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <p class="footer-logo">Heerdter Brauhaus<span>Brauereiausschank</span></p>
+        <address>
+          Nikolaus-Knopp-Platz 28<br>
+          40549 Düsseldorf-Heerdt<br>
+          Telefon: <a href="tel:+492115047268">0211 5047268</a><br>
+          E-Mail: <a href="mailto:kontakt@heerdter-brauhaus.de">kontakt@heerdter-brauhaus.de</a>
+        </address>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Öffnungszeiten</p>
+        <ul class="footer-zeiten">
+            <li><span>Montag</span><span>11:30–14:00</span></li>
+            <li><span>Dienstag – Samstag</span><span>11:30–14:00 und 16:30–23:00</span></li>
+            <li><span>Sonntag</span><span>Ruhetag</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Vom Fass</p>
+        <p>Uerige Alt und Warsteiner vom Fass</p>
+      </div>
+    </div>
+    <div class="container footer-unten">
+      <ul class="footer-links">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Fester Button unten (nur auf dem Handy) -->
+  <div class="mobil-leiste">
+    <a class="btn btn--gold" href="tel:+492115047268" data-reservieren>Tisch reservieren</a>
+    <a class="mobil-tel" href="tel:+492115047268" aria-label="Anrufen: 0211 5047268"><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+  </div>
+
+</body>
+</html>

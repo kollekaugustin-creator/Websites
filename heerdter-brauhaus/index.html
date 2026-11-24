@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heerdter Brauhaus – Uerige &amp; rheinische Küche in Düsseldorf-Heerdt</title>
+  <meta name="description" content="Brauereiausschank am Nikolaus-Knopp-Platz: Uerige vom Fass, Mittagstisch, Brauhausküche, Saal und Kegelbahn. Jetzt Tisch reservieren.">
+  <!-- Entwurf: Suchmaschinen sollen die Seite nicht aufnehmen -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preload" href="fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/menu.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+  <!-- Entwurfs-Leiste (auf allen Seiten) -->
+  <div class="entwurf-leiste">Entwurf – nicht die offizielle Website des Heerdter Brauhauses</div>
+
+  <!-- Hinweis-Zeile: kommt später aus content/einstellungen.json (hinweis_anzeigen, hinweis_text, hinweis_bis) -->
+  <div class="hinweis-zeile" data-hinweis hidden>
+    <p class="container" data-hinweis-text></p>
+  </div>
+
+  <!-- Kopfzeile (auf allen Seiten identisch) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Heerdter Brauhaus, zur Startseite">
+        <span class="logo-name">Heerdter Brauhaus</span>
+        <span class="logo-zusatz">Brauereiausschank</span>
+      </a>
+
+      <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
+        <ul>
+          <li><a href="index.html" aria-current="page">Start</a></li>
+          <li><a href="speisekarte.html">Speisekarte</a></li>
+          <li><a href="feiern.html">Feiern &amp; Kegeln</a></li>
+          <li><a href="kontakt.html">Reservierung &amp; Anfahrt</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn--gold header-btn" href="tel:+492115047268" data-reservieren>Tisch reservieren</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg><span class="menu-toggle-label">Menü</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inhalt">
+
+    <!-- 2. Hero: hier kommt später der Wow-Effekt hin (Altbierglas, das sich füllt) -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Heerdter Brauhaus</h1>
+          <p class="hero-sub">Uerige vom Fass und rheinische Küche – am Nikolaus-Knopp-Platz</p>
+          <div class="btn-row">
+            <a class="btn btn--gold" href="tel:+492115047268" data-reservieren>Tisch reservieren</a>
+            <a class="btn btn--hell" href="speisekarte.html">Speisekarte</a>
+          </div>
+          <!-- Status „Heute geöffnet · …“ wird später aus einstellungen.json berechnet -->
+          <p class="hero-status" data-status>Mo 11:30–14:00 · Di–Sa 11:30–14:00 und 16:30–23:00 · So Ruhetag</p>
+        </div>
+        <!-- Platz für den Wow-Effekt; dieses Bild ist der Ersatz, falls er nicht lädt -->
+        <div class="hero-buehne" data-wow>
+          <div class="bild-platzhalter bild-platzhalter--dunkel" role="img" aria-label="Frisch gezapftes Altbier auf einem Holztisch im Brauhaus"><span>Frisch gezapftes Altbier auf einem Holztisch im Brauhaus</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Wochenempfehlungen: kommen später aus content/tagesangebot.json -->
+    <section class="section" id="empfehlungen" data-tagesangebot>
+      <div class="container">
+        <p class="kicker">Mittagstisch &amp; mehr</p>
+        <h2>Unsere Empfehlungen <span class="zeitraum">vom 23.11. bis 28.11.2026</span></h2>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Kibbeling </span><span class="preis">13,80 €</span></div>
+              <p class="gericht-beschreibung">mit Pommes frites und hausgemachter Remoulade</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Vegetarischer Nudelauflauf <svg class="icon icon--veg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19l8-8"/></svg><span class="sr-only">vegetarisch</span></span><span class="preis">11,80 €</span></div>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Yakitori-Spieße </span><span class="preis">14,80 €</span></div>
+              <p class="gericht-beschreibung">auf buntem Salatbett</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Schnitzel „Florentina“ </span><span class="preis">16,80 €</span></div>
+              <p class="gericht-beschreibung">mit Spinat und Käse überbacken, dazu Bratkartoffeln und Salat</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Seelachsfilet </span><span class="preis">16,80 €</span></div>
+              <p class="gericht-beschreibung">an leichter Weißweinsauce, dazu Petersilienkartoffeln und Gurkensalat</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Schweinefiletgeschnetzeltes </span><span class="preis">15,80 €</span></div>
+              <p class="gericht-beschreibung">an Champignonrahm, dazu Butter-Spätzle</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name">Hausgemachte Mousse au Chocolat </span><span class="preis">5,50 €</span></div>
+              <p class="gericht-beschreibung">an Vanillesauce</p>
+            </li>
+            <li class="gericht gericht--highlight"><span class="highlight-label">Unsere Empfehlung</span>
+              <div class="gericht-kopf"><span class="gericht-name">Frische Muscheln „Rheinische Art“ </span><span class="preis">18,80 €</span></div>
+              <p class="gericht-beschreibung">mit Schwarzbrot und Butter</p>
+            </li>
+        </ul>
+        <p class="hinweis-text">Wir empfehlen unsere Wild- und Gänsekarte.</p>
+        <p class="mitnahme">Auch zum Mitnehmen</p>
+      </div>
+    </section>
+
+    <!-- 4. Drei Kacheln -->
+    <section class="section section--hell">
+      <div class="container">
+        <h2 class="sr-only">Unser Angebot</h2>
+        <ul class="kacheln">
+          <li class="kachel">
+            <div class="bild-platzhalter " role="img" aria-label="Schnitzel mit Bratkartoffeln und Salat"><span>Schnitzel mit Bratkartoffeln und Salat</span></div>
+            <h3><a href="speisekarte.html">Speisekarte</a></h3>
+            <p>Schnitzel, Haxe, Fisch und Brauhausklassiker.</p>
+          </li>
+          <li class="kachel">
+            <div class="bild-platzhalter " role="img" aria-label="Festlich gedeckte lange Tafel im Saal"><span>Festlich gedeckte lange Tafel im Saal</span></div>
+            <h3><a href="feiern.html">Feiern &amp; Kegeln</a></h3>
+            <p>Saal für bis zu 60 Personen und eigene Kegelbahn.</p>
+          </li>
+          <li class="kachel">
+            <div class="bild-platzhalter " role="img" aria-label="Buffet mit warmen Speisen und Salaten"><span>Buffet mit warmen Speisen und Salaten</span></div>
+            <h3><a href="feiern.html#catering">Catering</a></h3>
+            <p>Kalte Platten, warme Speisen und Buffets für Ihre Feier.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. Kurz über uns -->
+    <section class="section">
+      <div class="container zwei-spalten">
+        <div>
+          <p class="kicker">Über uns</p>
+          <h2>Ein echter Brauereiausschank in Heerdt</h2>
+          <p>Bei uns gibt es Uerige vom Fass – das Alt der bekannten Altstadt-Hausbrauerei, ohne dass Sie in die Altstadt fahren müssen.</p>
+          <p>Ihre Gastgeber sind Wolfgang Kümper und Nadja Maeschig-Kümper. Der Wirt bedient selbst und nimmt sich Zeit für seine Gäste.</p>
+          <div class="bild-platzhalter bild-platzhalter--klein" role="img" aria-label="Foto folgt: Gastgeber Wolfgang Kümper und Nadja Maeschig-Kümper"><span>Foto folgt: Gastgeber Wolfgang Kümper und Nadja Maeschig-Kümper</span></div>
+        </div>
+        <div class="bild-platzhalter " role="img" aria-label="Gastraum mit Holzvertäfelung und langer Theke"><span>Gastraum mit Holzvertäfelung und langer Theke</span></div>
+      </div>
+    </section>
+
+    <!-- 6. Ausschnitt Speisekarte: drei Klassiker -->
+    <section class="section section--hell">
+      <div class="container">
+        <p class="kicker">Aus unserer Küche</p>
+        <h2>Drei Klassiker</h2>
+        <ul class="gerichte-liste">
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">370</span> „Heerdter Pfännchen“<sup class="kennz"><span class="sr-only">Zusatzstoffe </span>5</sup></span><span class="preis">19,50 €</span></div>
+              <p class="gericht-beschreibung">Schweinefiletspitzen in Waldpilzrahm mit Spätzle und Salat</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">472</span> Brauhaus-Haxe</span><span class="preis">18,50 €</span></div>
+              <p class="gericht-beschreibung">mit Röstkartoffeln und Krautsalat</p>
+            </li>
+            <li class="gericht">
+              <div class="gericht-kopf"><span class="gericht-name"><span class="gericht-nr">430</span> Schnitzel „Wiener Art“</span><span class="preis">15,80 €</span></div>
+            </li>
+        </ul>
+        <p><a class="link-pfeil" href="speisekarte.html">Zur ganzen Speisekarte</a></p>
+      </div>
+    </section>
+
+    <!-- 7. Abschluss -->
+    <section class="section abschluss">
+      <div class="container">
+        <h2>Tisch reservieren – wir freuen uns auf Sie</h2>
+        <p>Reservieren Sie einfach telefonisch.</p>
+        <div class="btn-row btn-row--center">
+          <a class="btn btn--gold" href="tel:+492115047268" data-reservieren>Tisch reservieren</a>
+          <a class="btn btn--hell" href="tel:+492115047268"><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>0211 5047268</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fußzeile (auf allen Seiten identisch) -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <p class="footer-logo">Heerdter Brauhaus<span>Brauereiausschank</span></p>
+        <address>
+          Nikolaus-Knopp-Platz 28<br>
+          40549 Düsseldorf-Heerdt<br>
+          Telefon: <a href="tel:+492115047268">0211 5047268</a><br>
+          E-Mail: <a href="mailto:kontakt@heerdter-brauhaus.de">kontakt@heerdter-brauhaus.de</a>
+        </address>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Öffnungszeiten</p>
+        <ul class="footer-zeiten">
+            <li><span>Montag</span><span>11:30–14:00</span></li>
+            <li><span>Dienstag – Samstag</span><span>11:30–14:00 und 16:30–23:00</span></li>
+            <li><span>Sonntag</span><span>Ruhetag</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Vom Fass</p>
+        <p>Uerige Alt und Warsteiner vom Fass</p>
+      </div>
+    </div>
+    <div class="container footer-unten">
+      <ul class="footer-links">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Fester Button unten (nur auf dem Handy) -->
+  <div class="mobil-leiste">
+    <a class="btn btn--gold" href="tel:+492115047268" data-reservieren>Tisch reservieren</a>
+    <a class="mobil-tel" href="tel:+492115047268" aria-label="Anrufen: 0211 5047268"><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+  </div>
+
+</body>
+</html>

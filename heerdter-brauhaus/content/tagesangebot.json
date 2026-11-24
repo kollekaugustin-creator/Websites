@@ -1,0 +1,66 @@
+{
+  "anzeigen": true,
+  "ueberschrift": "Unsere Empfehlungen",
+  "gueltig_ab": "2026-11-23",
+  "gueltig_bis": "2026-11-28",
+  "gerichte": [
+    {
+      "name": "Kibbeling",
+      "beschreibung": "mit Pommes frites und hausgemachter Remoulade",
+      "preis": 13.8,
+      "vegetarisch": false,
+      "highlight": false
+    },
+    {
+      "name": "Vegetarischer Nudelauflauf",
+      "beschreibung": "",
+      "preis": 11.8,
+      "vegetarisch": true,
+      "highlight": false
+    },
+    {
+      "name": "Yakitori-Spieße",
+      "beschreibung": "auf buntem Salatbett",
+      "preis": 14.8,
+      "vegetarisch": false,
+      "highlight": false
+    },
+    {
+      "name": "Schnitzel „Florentina“",
+      "beschreibung": "mit Spinat und Käse überbacken, dazu Bratkartoffeln und Salat",
+      "preis": 16.8,
+      "vegetarisch": false,
+      "highlight": false
+    },
+    {
+      "name": "Seelachsfilet",
+      "beschreibung": "an leichter Weißweinsauce, dazu Petersilienkartoffeln und Gurkensalat",
+      "preis": 16.8,
+      "vegetarisch": false,
+      "highlight": false
+    },
+    {
+      "name": "Schweinefiletgeschnetzeltes",
+      "beschreibung": "an Champignonrahm, dazu Butter-Spätzle",
+      "preis": 15.8,
+      "vegetarisch": false,
+      "highlight": false
+    },
+    {
+      "name": "Hausgemachte Mousse au Chocolat",
+      "beschreibung": "an Vanillesauce",
+      "preis": 5.5,
+      "vegetarisch": false,
+      "highlight": false
+    },
+    {
+      "name": "Frische Muscheln „Rheinische Art“",
+      "beschreibung": "mit Schwarzbrot und Butter",
+      "preis": 18.8,
+      "vegetarisch": false,
+      "highlight": true
+    }
+  ],
+  "zusatzhinweis": "Wir empfehlen unsere Wild- und Gänsekarte.",
+  "mitnahme_hinweis": true
+}
