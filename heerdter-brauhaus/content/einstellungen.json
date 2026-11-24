@@ -1,0 +1,70 @@
+{
+  "oeffnungszeiten": [
+    {
+      "tag": "Montag",
+      "geschlossen": false,
+      "mittags_von": "11:30",
+      "mittags_bis": "14:00",
+      "abends_von": "",
+      "abends_bis": ""
+    },
+    {
+      "tag": "Dienstag",
+      "geschlossen": false,
+      "mittags_von": "11:30",
+      "mittags_bis": "14:00",
+      "abends_von": "16:30",
+      "abends_bis": "23:00"
+    },
+    {
+      "tag": "Mittwoch",
+      "geschlossen": false,
+      "mittags_von": "11:30",
+      "mittags_bis": "14:00",
+      "abends_von": "16:30",
+      "abends_bis": "23:00"
+    },
+    {
+      "tag": "Donnerstag",
+      "geschlossen": false,
+      "mittags_von": "11:30",
+      "mittags_bis": "14:00",
+      "abends_von": "16:30",
+      "abends_bis": "23:00"
+    },
+    {
+      "tag": "Freitag",
+      "geschlossen": false,
+      "mittags_von": "11:30",
+      "mittags_bis": "14:00",
+      "abends_von": "16:30",
+      "abends_bis": "23:00"
+    },
+    {
+      "tag": "Samstag",
+      "geschlossen": false,
+      "mittags_von": "11:30",
+      "mittags_bis": "14:00",
+      "abends_von": "16:30",
+      "abends_bis": "23:00"
+    },
+    {
+      "tag": "Sonntag",
+      "geschlossen": true,
+      "mittags_von": "",
+      "mittags_bis": "",
+      "abends_von": "",
+      "abends_bis": ""
+    }
+  ],
+  "kuechenzeiten": "",
+  "telefon": "0211 5047268",
+  "telefon_link": "+492115047268",
+  "email": "kontakt@heerdter-brauhaus.de",
+  "reservierung_ueber": "telefon",
+  "reservierungs_link": "",
+  "button_text": "Tisch reservieren",
+  "hinweis_anzeigen": false,
+  "hinweis_text": "",
+  "hinweis_bis": ""
+}

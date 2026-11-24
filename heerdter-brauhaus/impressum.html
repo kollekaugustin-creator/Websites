@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum – Heerdter Brauhaus</title>
+  <meta name="description" content="Impressum des Heerdter Brauhauses, Nikolaus-Knopp-Platz 28, 40549 Düsseldorf-Heerdt.">
+  <!-- Entwurf: Suchmaschinen sollen die Seite nicht aufnehmen -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preload" href="fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/menu.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+  <!-- Entwurfs-Leiste (auf allen Seiten) -->
+  <div class="entwurf-leiste">Entwurf – nicht die offizielle Website des Heerdter Brauhauses</div>
+
+  <!-- Hinweis-Zeile: kommt später aus content/einstellungen.json (hinweis_anzeigen, hinweis_text, hinweis_bis) -->
+  <div class="hinweis-zeile" data-hinweis hidden>
+    <p class="container" data-hinweis-text></p>
+  </div>
+
+  <!-- Kopfzeile (auf allen Seiten identisch) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Heerdter Brauhaus, zur Startseite">
+        <span class="logo-name">Heerdter Brauhaus</span>
+        <span class="logo-zusatz">Brauereiausschank</span>
+      </a>
+
+      <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="speisekarte.html">Speisekarte</a></li>
+          <li><a href="feiern.html">Feiern &amp; Kegeln</a></li>
+          <li><a href="kontakt.html">Reservierung &amp; Anfahrt</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn--gold header-btn" href="tel:+492115047268" data-reservieren>Tisch reservieren</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg><span class="menu-toggle-label">Menü</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inhalt">
+
+    <section class="section">
+      <div class="container schmal rechtliches">
+        <h1>Impressum</h1>
+        <p class="platzhalter-text">Platzhalter: Das vollständige Impressum folgt und wird rechtlich geprüft.</p>
+        <h2>Angaben gemäß § 5 DDG</h2>
+        <p>Heerdter Brauhaus – Brauereiausschank<br>Nikolaus-Knopp-Platz 28<br>40549 Düsseldorf</p>
+        <h2>Vertreten durch</h2>
+        <p>Angabe folgt</p>
+        <h2>Kontakt</h2>
+        <p>Telefon: <a href="tel:+492115047268">0211 5047268</a><br>E-Mail: <a href="mailto:kontakt@heerdter-brauhaus.de">kontakt@heerdter-brauhaus.de</a></p>
+        <h2>Umsatzsteuer-ID</h2>
+        <p>Angabe folgt</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fußzeile (auf allen Seiten identisch) -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <p class="footer-logo">Heerdter Brauhaus<span>Brauereiausschank</span></p>
+        <address>
+          Nikolaus-Knopp-Platz 28<br>
+          40549 Düsseldorf-Heerdt<br>
+          Telefon: <a href="tel:+492115047268">0211 5047268</a><br>
+          E-Mail: <a href="mailto:kontakt@heerdter-brauhaus.de">kontakt@heerdter-brauhaus.de</a>
+        </address>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Öffnungszeiten</p>
+        <ul class="footer-zeiten">
+            <li><span>Montag</span><span>11:30–14:00</span></li>
+            <li><span>Dienstag – Samstag</span><span>11:30–14:00 und 16:30–23:00</span></li>
+            <li><span>Sonntag</span><span>Ruhetag</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Vom Fass</p>
+        <p>Uerige Alt und Warsteiner vom Fass</p>
+      </div>
+    </div>
+    <div class="container footer-unten">
+      <ul class="footer-links">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Fester Button unten (nur auf dem Handy) -->
+  <div class="mobil-leiste">
+    <a class="btn btn--gold" href="tel:+492115047268" data-reservieren>Tisch reservieren</a>
+    <a class="mobil-tel" href="tel:+492115047268" aria-label="Anrufen: 0211 5047268"><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+  </div>
+
+</body>
+</html>

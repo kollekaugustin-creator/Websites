@@ -1,0 +1,1144 @@
+{
+  "kategorien": [
+    {
+      "name": "Für den kleinen Hunger",
+      "bereich": "speisen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "120",
+          "name": "Gulaschsuppe „nach Art des Hauses“",
+          "beschreibung": "",
+          "preis": 7.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "160",
+          "name": "Gefüllte Champignonköpfe",
+          "beschreibung": "mit Spinat, dazu Knoblauchbaguette oder Toastbrot",
+          "preis": 9.5,
+          "vegetarisch": true,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "150",
+          "name": "Toast Hawaii",
+          "beschreibung": "2 Toasts mit Salatbeilage",
+          "preis": 10.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "8"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "230",
+          "name": "Kleiner gemischter Salat",
+          "beschreibung": "",
+          "preis": 4.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "1",
+            "5"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "200",
+          "name": "Salatteller mit Putenstreifen",
+          "beschreibung": "",
+          "preis": 12.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "240",
+          "name": "Salat mit Bratkartoffeln und 2 Spiegeleiern",
+          "beschreibung": "",
+          "preis": 12.8,
+          "vegetarisch": true,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "250",
+          "name": "Gnocchi in Käse-Kräuterrahm",
+          "beschreibung": "",
+          "preis": 9.8,
+          "vegetarisch": true,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "260",
+          "name": "Salatteller mit gebratenen Champignons",
+          "beschreibung": "mit Knoblauch und Kräutern",
+          "preis": 11.8,
+          "vegetarisch": true,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Schnitzelvielfalt",
+      "bereich": "speisen",
+      "hinweis": "Wahlweise paniert oder natur, mit Pommes frites oder Bratkartoffeln, dazu ein gemischter Salat.",
+      "gerichte": [
+        {
+          "nummer": "430",
+          "name": "Schnitzel „Wiener Art“",
+          "beschreibung": "",
+          "preis": 15.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "440",
+          "name": "Schnitzel „Jäger Art“",
+          "beschreibung": "mit Champignonrahmsauce",
+          "preis": 18.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "450",
+          "name": "Schnitzel „Picanta“",
+          "beschreibung": "mit Paprikastreifen",
+          "preis": 18.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "460",
+          "name": "Schnitzel „Toscana“",
+          "beschreibung": "mit Tomaten und Käse überbacken",
+          "preis": 18.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "8"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "471",
+          "name": "Cordon bleu",
+          "beschreibung": "gefüllt mit Käse und Schinken",
+          "preis": 19.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Unsere Brauhausküche",
+      "bereich": "speisen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "300",
+          "name": "Leberkäse",
+          "beschreibung": "mit Bratkartoffeln, Spiegelei und Salat",
+          "preis": 12.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "310",
+          "name": "Sülze",
+          "beschreibung": "mit Bratkartoffeln und Remoulade",
+          "preis": 12.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "320",
+          "name": "Speckpfannekuchen",
+          "beschreibung": "mit Salat",
+          "preis": 11.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "330",
+          "name": "Heringsstipp",
+          "beschreibung": "mit Speckkartoffeln",
+          "preis": 12.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "8"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "350",
+          "name": "Nürnberger Würstchen",
+          "beschreibung": "mit Sauerkraut und Kartoffelpüree",
+          "preis": 12.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "5"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "360",
+          "name": "„Brauhausteller“",
+          "beschreibung": "2 Sorten Fleisch, Nürnberger, grüne Bohnen im Speckmantel, Bratkartoffeln und BBQ-Sauce",
+          "preis": 18.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "1",
+            "11"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "370",
+          "name": "„Heerdter Pfännchen“",
+          "beschreibung": "Schweinefiletspitzen in Waldpilzrahm mit Spätzle und Salat",
+          "preis": 19.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "5"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "380",
+          "name": "„Düsseldorfer Senfrostbraten“",
+          "beschreibung": "vom argentinischen Rumpsteak mit Röstitalern und gemischtem Gemüse",
+          "preis": 26.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "410",
+          "name": "„Jägertoast“",
+          "beschreibung": "Schweinefilet auf Toast mit Champignonrahm, mit Käse überbacken, Salatgarnitur",
+          "preis": 18.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "8"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "399",
+          "name": "Schweinefiletmedaillons",
+          "beschreibung": "mit Spinat und Käse überbacken, dazu Bratkartoffeln",
+          "preis": 19.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "8"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "420",
+          "name": "Putengeschnetzeltes",
+          "beschreibung": "mit fruchtiger Currysauce und Bandnudeln",
+          "preis": 13.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "470",
+          "name": "Rumpsteak",
+          "beschreibung": "mit Bratkartoffeln, grünen Bohnen und Kräuterbutter",
+          "preis": 24.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "473",
+          "name": "Argentinisches Hüftsteak",
+          "beschreibung": "auf Pfefferrahm, dazu Potato-Wedges und Gurkensalat",
+          "preis": 21.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "472",
+          "name": "Brauhaus-Haxe",
+          "beschreibung": "mit Röstkartoffeln und Krautsalat",
+          "preis": 18.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "… und Meer",
+      "bereich": "speisen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "490",
+          "name": "Zanderfilet",
+          "beschreibung": "mit Kräuterrahm und Tomatenconcassée, dazu Salzkartoffeln",
+          "preis": 19.9,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "491",
+          "name": "Seelachsfilet",
+          "beschreibung": "mit Spinatkruste auf Zitronenhollandaise und Petersilienkartoffeln",
+          "preis": 18.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "492",
+          "name": "Pangasiusfilet",
+          "beschreibung": "auf Dillrahm, dazu hausgemachtes Kartoffelpüree und Gurkensalat",
+          "preis": 17.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "493",
+          "name": "Lachssteak",
+          "beschreibung": "mit Weißweinsauce auf Bandnudeln",
+          "preis": 22.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Kinderecke",
+      "bereich": "speisen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "500",
+          "name": "Chicken-Nuggets",
+          "beschreibung": "mit Pommes frites",
+          "preis": 8.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "520",
+          "name": "Kleiner Pfannekuchen",
+          "beschreibung": "mit Schokoriegel",
+          "preis": 7.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "530",
+          "name": "Portion Pommes frites",
+          "beschreibung": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Dessert",
+      "bereich": "speisen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "610",
+          "name": "Vanilleeis",
+          "beschreibung": "mit Schokoladensauce",
+          "preis": 4.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Bier",
+      "bereich": "getraenke",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "",
+          "name": "Original Uerige Alt vom Fass",
+          "beschreibung": "",
+          "menge": "0,25 l",
+          "preis": 2.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Warsteiner Pils",
+          "beschreibung": "",
+          "menge": "0,2 l",
+          "preis": 2.4,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Warsteiner Pils",
+          "beschreibung": "",
+          "menge": "0,4 l",
+          "preis": 4.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Warsteiner alkoholfrei",
+          "beschreibung": "",
+          "menge": "0,33 l Flasche",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "König Ludwig Weizen",
+          "beschreibung": "",
+          "menge": "0,5 l Flasche",
+          "preis": 4.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "König Ludwig Weizen alkoholfrei",
+          "beschreibung": "",
+          "menge": "0,5 l Flasche",
+          "preis": 4.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Alkoholfreie Getränke",
+      "bereich": "getraenke",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "",
+          "name": "Malzbier",
+          "beschreibung": "",
+          "menge": "0,33 l Flasche",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Coca-Cola",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 2.4,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "1",
+            "3",
+            "11"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Coca-Cola light",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 2.4,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "1",
+            "3",
+            "9",
+            "12"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Fanta oder Sprite",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 2.4,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "1",
+            "3",
+            "11"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Mineralwasser „Stiftsquelle“ naturell oder sprudelnd",
+          "beschreibung": "",
+          "menge": "0,25 l Flasche",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Mineralwasser „Stiftsquelle“ naturell oder sprudelnd",
+          "beschreibung": "",
+          "menge": "0,7 l Flasche",
+          "preis": 6.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Tafelwasser",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 2.2,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Bitter Lemon",
+          "beschreibung": "",
+          "menge": "0,2 l Flasche",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "10"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Tonic Water",
+          "beschreibung": "",
+          "menge": "0,2 l Flasche",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "10"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Granini Orangensaft",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Granini Apfelsaft",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Lift Apfelschorle",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 2.2,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Warme Getränke",
+      "bereich": "getraenke",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "",
+          "name": "Tasse Kaffee",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 2.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "9"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Tasse Tee (schwarz, Pfefferminz oder Rooibos)",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Cappuccino",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Espresso",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Milchkaffee",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Latte macchiato",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 4.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Kakao",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Offene Weine und Sekt",
+      "bereich": "getraenke",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "",
+          "name": "Soave",
+          "beschreibung": "",
+          "menge": "0,2 l",
+          "preis": 4.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Merlot",
+          "beschreibung": "",
+          "menge": "0,2 l",
+          "preis": 4.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Weinschorle",
+          "beschreibung": "",
+          "menge": "0,2 l",
+          "preis": 4.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Sekt Piccolo",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 4.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Sekt Flasche",
+          "beschreibung": "",
+          "menge": "0,7 l",
+          "preis": 24.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Spirituosen",
+      "bereich": "getraenke",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "",
+          "name": "Korn 32 %",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Samtkragen mit orig. Boonekamp",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 2.8,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Wodka",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Malteserkreuz",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Jubiläumsaquavit",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Grappa",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Ouzo",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Bacardi light Rum",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Johnnie Walker Red Label",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 4.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Jägermeister",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Fernet-Branca, Fernet Menta",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Ramazzotti",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 3.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Original Killepitsch",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Berentzen Waldfrucht",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Kleiner Feigling",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Obstwasser",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Mariacron",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 2.5,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Baileys Irish Cream",
+          "beschreibung": "",
+          "menge": "2 cl",
+          "preis": 3.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    },
+    {
+      "name": "Longdrinks",
+      "bereich": "getraenke",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "nummer": "",
+          "name": "Aperol Spritz",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 7.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Bacardi-Cola",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 6.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "1",
+            "9",
+            "11"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        },
+        {
+          "nummer": "",
+          "name": "Whiskey-Cola",
+          "beschreibung": "",
+          "menge": "",
+          "preis": 6.0,
+          "vegetarisch": false,
+          "vegan": false,
+          "zusatzstoffe": [
+            "1",
+            "9",
+            "11"
+          ],
+          "allergene": [],
+          "anzeigen": true
+        }
+      ]
+    }
+  ],
+  "legende_zusatzstoffe": {
+    "1": "mit Farbstoffen",
+    "3": "mit Antioxidationsmittel",
+    "5": "mit Konservierungsstoff",
+    "7": "mit Geschmacksverstärker",
+    "8": "Phosphat",
+    "9": "coffeinhaltig",
+    "10": "chininhaltig",
+    "11": "mit Süßungsmittel",
+    "12": "Phenylalaninquelle",
+    "13": "Nitritpökelsalz"
+  }
+}
