@@ -1,0 +1,9 @@
+three.js (Version 0.187.0, MIT-Lizenz, siehe LICENSE-three.txt)
+=================================================================
+three-glas.min.js ist eine verkleinerte three.js-Datei, die nur die Teile
+enthält, die das 3D-Glas auf der Startseite braucht (plus RoomEnvironment
+aus den three.js-Addons). Sie liegt lokal hier, es wird kein CDN genutzt.
+
+So wurde sie einmalig erzeugt (nur nötig, wenn man three.js aktualisiert):
+  npm i three@0.187.0 esbuild
+  npx esbuild three-glas-eintrag.js --bundle --format=esm --minify --legal-comments=eof --outfile=three-glas.min.js
