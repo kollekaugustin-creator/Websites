@@ -1,15 +1,43 @@
-Fremde Bibliotheken für die Wow-Effekte (lokal, kein CDN)
-=========================================================
+Fremde Bibliotheken und Werkzeuge für die Wow-Effekte (lokal, kein CDN)
+=======================================================================
 
 three-glas.min.js – three.js 0.187.0 (MIT-Lizenz, siehe LICENSE-three.txt)
-  Verkleinerte Datei mit genau den Teilen, die das 3D-Glas (Startseite)
-  und die 3D-Kegelbahn (Feiern & Kegeln) brauchen, plus RoomEnvironment.
+  Verkleinerte Datei mit genau den Teilen, die die 3D-Kegelbahn
+  (Feiern & Kegeln) braucht, inklusive RoomEnvironment und Bildeffekten
+  (EffectComposer, RenderPass, GTAOPass = Ambient Occlusion,
+  BokehPass = Tiefenschärfe, UnrealBloomPass = Glanz, OutputPass).
   Welche Teile das sind, steht in three-glas-eintrag.js.
+  Der Name stammt noch vom früheren 3D-Bierglas der Startseite.
 
 cannon-es.min.js – cannon-es 0.20.0 (MIT-Lizenz, siehe LICENSE-cannon-es.txt)
-  Physik-Engine für die fallenden Kegel.
+  Physik-Engine. Wird NICHT auf der Webseite geladen, sondern nur vom
+  Aufnahme-Werkzeug unten benutzt.
 
 So wurden die Dateien einmalig erzeugt (nur nötig beim Aktualisieren):
   npm i three@0.187.0 cannon-es@0.20.0 esbuild
   npx esbuild three-glas-eintrag.js --bundle --format=esm --minify --legal-comments=eof --outfile=three-glas.min.js
   npx esbuild node_modules/cannon-es/dist/cannon-es.js --format=esm --minify --legal-comments=eof --outfile=cannon-es.min.js
+
+
+Wurf aufnehmen: kegel-wurf-aufnehmen.mjs
+----------------------------------------
+Die Kegelbahn spielt einen fest aufgenommenen Wurf ab (js/kegel-wurf.json).
+Dieses Node-Skript erzeugt die Aufnahme:
+
+  1. Es simuliert mit cannon-es sehr fein (300 Rechenschritte pro Sekunde)
+     viele Würfe mit verschiedenen Treffpunkten, Winkeln und Tempi.
+     Maße und Gewichte des deutschen Kegelns (Classic) stehen oben im Skript
+     mit Quellenangabe: Kugel 16 cm / 2,85 kg, Kegel 40 cm (König 43 cm) /
+     1,7 kg, Raute mit 1 m Seitenlänge (50 cm Kegelabstand).
+  2. Von allen Würfen, bei denen alle Neune fallen, wählt es den
+     spektakulärsten (Kegel prallen an die Banden, fliegen hoch, einer
+     kullert nach; alles liegt nach spätestens ca. 2,4 s).
+  3. Es speichert diesen Wurf mit 60 Bildern pro Sekunde als js/kegel-wurf.json.
+
+Aufruf (im Ordner heerdter-brauhaus, Node.js 18 oder neuer):
+  node js/vendor/kegel-wurf-aufnehmen.mjs                    (sucht 10 Minuten)
+  node js/vendor/kegel-wurf-aufnehmen.mjs --sekunden=1800    (länger suchen)
+  node js/vendor/kegel-wurf-aufnehmen.mjs --variante='{…}'   (genau diese Variante aufnehmen)
+
+Die verwendete Variante steht in js/kegel-wurf.json unter "variante" –
+damit lässt sich die Aufnahme jederzeit exakt wiederholen.
