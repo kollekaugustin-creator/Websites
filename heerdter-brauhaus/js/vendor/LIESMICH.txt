@@ -2,8 +2,9 @@ Fremde Bibliotheken für die Wow-Effekte (lokal, kein CDN)
 =========================================================
 
 three-glas.min.js – three.js 0.187.0 (MIT-Lizenz, siehe LICENSE-three.txt)
-  Verkleinerte Datei mit genau den Teilen, die das 3D-Glas (Startseite)
-  und die 3D-Kegelbahn (Feiern & Kegeln) brauchen, plus RoomEnvironment.
+  Verkleinerte Datei mit genau den Teilen, die die 3D-Kegelbahn
+  (Feiern & Kegeln) braucht, plus RoomEnvironment. Der Name stammt noch vom
+  früheren 3D-Bierglas der Startseite (inzwischen durch ein Video ersetzt).
   Welche Teile das sind, steht in three-glas-eintrag.js.
 
 cannon-es.min.js – cannon-es 0.20.0 (MIT-Lizenz, siehe LICENSE-cannon-es.txt)
