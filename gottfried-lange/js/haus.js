@@ -92,6 +92,33 @@
   }
   function poly(id) { return svg.querySelector('.raum[data-raum="' + id + '"]'); }
 
+  /* ---------- Durchsicht: Das Haus ist massiv, nur das Stockwerk des gezeigten Raums
+     wechselt in den Bauplan-Look (Vorlage #haus-bauplan), Übergang 0,6 s ---------- */
+  var vorlage = document.getElementById("haus-bauplan");
+  var STOCKWERK = { keller: "keller", wohnzimmer: "eg", kueche: "eg", bad: "og", dach: "dach" };
+  var durch = null;
+  function basis(s) { return s === "dach" ? svg.querySelector(".dach:not(.durchsicht)") : svg.querySelector('.stock[data-stock="' + s + '"]:not(.durchsicht)'); }
+  function durchsicht(id) {
+    var s = id && vorlage ? STOCKWERK[id] : null;
+    if (s === durch) return;
+    if (durch) {
+      basis(durch).classList.remove("ist-durchsicht");
+      $$(".durchsicht", svg).forEach(function (k) {
+        k.classList.remove("sichtbar");
+        setTimeout(function () { k.remove(); }, ruhig() ? 0 : 650);
+      });
+    }
+    durch = s;
+    if (!s) return;
+    var b = basis(s), kopie = document.importNode(vorlage.content.querySelector('[data-bp="' + s + '"]'), true);
+    kopie.removeAttribute("data-bp");
+    kopie.classList.add("durchsicht");
+    b.parentNode.insertBefore(kopie, b.nextSibling);
+    b.classList.add("ist-durchsicht");
+    if (ruhig()) kopie.classList.add("sichtbar");
+    else requestAnimationFrame(function () { requestAnimationFrame(function () { kopie.classList.add("sichtbar"); }); });
+  }
+
   function zoomAuf(id) {
     if (ruhig() || !id) { zoomEl.style.transform = ""; return; }
     var ziel = svg.querySelector('.zoom-ziel[data-raum="' + id + '"]') || poly(id);
@@ -114,6 +141,7 @@
       r.setAttribute("aria-expanded", r.getAttribute("data-raum") === id ? "true" : "false");
     });
     zoomAuf(id);
+    durchsicht(id);
     if (!id) return;
     hot(id, true);
     var k = karten[id];
