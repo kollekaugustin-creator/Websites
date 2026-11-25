@@ -1119,12 +1119,14 @@ main { position: relative; }
 .hero-haus .umschalter button[aria-pressed="true"] { background: rgba(255,212,0,.9); color: #1A2433; }
 .hero-haus .haus-hinweis::before { box-shadow: 0 0 0 4px rgba(255,212,0,.25), 0 0 12px rgba(255,212,0,.8); }
 /* Farbe: zarte Raumflächen, aktiver Raum leuchtet */
-.hero-haus .raum-farbe { opacity: .17; stroke: none; transition: opacity .9s ease; }
-.hero-haus .raum-farbe.aktiv { opacity: .5; }
+.hero-haus .raum-farbe { opacity: 0; stroke: none; transition: opacity .9s ease; }
+.hero-haus .raum-farbe.aktiv { opacity: .28; }
+.hero-haus .durchsicht .raum-farbe { opacity: .17; }
+.hero-haus .durchsicht .raum-farbe.aktiv { opacity: .5; }
 .hero-haus .leitung { fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
 .hero-haus .leitung-warm { stroke: #FF7A63; }
 .hero-haus .leitung-kalt { stroke: #9ADCFF; }
-.hero-haus .haus-svg .fenster-licht { opacity: .55; }
+.hero-haus .durchsicht .fenster-licht { opacity: .55; }
 .hero-haus .raum-label { opacity: .45; transition: opacity .9s ease; }
 .hero-haus .raum-label.is-hot { opacity: 1; }
 .hero-haus .raum-label.is-hot .label-linie { stroke-width: 2.2; }
@@ -1137,8 +1139,8 @@ main { position: relative; }
 @keyframes bp-fliessen-rueck { to { stroke-dashoffset: 40; } }
 
 /* Heizkörper glühen je nach Thermostat */
-.hero-haus .heizkoerper polygon { fill: var(--hk-farbe, #E5482A); fill-opacity: calc(.1 + var(--waerme, .3) * .4); stroke: var(--hk-farbe, #E5482A); }
-.hero-haus .heizkoerper line { stroke: var(--hk-farbe, #E5482A); }
+.hero-haus .durchsicht .heizkoerper polygon { fill: var(--hk-farbe, #E5482A); fill-opacity: calc(.1 + var(--waerme, .3) * .4); stroke: var(--hk-farbe, #E5482A); }
+.hero-haus .durchsicht .heizkoerper line { stroke: var(--hk-farbe, #E5482A); }
 
 /* Schnee, Dampf, Sonne, Mond */
 .hero-haus .schnee polygon, .hero-haus .schnee path { fill: rgba(236, 244, 255, .5); stroke: rgba(255, 255, 255, .8); }
@@ -1150,7 +1152,7 @@ main { position: relative; }
 
 /* Bad 1974: avocadogrüner Schimmer */
 .hero-haus.bad-1974-an .raum-farbe[data-raum="bad"] { fill: #9DA94E; }
-.hero-haus .bad-1974 polygon { fill: rgba(157, 169, 78, .16); }
+.hero-haus .durchsicht .bad-1974 polygon { fill: rgba(157, 169, 78, .16); }
 
 /* „Repariert“-Abzeichen im Glas-Look */
 .hero-haus .repariert rect { fill: rgba(12, 24, 44, .85); stroke: #4CD08A; }
@@ -1274,6 +1276,16 @@ main { position: relative; }
 .hero-haus .haus-svg .spritzer { transform: scale(1.7); transform-box: fill-box; transform-origin: 50% 100%; }
 .hero-haus .haus-svg .spritzer-strahl { stroke-width: 1.8; }
 .hero-haus .haus-svg .flut { opacity: 0; }
+
+/* Durchsicht: Das Haus ist massiv (echte Materialfarben). Nur das Stockwerk des gezeigten
+   Raums wechselt in den Bauplan-Look (Kopie aus der Vorlage #haus-bauplan), weich in 0,6 s. */
+.hero-haus .haus-svg .stock, .hero-haus .haus-svg .dach { transition: opacity .6s ease; }
+.hero-haus .haus-svg .ist-durchsicht { opacity: 0; }
+.hero-haus .haus-svg .durchsicht { opacity: 0; }
+.hero-haus .haus-svg .durchsicht.sichtbar { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-haus .haus-svg .stock, .hero-haus .haus-svg .dach { transition: none; }
+}
 
 /* =========================================================
    Unterseiten-Features im Bauplan-Look
