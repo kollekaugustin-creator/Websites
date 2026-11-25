@@ -9,11 +9,11 @@
   <meta name="robots" content="noindex, nofollow">
   <link rel="preload" href="fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="img/hero-zapfen-poster.jpg" as="image">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/menu.js" defer></script>
   <script src="js/script.js" defer></script>
-  <!-- 3D-Glas: lädt three.js erst nach, wenn die Seite fertig ist -->
-  <script type="module" src="js/glas.js"></script>
+  <script src="js/hero-video.js" defer></script>
 </head>
 <body>
 
@@ -53,8 +53,14 @@
 
   <main id="inhalt">
 
-    <!-- 2. Hero mit dem schwappenden 3D-Altbierglas -->
-    <section class="hero">
+    <!-- 2. Hero: Video „Bier wird gezapft“ in Dauerschleife (stumm), darüber ein Ochsenblut-Verlauf.
+         Bei „Bewegung reduzieren“ nur das Posterbild (js/hero-video.js + CSS). -->
+    <section class="hero hero--video">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="img/hero-zapfen-poster.jpg" aria-hidden="true" data-hero-video>
+        <source src="img/hero-zapfen-handy.mp4" type="video/mp4" media="(max-width: 700px)">
+        <source src="img/hero-zapfen.mp4" type="video/mp4">
+      </video>
+      <div class="hero-verlauf" aria-hidden="true"></div>
       <div class="container hero-inner">
         <div class="hero-text">
           <h1>Heerdter Brauhaus</h1>
@@ -66,57 +72,10 @@
           <!-- Status „Heute geöffnet · …“ wird später aus einstellungen.json berechnet -->
           <p class="hero-status" data-status>Mo 11:30–14:00 · Di–Sa 11:30–14:00 und 16:30–23:00 · So Ruhetag</p>
         </div>
-        <!-- Wow-Effekt: 3D-Glas aus js/glas.js. Das SVG ist das Standbild bis zum Laden
-             und der Ersatz (kein WebGL, „Bewegung reduzieren“, langsames Gerät). -->
-        <div class="hero-buehne" data-glas>
-          <svg class="glas-standbild" viewBox="0 0 200 400" role="img" aria-labelledby="glas-titel" focusable="false">
-            <title id="glas-titel">Frisch gezapftes Altbier in einem Glas</title>
-            <defs>
-              <linearGradient id="glas-alt" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0" stop-color="#5E2208"/>
-                <stop offset=".25" stop-color="#8A3B12"/>
-                <stop offset=".5" stop-color="#C87428"/>
-                <stop offset=".75" stop-color="#8A3B12"/>
-                <stop offset="1" stop-color="#5E2208"/>
-              </linearGradient>
-              <linearGradient id="glas-schaum" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0" stop-color="#F6EFE2"/>
-                <stop offset=".7" stop-color="#EFE3CC"/>
-                <stop offset="1" stop-color="#D9C3A0"/>
-              </linearGradient>
-              <linearGradient id="glas-boden" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0" stop-color="#F6EFE2" stop-opacity=".22"/>
-                <stop offset="1" stop-color="#F6EFE2" stop-opacity=".08"/>
-              </linearGradient>
-            </defs>
-            <!-- etwas breiter ziehen, damit es zur Form des 3D-Glases passt -->
-            <g transform="translate(100 0) scale(1.4 1) translate(-100 0)">
-            <!-- Schatten -->
-            <ellipse cx="100" cy="384" rx="62" ry="7" fill="#000" opacity=".28"/>
-            <!-- Bier -->
-            <path d="M53.3 104 L146.7 104 L142.5 352 L57.5 352 Z" fill="url(#glas-alt)"/>
-            <!-- Perlen -->
-            <g fill="#FFE7B8" opacity=".6">
-              <circle cx="78" cy="300" r="1.6"/><circle cx="80" cy="250" r="1.2"/><circle cx="77" cy="196" r="1.4"/>
-              <circle cx="112" cy="320" r="1.3"/><circle cx="114" cy="262" r="1.7"/><circle cx="111" cy="170" r="1.2"/>
-              <circle cx="96" cy="230" r="1"/><circle cx="128" cy="210" r="1.3"/><circle cx="128" cy="140" r="1"/>
-              <circle cx="66" cy="150" r="1.1"/>
-            </g>
-            <!-- Schaumkrone -->
-            <path d="M52.9 92 Q58 81 69 85 Q79 75 92 82 Q104 73 117 80 Q129 74 139 83 Q146 83 147.1 92 L146.7 108 L53.3 108 Z" fill="url(#glas-schaum)"/>
-            <!-- Glasboden -->
-            <path d="M57.5 352 L142.5 352 L141 380 L59 380 Z" fill="url(#glas-boden)"/>
-            <!-- Glaswand -->
-            <path d="M47 30 L153 30 L147 380 L53 380 Z" fill="none" stroke="#F6EFE2" stroke-opacity=".45" stroke-width="2" stroke-linejoin="round"/>
-            <!-- Lichtreflexe -->
-            <path d="M58 44 L63 370" stroke="#FFF6E6" stroke-opacity=".45" stroke-width="5" stroke-linecap="round"/>
-            <path d="M139 50 L136 360" stroke="#FFF6E6" stroke-opacity=".18" stroke-width="3" stroke-linecap="round"/>
-            </g>
-          </svg>
-          <!-- Nur auf dem Handy, erst wenn das 3D-Glas läuft -->
-          <button class="btn btn--hell glas-kippen" type="button" data-glas-kippen hidden>Glas kippen</button>
-        </div>
       </div>
+      <button class="hero-video-knopf" type="button" data-hero-video-knopf hidden aria-label="Hintergrundvideo anhalten">
+        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      </button>
     </section>
 
     <!-- 3. Wochenempfehlungen: kommen später aus content/tagesangebot.json -->
@@ -168,17 +127,17 @@
         <h2 class="sr-only">Unser Angebot</h2>
         <ul class="kacheln">
           <li class="kachel">
-            <div class="bild-platzhalter " role="img" aria-label="Schnitzel mit Bratkartoffeln und Salat"><span>Schnitzel mit Bratkartoffeln und Salat</span></div>
+            <img class="foto" src="img/schnitzel-800.jpg" srcset="img/schnitzel-800.jpg 800w, img/schnitzel.jpg 1600w" sizes="(min-width: 700px) 33vw, 100vw" width="1600" height="1200" alt="Schnitzel mit Bratkartoffeln und Salat" loading="lazy" decoding="async">
             <h3><a href="speisekarte.html">Speisekarte</a></h3>
             <p>Schnitzel, Haxe, Fisch und Brauhausklassiker.</p>
           </li>
           <li class="kachel">
-            <div class="bild-platzhalter " role="img" aria-label="Festlich gedeckte lange Tafel im Saal"><span>Festlich gedeckte lange Tafel im Saal</span></div>
+            <img class="foto" src="img/saal-tafel-800.jpg" srcset="img/saal-tafel-800.jpg 800w, img/saal-tafel.jpg 1600w" sizes="(min-width: 700px) 33vw, 100vw" width="1600" height="1200" alt="Festlich gedeckte lange Tafel im Saal" loading="lazy" decoding="async">
             <h3><a href="feiern.html">Feiern &amp; Kegeln</a></h3>
             <p>Saal für bis zu 60 Personen und eigene Kegelbahn.</p>
           </li>
           <li class="kachel">
-            <div class="bild-platzhalter " role="img" aria-label="Buffet mit warmen Speisen und Salaten"><span>Buffet mit warmen Speisen und Salaten</span></div>
+            <img class="foto" src="img/buffet-800.jpg" srcset="img/buffet-800.jpg 800w, img/buffet.jpg 1600w" sizes="(min-width: 700px) 33vw, 100vw" width="1600" height="1200" alt="Buffet mit warmen Speisen und Salaten" loading="lazy" decoding="async">
             <h3><a href="feiern.html#catering">Catering</a></h3>
             <p>Kalte Platten, warme Speisen und Buffets für Ihre Feier.</p>
           </li>
@@ -196,7 +155,7 @@
           <p>Ihre Gastgeber sind Wolfgang Kümper und Nadja Maeschig-Kümper. Der Wirt bedient selbst und nimmt sich Zeit für seine Gäste.</p>
           <div class="bild-platzhalter bild-platzhalter--klein" role="img" aria-label="Foto folgt: Gastgeber Wolfgang Kümper und Nadja Maeschig-Kümper"><span>Foto folgt: Gastgeber Wolfgang Kümper und Nadja Maeschig-Kümper</span></div>
         </div>
-        <div class="bild-platzhalter " role="img" aria-label="Gastraum mit Holzvertäfelung und langer Theke"><span>Gastraum mit Holzvertäfelung und langer Theke</span></div>
+        <img class="foto" src="img/gastraum-800.jpg" srcset="img/gastraum-800.jpg 800w, img/gastraum.jpg 1600w" sizes="(min-width: 700px) 50vw, 100vw" width="1600" height="1200" alt="Gastraum mit Holzvertäfelung" loading="lazy" decoding="async">
       </div>
     </section>
 

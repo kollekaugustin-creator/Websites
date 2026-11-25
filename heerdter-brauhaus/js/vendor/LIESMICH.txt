@@ -7,7 +7,8 @@ three-glas.min.js – three.js 0.187.0 (MIT-Lizenz, siehe LICENSE-three.txt)
   (EffectComposer, RenderPass, GTAOPass = Ambient Occlusion,
   BokehPass = Tiefenschärfe, UnrealBloomPass = Glanz, OutputPass).
   Welche Teile das sind, steht in three-glas-eintrag.js.
-  Der Name stammt noch vom früheren 3D-Bierglas der Startseite.
+  Der Name stammt noch vom früheren 3D-Bierglas der Startseite
+  (inzwischen durch ein Video ersetzt).
 
 cannon-es.min.js – cannon-es 0.20.0 (MIT-Lizenz, siehe LICENSE-cannon-es.txt)
   Physik-Engine. Wird NICHT auf der Webseite geladen, sondern nur vom
