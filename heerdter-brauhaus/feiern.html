@@ -53,107 +53,22 @@
 
   <main id="inhalt">
 
-    <!-- Wow-Effekt „Alle Neune!“: 3D-Kegelbahn aus js/kegeln.js.
-         Ohne JavaScript, bei „Bewegung reduzieren“ oder langsamen Geräten bleibt das Standbild. -->
+    <!-- Wow-Effekt: 3D-Kegelbahn (js/kegeln.js). Die erste Scroll-/Wischbewegung startet den Wurf.
+         Ohne JavaScript, ohne WebGL, bei „Bewegung reduzieren“ oder auf langsamen Geräten bleibt das Foto. -->
     <section class="kegel-szene" data-kegeln aria-labelledby="seiten-titel">
-      <div class="kegel-sticky">
-        <svg class="kegel-standbild" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="kegel-bild-titel" focusable="false">
-          <title id="kegel-bild-titel">Kegelbahn mit neun aufgestellten Kegeln und einer Kugel</title>
-          <defs>
-            <radialGradient id="kegel-licht" cx="50%" cy="20%" r="60%">
-              <stop offset="0" stop-color="#7A2E1C"/>
-              <stop offset="1" stop-color="#4A0E0E"/>
-            </radialGradient>
-            <linearGradient id="kegel-bahn" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0" stop-color="#B98F5A"/>
-              <stop offset=".35" stop-color="#E2C798"/>
-              <stop offset="1" stop-color="#D3B07C"/>
-            </linearGradient>
-            <radialGradient id="kegel-kugel" cx="38%" cy="32%" r="70%">
-              <stop offset="0" stop-color="#D9853A"/>
-              <stop offset=".55" stop-color="#8A3B12"/>
-              <stop offset="1" stop-color="#3E1406"/>
-            </radialGradient>
-            <linearGradient id="kegel-holz" x1="0" x2="1">
-              <stop offset="0" stop-color="#D8CCB6"/>
-              <stop offset=".4" stop-color="#FBF6EC"/>
-              <stop offset="1" stop-color="#CDBFA6"/>
-            </linearGradient>
-            <path id="kegel-form" d="M-6 0 C-10 -10 -14 -25 -13 -40 C-12 -55 -6 -64 -5 -71 C-5 -77 -8 -81 -8 -87 A8 8 0 0 1 8 -87 C8 -81 5 -77 5 -71 C6 -64 12 -55 13 -40 C14 -25 10 -10 6 0 Z" fill="url(#kegel-holz)"/>
-          </defs>
-          <rect width="800" height="500" fill="url(#kegel-licht)"/>
-          <!-- Lichtkegel von oben -->
-          <path d="M360 0 L440 0 L560 260 L240 260 Z" fill="#FFD9A0" opacity=".10"/>
-          <!-- Rinnen und Bahn -->
-          <path d="M318 140 L482 140 L720 500 L80 500 Z" fill="#2A1209"/>
-          <path d="M330 140 L470 140 L650 500 L150 500 Z" fill="url(#kegel-bahn)"/>
-          <g stroke="#9C7444" stroke-opacity=".35" stroke-width="1">
-            <path d="M358 140 L250 500"/><path d="M386 140 L350 500"/><path d="M414 140 L450 500"/><path d="M442 140 L550 500"/>
-          </g>
-          <!-- Rückwand -->
-          <rect x="300" y="96" width="200" height="46" fill="#2A0606"/>
-          <!-- Kegel in der Raute (hinten zuerst) -->
-          <g>
-            <g transform="translate(400 170) scale(0.62)">
-              <ellipse cx="0" cy="0" rx="13" ry="3.5" fill="#000" opacity=".25"/>
-              <use href="#kegel-form"/>
-            </g>
-            <g transform="translate(372 181) scale(0.65)">
-              <ellipse cx="0" cy="0" rx="13" ry="3.5" fill="#000" opacity=".25"/>
-              <use href="#kegel-form"/>
-            </g>
-            <g transform="translate(428 181) scale(0.65)">
-              <ellipse cx="0" cy="0" rx="13" ry="3.5" fill="#000" opacity=".25"/>
-              <use href="#kegel-form"/>
-            </g>
-            <g transform="translate(344 193) scale(0.68)">
-              <ellipse cx="0" cy="0" rx="13" ry="3.5" fill="#000" opacity=".25"/>
-              <use href="#kegel-form"/>
-            </g>
-            <g transform="translate(400 193) scale(0.74)">
-              <ellipse cx="0" cy="0" rx="13" ry="3.5" fill="#000" opacity=".25"/>
-              <use href="#kegel-form"/>
-              <circle cx="0" cy="-87" r="8.6" fill="#B3261E"/>
-            </g>
-            <g transform="translate(456 193) scale(0.68)">
-              <ellipse cx="0" cy="0" rx="13" ry="3.5" fill="#000" opacity=".25"/>
-              <use href="#kegel-form"/>
-            </g>
-            <g transform="translate(370 206) scale(0.71)">
-              <ellipse cx="0" cy="0" rx="13" ry="3.5" fill="#000" opacity=".25"/>
-              <use href="#kegel-form"/>
-            </g>
-            <g transform="translate(430 206) scale(0.71)">
-              <ellipse cx="0" cy="0" rx="13" ry="3.5" fill="#000" opacity=".25"/>
-              <use href="#kegel-form"/>
-            </g>
-            <g transform="translate(400 220) scale(0.74)">
-              <ellipse cx="0" cy="0" rx="13" ry="3.5" fill="#000" opacity=".25"/>
-              <use href="#kegel-form"/>
-            </g>
-          </g>
-          <!-- Kugel -->
-          <ellipse cx="400" cy="452" rx="40" ry="8" fill="#000" opacity=".3"/>
-          <circle cx="400" cy="414" r="38" fill="url(#kegel-kugel)"/>
-          <ellipse cx="386" cy="398" rx="10" ry="6" fill="#FFF3E0" opacity=".35"/>
-        </svg>
+      <img class="kegel-standbild" src="img/kegelbahn-800.jpg" srcset="img/kegelbahn-800.jpg 800w, img/kegelbahn.jpg 1600w" sizes="100vw" width="1600" height="1200" alt="Kegelbahn mit aufgestellten Kegeln" fetchpriority="high">
+      <div class="kegel-vignette" aria-hidden="true"></div>
+      <div class="kegel-blende" data-kegel-blende aria-hidden="true"></div>
 
-        <div class="kegel-text container">
-          <h1 id="seiten-titel">Feiern &amp; Kegeln</h1>
-          <p>Ob Familienfeier, Kegelabend oder Buffet für zu Hause – sprechen Sie uns an.</p>
-          <p class="kegel-hinweis" data-kegel-hinweis hidden>Scrollen Sie – die Kugel rollt.</p>
-        </div>
-
-        <!-- Ergebnis nach dem Wurf (Texte kommen aus den Einstellungen in js/kegeln.js) -->
-        <div class="kegel-ergebnis" data-kegel-ergebnis aria-live="polite" hidden>
-          <p class="kegel-ergebnis-titel" data-kegel-titel>Alle Neune!</p>
-          <p class="kegel-ergebnis-text" data-kegel-text>Freie Termine für Ihren Kegelabend</p>
-          <div class="btn-row btn-row--center">
-            <a class="btn btn--gold" href="tel:+492115047268" data-kegel-anfragen>Kegelbahn anfragen</a>
-            <button class="btn btn--hell" type="button" data-kegel-nochmal>Nochmal werfen</button>
-          </div>
-        </div>
+      <div class="kegel-titel container">
+        <h1 id="seiten-titel">Feiern &amp; Kegeln</h1>
+        <p class="kegel-intro">Ob Familienfeier, Kegelabend oder Buffet für zu Hause – sprechen Sie uns an.</p>
       </div>
+
+      <button class="kegel-pfeil" type="button" data-kegel-start hidden aria-label="Kugel werfen und weiter nach unten">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg>
+      </button>
+      <a class="kegel-ueberspringen" href="#saal" data-kegel-ueberspringen hidden>Überspringen</a>
     </section>
 
     <!-- 1. Saal -->
